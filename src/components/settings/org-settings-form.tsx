@@ -51,24 +51,24 @@ export function OrgSettingsForm({ orgId, name: initName, slug: initSlug, setting
     }
   }
 
-  const fieldClass = 'bg-slate-800 border-slate-700 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-500'
-  const labelClass = 'text-slate-300 text-sm'
+  const fieldClass = 'bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-forest-500'
+  const labelClass = 'text-muted-foreground text-sm'
 
   return (
     <form onSubmit={handleSave} className="max-w-xl space-y-6">
-      <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-5 space-y-4">
-        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Organisation</h3>
+      <div className="rounded-lg border border-border bg-background/40 p-5 space-y-4">
+        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Organisation</h3>
 
         <div className="space-y-1.5">
           <Label className={labelClass}>Organisation Name</Label>
           <Input value={orgName} onChange={(e) => setOrgName(e.target.value)} className={fieldClass} />
-          <p className="text-xs text-slate-600">Slug: <span className="font-mono">{initSlug}</span></p>
+          <p className="text-xs text-muted-foreground">Slug: <span className="font-mono">{initSlug}</span></p>
         </div>
       </div>
 
-      <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-5 space-y-4">
-        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">WhatsApp</h3>
-        <p className="text-xs text-slate-500">The labour manager WhatsApp number used for offer broadcasts and operative messages.</p>
+      <div className="rounded-lg border border-border bg-background/40 p-5 space-y-4">
+        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">WhatsApp</h3>
+        <p className="text-xs text-muted-foreground">The labour manager WhatsApp number used for offer broadcasts and operative messages.</p>
 
         <div className="space-y-1.5">
           <Label className={labelClass}>Labour Manager WhatsApp</Label>
@@ -78,12 +78,12 @@ export function OrgSettingsForm({ orgId, name: initName, slug: initSlug, setting
             placeholder="+447742201349"
             className={`${fieldClass} font-mono`}
           />
-          <p className="text-xs text-slate-600">Replace before go-live — currently placeholder (Oliver&apos;s number)</p>
+          <p className="text-xs text-muted-foreground">Replace before go-live — currently placeholder (Oliver&apos;s number)</p>
         </div>
       </div>
 
-      <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-5 space-y-4">
-        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Offer Settings</h3>
+      <div className="rounded-lg border border-border bg-background/40 p-5 space-y-4">
+        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Offer Settings</h3>
 
         <div className="grid grid-cols-3 gap-4">
           <div className="space-y-1.5">
@@ -120,12 +120,12 @@ export function OrgSettingsForm({ orgId, name: initName, slug: initSlug, setting
             />
           </div>
         </div>
-        <p className="text-xs text-slate-600">
+        <p className="text-xs text-muted-foreground">
           Broadcast count = how many operatives receive an offer simultaneously. First to accept wins.
         </p>
       </div>
 
-      <Button type="submit" disabled={saving} className="bg-emerald-600 hover:bg-emerald-700 text-white">
+      <Button type="submit" disabled={saving} className="bg-forest-600 hover:bg-forest-700 text-white">
         {saving && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
         Save Settings
       </Button>

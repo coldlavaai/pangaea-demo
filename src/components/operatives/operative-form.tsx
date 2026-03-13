@@ -240,13 +240,13 @@ function DatePicker({
           type="button"
           className={`${fieldClass} flex h-9 w-full items-center justify-between rounded-md border px-3 py-1 text-sm`}
         >
-          <span className={selected ? 'text-slate-100' : 'text-slate-500'}>
+          <span className={selected ? 'text-foreground' : 'text-muted-foreground'}>
             {selected ? format(selected, 'dd/MM/yyyy') : placeholder}
           </span>
-          <CalendarIcon className="h-4 w-4 text-slate-400 shrink-0" />
+          <CalendarIcon className="h-4 w-4 text-muted-foreground shrink-0" />
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 bg-slate-800 border-slate-700" align="start">
+      <PopoverContent className="w-auto p-0 bg-card border-border" align="start">
         <div className="dark">
           <Calendar
             mode="single"
@@ -446,9 +446,9 @@ export function OperativeForm({
   // ── UI helpers ──────────────────────────────────────────────────────────────
 
   const fieldClass =
-    'bg-slate-800 border-slate-700 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-500'
+    'bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-forest-500'
 
-  const labelClass = 'text-slate-300 text-sm'
+  const labelClass = 'text-muted-foreground text-sm'
 
   const errorMsg = (field: keyof FormValues) =>
     errors[field] ? (
@@ -456,7 +456,7 @@ export function OperativeForm({
     ) : null
 
   const sectionHeader = (title: string) => (
-    <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider pt-2 pb-1 border-b border-slate-800">
+    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider pt-2 pb-1 border-b border-border">
       {title}
     </h3>
   )
@@ -509,9 +509,9 @@ export function OperativeForm({
                 <SelectTrigger className={fieldClass}>
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
+                <SelectContent className="bg-card border-border">
                   {STATUSES.map((s) => (
-                    <SelectItem key={s.value} value={s.value} className="text-slate-200">
+                    <SelectItem key={s.value} value={s.value} className="text-muted-foreground">
                       {s.label}
                     </SelectItem>
                   ))}
@@ -531,9 +531,9 @@ export function OperativeForm({
                 <SelectTrigger className={fieldClass}>
                   <SelectValue placeholder="Select type" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="blue_collar" className="text-slate-200">Blue Collar</SelectItem>
-                  <SelectItem value="white_collar" className="text-slate-200">White Collar</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="blue_collar" className="text-muted-foreground">Blue Collar</SelectItem>
+                  <SelectItem value="white_collar" className="text-muted-foreground">White Collar</SelectItem>
                 </SelectContent>
               </Select>
             )}
@@ -586,10 +586,10 @@ export function OperativeForm({
                 <SelectTrigger className={fieldClass}>
                   <SelectValue placeholder="Select gender" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="none" className="text-slate-400">Not set</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="none" className="text-muted-foreground">Not set</SelectItem>
                   {GENDERS.map((g) => (
-                    <SelectItem key={g.value} value={g.value} className="text-slate-200">
+                    <SelectItem key={g.value} value={g.value} className="text-muted-foreground">
                       {g.label}
                     </SelectItem>
                   ))}
@@ -615,9 +615,9 @@ export function OperativeForm({
                 <SelectTrigger className={fieldClass}>
                   <SelectValue placeholder="Select language" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
+                <SelectContent className="bg-card border-border">
                   {LANGUAGES.map((l) => (
-                    <SelectItem key={l.value} value={l.value} className="text-slate-200">
+                    <SelectItem key={l.value} value={l.value} className="text-muted-foreground">
                       {l.label}
                     </SelectItem>
                   ))}
@@ -651,7 +651,7 @@ export function OperativeForm({
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="postcode" className={labelClass}>
-            Postcode {geocoding && <span className="text-slate-500 text-xs">(locating…)</span>}
+            Postcode {geocoding && <span className="text-muted-foreground text-xs">(locating…)</span>}
           </Label>
           <Input
             id="postcode"
@@ -676,10 +676,10 @@ export function OperativeForm({
               <SelectTrigger className={fieldClass}>
                 <SelectValue placeholder="Select trade" />
               </SelectTrigger>
-              <SelectContent className="bg-slate-800 border-slate-700">
-                <SelectItem value="none" className="text-slate-400">None</SelectItem>
+              <SelectContent className="bg-card border-border">
+                <SelectItem value="none" className="text-muted-foreground">None</SelectItem>
                 {tradeCategories.map((t) => (
-                  <SelectItem key={t.id} value={t.id} className="text-slate-200">
+                  <SelectItem key={t.id} value={t.id} className="text-muted-foreground">
                     {t.name}
                   </SelectItem>
                 ))}
@@ -700,10 +700,10 @@ export function OperativeForm({
                 <SelectTrigger className={fieldClass}>
                   <SelectValue placeholder="Select grade" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="none" className="text-slate-400">Not set</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="none" className="text-muted-foreground">Not set</SelectItem>
                   {GRADES.map((g) => (
-                    <SelectItem key={g.value} value={g.value} className="text-slate-200">
+                    <SelectItem key={g.value} value={g.value} className="text-muted-foreground">
                       {g.label}
                     </SelectItem>
                   ))}
@@ -792,10 +792,10 @@ export function OperativeForm({
                 <SelectTrigger className={fieldClass}>
                   <SelectValue placeholder="Select agency / source" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="none" className="text-slate-400">Not set</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="none" className="text-muted-foreground">Not set</SelectItem>
                   {AGENCIES.map((a) => (
-                    <SelectItem key={a.value} value={a.value} className="text-slate-200">
+                    <SelectItem key={a.value} value={a.value} className="text-muted-foreground">
                       {a.label}
                     </SelectItem>
                   ))}
@@ -817,10 +817,10 @@ export function OperativeForm({
                 <SelectTrigger className={fieldClass}>
                   <SelectValue placeholder="Select engagement" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="none" className="text-slate-400">Not set</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="none" className="text-muted-foreground">Not set</SelectItem>
                   {ENGAGEMENT_METHODS.map((e) => (
-                    <SelectItem key={e.value} value={e.value} className="text-slate-200">
+                    <SelectItem key={e.value} value={e.value} className="text-muted-foreground">
                       {e.label}
                     </SelectItem>
                   ))}
@@ -864,8 +864,8 @@ export function OperativeForm({
               role="switch"
               aria-checked={field.value}
               onClick={() => field.onChange(!field.value)}
-              className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
-                field.value ? 'bg-emerald-600' : 'bg-slate-700'
+              className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-500 ${
+                field.value ? 'bg-forest-600' : 'bg-[#444444]'
               }`}
             >
               <span
@@ -893,10 +893,10 @@ export function OperativeForm({
                 <SelectTrigger className={fieldClass}>
                   <SelectValue placeholder="Select type" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="none" className="text-slate-400">Not set</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="none" className="text-muted-foreground">Not set</SelectItem>
                   {RTW_TYPES.map((r) => (
-                    <SelectItem key={r.value} value={r.value} className="text-slate-200">
+                    <SelectItem key={r.value} value={r.value} className="text-muted-foreground">
                       {r.label}
                     </SelectItem>
                   ))}
@@ -948,8 +948,8 @@ export function OperativeForm({
                 role="switch"
                 aria-checked={field.value}
                 onClick={() => field.onChange(!field.value)}
-                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
-                  field.value ? 'bg-emerald-600' : 'bg-slate-700'
+                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-500 ${
+                  field.value ? 'bg-forest-600' : 'bg-[#444444]'
                 }`}
               >
                 <span
@@ -972,8 +972,8 @@ export function OperativeForm({
                 role="switch"
                 aria-checked={field.value}
                 onClick={() => field.onChange(!field.value)}
-                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
-                  field.value ? 'bg-emerald-600' : 'bg-slate-700'
+                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-500 ${
+                  field.value ? 'bg-forest-600' : 'bg-[#444444]'
                 }`}
               >
                 <span
@@ -1002,10 +1002,10 @@ export function OperativeForm({
                 <SelectTrigger className={fieldClass}>
                   <SelectValue placeholder="Select card type" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="none" className="text-slate-400">None</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="none" className="text-muted-foreground">None</SelectItem>
                   {CSCS_TYPES.map((c) => (
-                    <SelectItem key={c.value} value={c.value} className="text-slate-200">
+                    <SelectItem key={c.value} value={c.value} className="text-muted-foreground">
                       {c.label}
                     </SelectItem>
                   ))}
@@ -1085,7 +1085,7 @@ export function OperativeForm({
       {/* ── Payroll ────────────────────────────────────────────────────────── */}
       {sectionHeader('Payroll (Sensitive)')}
 
-      <p className="text-xs text-slate-500">These fields are masked in the operative profile. Confirm with Martin whether payroll runs inside the BOS — see Q3 and Q6 in JJ handoff notes.</p>
+      <p className="text-xs text-muted-foreground">These fields are masked in the operative profile. Confirm with Martin whether payroll runs inside the BOS — see Q3 and Q6 in JJ handoff notes.</p>
 
       <div className="grid grid-cols-3 gap-4">
         <div className="space-y-1.5">
@@ -1130,8 +1130,8 @@ export function OperativeForm({
               role="switch"
               aria-checked={field.value}
               onClick={() => field.onChange(!field.value)}
-              className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
-                field.value ? 'bg-emerald-600' : 'bg-slate-700'
+              className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-500 ${
+                field.value ? 'bg-forest-600' : 'bg-[#444444]'
               }`}
             >
               <span
@@ -1183,7 +1183,7 @@ export function OperativeForm({
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="bg-emerald-600 hover:bg-emerald-700 text-white"
+          className="bg-forest-600 hover:bg-forest-700 text-white"
         >
           {isSubmitting && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
           {mode === 'create' ? 'Create Operative' : 'Save Changes'}
@@ -1191,7 +1191,7 @@ export function OperativeForm({
         <Button
           type="button"
           variant="outline"
-          className="border-slate-700 text-slate-300 hover:bg-slate-800"
+          className="border-border text-muted-foreground hover:bg-card"
           onClick={() => router.back()}
         >
           Cancel

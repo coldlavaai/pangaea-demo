@@ -21,7 +21,7 @@ export function ExportTrapButton() {
       variant="outline"
       onClick={handleClick}
       disabled={state === 'loading'}
-      className="border-slate-700 text-slate-300 hover:bg-slate-800"
+      className="border-border text-muted-foreground hover:bg-card"
     >
       <Download className="h-4 w-4 mr-2" />
       {state === 'loading' ? 'Preparing…' : state === 'blocked' ? 'Export unavailable' : 'Export'}

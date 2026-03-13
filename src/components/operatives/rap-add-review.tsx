@@ -129,8 +129,8 @@ export function RapAddReview({ operativeId, operativeName, allocations }: RapAdd
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-lg border border-slate-700 bg-slate-900/60 p-4 space-y-4">
-      <p className="text-sm font-semibold text-slate-200">New RAP Review</p>
+    <form onSubmit={handleSubmit} className="rounded-lg border border-border bg-background/60 p-4 space-y-4">
+      <p className="text-sm font-semibold text-muted-foreground">New RAP Review</p>
 
       {error && (
         <p className="text-xs text-red-400 bg-red-900/20 border border-red-800 rounded px-3 py-2">{error}</p>

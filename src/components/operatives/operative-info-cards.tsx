@@ -98,10 +98,10 @@ const CSCS_OPTIONS = [
 ]
 
 const CSCS_DOT_CLASS: Record<string, string> = {
-  green: 'bg-emerald-500',
+  green: 'bg-forest-500',
   blue: 'bg-blue-500',
   gold: 'bg-amber-400',
-  black: 'bg-slate-300',
+  black: 'bg-muted',
   red: 'bg-red-500',
   white: 'bg-white',
 }
@@ -133,10 +133,10 @@ function fmtDate(d: string | null | undefined): string | null {
 
 function InfoCard({ title, icon: Icon, children }: { title: string; icon: React.ElementType; children: React.ReactNode }) {
   return (
-    <div className="rounded-md border border-slate-800 bg-slate-900">
-      <div className="flex items-center gap-2 px-3 py-2 border-b border-slate-800">
-        <Icon className="h-3.5 w-3.5 text-slate-500" />
-        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wide">{title}</h3>
+    <div className="rounded-md border border-border bg-background">
+      <div className="flex items-center gap-2 px-3 py-2 border-b border-border">
+        <Icon className="h-3.5 w-3.5 text-muted-foreground" />
+        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">{title}</h3>
       </div>
       <div className="px-3 py-2 space-y-1">{children}</div>
     </div>
@@ -179,14 +179,14 @@ function StaticField({
 
   return (
     <div className="flex items-baseline justify-between gap-2">
-      <span className="text-xs text-slate-500 shrink-0">{label}</span>
+      <span className="text-xs text-muted-foreground shrink-0">{label}</span>
       <span className={cn(
         'text-xs text-right',
         mono && 'font-mono',
-        highlight === 'green' && 'text-emerald-400',
+        highlight === 'green' && 'text-forest-400',
         highlight === 'amber' && 'text-amber-400',
         highlight === 'red' && 'text-red-400',
-        !highlight && 'text-slate-200',
+        !highlight && 'text-muted-foreground',
       )}>
         {display ?? '—'}
       </span>
@@ -282,8 +282,8 @@ export function OperativeInfoCards({ op, operativeId, cards, canEdit = false }: 
       <InfoCard title="CSCS / Tickets" icon={FileText}>
         {op.cscs_card_type && (
           <div className="flex items-center gap-2 py-1">
-            <span className={`inline-block h-3 w-3 rounded-full shrink-0 ${CSCS_DOT_CLASS[op.cscs_card_type] ?? 'bg-slate-500'}`} />
-            <span className="text-sm font-medium text-slate-200">
+            <span className={`inline-block h-3 w-3 rounded-full shrink-0 ${CSCS_DOT_CLASS[op.cscs_card_type] ?? 'bg-muted'}`} />
+            <span className="text-sm font-medium text-muted-foreground">
               {CSCS_COLOUR_LABEL[op.cscs_card_type] ?? op.cscs_card_type} Card
               {op.cscs_card_title ? ` — ${op.cscs_card_title}` : ''}
             </span>

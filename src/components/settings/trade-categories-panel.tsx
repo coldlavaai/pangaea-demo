@@ -82,16 +82,16 @@ function EditRow({
   }
 
   return (
-    <tr className="border-b border-slate-800 bg-slate-900/60">
+    <tr className="border-b border-border bg-background/60">
       <td className="px-4 py-2">
         <Input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="h-7 text-xs bg-slate-800 border-slate-700 text-slate-100"
+          className="h-7 text-xs bg-card border-border text-foreground"
           autoFocus
         />
       </td>
-      <td className="px-4 py-2 text-xs text-slate-400 capitalize">
+      <td className="px-4 py-2 text-xs text-muted-foreground capitalize">
         {cat.labour_type.replace('_', ' ')}
       </td>
       <td className="px-4 py-2">
@@ -102,14 +102,14 @@ function EditRow({
           value={rate}
           onChange={(e) => setRate(e.target.value)}
           placeholder="—"
-          className="h-7 text-xs bg-slate-800 border-slate-700 text-slate-100 w-24"
+          className="h-7 text-xs bg-card border-border text-foreground w-24"
         />
       </td>
       <td className="px-4 py-2 text-right">
         <div className="flex gap-1 justify-end">
           <Button
             size="sm"
-            className="h-6 px-2 text-xs bg-emerald-600 hover:bg-emerald-700 text-white"
+            className="h-6 px-2 text-xs bg-forest-600 hover:bg-forest-700 text-white"
             onClick={save}
             disabled={saving}
           >
@@ -144,7 +144,7 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
   const [seeding, setSeeding] = useState(false)
 
   const fieldClass =
-    'bg-slate-800 border-slate-700 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-500'
+    'bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-forest-500'
 
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -250,7 +250,7 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
   return (
     <div className="space-y-4 max-w-2xl">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-muted-foreground">
           {active.length} active trade{active.length !== 1 ? 's' : ''}
           {inactive.length > 0 && `, ${inactive.length} inactive`}
         </p>
@@ -259,7 +259,7 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
             <Button
               size="sm"
               variant="outline"
-              className="border-slate-700 text-slate-300 hover:bg-slate-800 text-xs"
+              className="border-border text-muted-foreground hover:bg-card text-xs"
               onClick={seedDefaultTrades}
               disabled={seeding}
             >
@@ -269,7 +269,7 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
           )}
           <Button
             size="sm"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white"
+            className="bg-forest-600 hover:bg-forest-700 text-white"
             onClick={() => setShowAdd(true)}
           >
             <Plus className="h-4 w-4 mr-1" />
@@ -282,15 +282,15 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
       {showAdd && (
         <form
           onSubmit={handleAdd}
-          className="rounded-lg border border-slate-700 bg-slate-900/60 p-4 space-y-3"
+          className="rounded-lg border border-border bg-background/60 p-4 space-y-3"
         >
-          <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             New Trade Category
           </h3>
           {addError && <p className="text-xs text-red-400">{addError}</p>}
           <div className="grid grid-cols-3 gap-3">
             <div className="col-span-2 space-y-1">
-              <Label className="text-xs text-slate-400">Name</Label>
+              <Label className="text-xs text-muted-foreground">Name</Label>
               <Input
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
@@ -300,7 +300,7 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
               />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs text-slate-400">Typical Day Rate (£)</Label>
+              <Label className="text-xs text-muted-foreground">Typical Day Rate (£)</Label>
               <Input
                 type="number"
                 step="0.01"
@@ -313,16 +313,16 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
             </div>
           </div>
           <div className="space-y-1">
-            <Label className="text-xs text-slate-400">Labour Type</Label>
+            <Label className="text-xs text-muted-foreground">Labour Type</Label>
             <Select value={newLabourType} onValueChange={setNewLabourType}>
               <SelectTrigger className={`h-8 text-xs ${fieldClass}`}>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-slate-800 border-slate-700">
-                <SelectItem value="blue_collar" className="text-xs text-slate-200">
+              <SelectContent className="bg-card border-border">
+                <SelectItem value="blue_collar" className="text-xs text-muted-foreground">
                   Blue Collar
                 </SelectItem>
-                <SelectItem value="white_collar" className="text-xs text-slate-200">
+                <SelectItem value="white_collar" className="text-xs text-muted-foreground">
                   White Collar
                 </SelectItem>
               </SelectContent>
@@ -332,7 +332,7 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
             <Button
               type="submit"
               size="sm"
-              className="h-7 text-xs bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="h-7 text-xs bg-forest-600 hover:bg-forest-700 text-white"
               disabled={adding}
             >
               {adding && <Loader2 className="h-3.5 w-3.5 mr-1 animate-spin" />}
@@ -353,12 +353,12 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
 
       {/* Table */}
       {categories.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-slate-800 p-10 text-center">
-          <p className="text-sm text-slate-500 mb-3">No trade categories yet</p>
+        <div className="rounded-lg border border-dashed border-border p-10 text-center">
+          <p className="text-sm text-muted-foreground mb-3">No trade categories yet</p>
           <Button
             size="sm"
             variant="outline"
-            className="border-slate-700 text-slate-300 hover:bg-slate-800"
+            className="border-border text-muted-foreground hover:bg-card"
             onClick={seedDefaultTrades}
             disabled={seeding}
           >
@@ -367,17 +367,17 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
           </Button>
         </div>
       ) : (
-        <div className="rounded-lg border border-slate-800 overflow-hidden">
+        <div className="rounded-lg border border-border overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-800 bg-slate-900/80">
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Trade</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Type</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Day Rate</th>
-                <th className="text-right px-4 py-3 text-slate-400 font-medium">Actions</th>
+              <tr className="border-b border-border bg-background/80">
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Trade</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Type</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Day Rate</th>
+                <th className="text-right px-4 py-3 text-muted-foreground font-medium">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800">
+            <tbody className="divide-y divide-border">
               {categories.map((cat) => {
                 if (editingId === cat.id) {
                   return (
@@ -396,13 +396,13 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
                 return (
                   <tr
                     key={cat.id}
-                    className={`transition-opacity hover:bg-slate-900/50 ${cat.is_active === false ? 'opacity-50' : ''}`}
+                    className={`transition-opacity hover:bg-background/50 ${cat.is_active === false ? 'opacity-50' : ''}`}
                   >
-                    <td className="px-4 py-2.5 text-slate-200">{cat.name}</td>
-                    <td className="px-4 py-2.5 text-xs text-slate-400 capitalize">
+                    <td className="px-4 py-2.5 text-muted-foreground">{cat.name}</td>
+                    <td className="px-4 py-2.5 text-xs text-muted-foreground capitalize">
                       {cat.labour_type.replace('_', ' ')}
                     </td>
-                    <td className="px-4 py-2.5 text-slate-400 tabular-nums">
+                    <td className="px-4 py-2.5 text-muted-foreground tabular-nums">
                       {cat.typical_day_rate != null
                         ? `£${Number(cat.typical_day_rate).toFixed(0)}/day`
                         : '—'}
@@ -412,7 +412,7 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
                         <Button
                           size="sm"
                           variant="ghost"
-                          className="h-6 px-2 text-xs text-slate-400 hover:text-slate-200"
+                          className="h-6 px-2 text-xs text-muted-foreground hover:text-muted-foreground"
                           onClick={() => setEditingId(cat.id)}
                         >
                           <Pencil className="h-3 w-3" />
@@ -420,7 +420,7 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
                         <Button
                           size="sm"
                           variant="ghost"
-                          className={`h-6 px-2 text-xs transition-colors ${cat.is_active === false ? 'text-emerald-400' : 'text-slate-500'}`}
+                          className={`h-6 px-2 text-xs transition-colors ${cat.is_active === false ? 'text-forest-400' : 'text-muted-foreground'}`}
                           onClick={() => toggleActive(cat.id, cat.is_active)}
                           disabled={toggling === cat.id}
                         >

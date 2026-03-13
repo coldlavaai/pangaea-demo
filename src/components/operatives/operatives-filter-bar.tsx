@@ -134,15 +134,15 @@ function MultiSelect({
       <button
         type="button"
         onClick={() => setOpen(v => !v)}
-        className={`flex items-center justify-between w-full px-3 py-2 text-sm bg-slate-900 border rounded-md hover:bg-slate-800 transition-colors ${
-          values.length > 0 ? 'border-emerald-700 text-slate-200' : 'border-slate-700 text-slate-500'
+        className={`flex items-center justify-between w-full px-3 py-2 text-sm bg-background border rounded-md hover:bg-card transition-colors ${
+          values.length > 0 ? 'border-forest-700 text-muted-foreground' : 'border-border text-muted-foreground'
         }`}
       >
         <span className="truncate">{label}</span>
-        <ChevronDown className={`h-4 w-4 ml-2 shrink-0 text-slate-500 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`h-4 w-4 ml-2 shrink-0 text-muted-foreground transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <div className="absolute z-50 top-full mt-1 left-0 min-w-full bg-slate-900 border border-slate-700 rounded-md shadow-xl py-1 max-h-64 overflow-y-auto">
+        <div className="absolute z-50 top-full mt-1 left-0 min-w-full bg-background border border-border rounded-md shadow-xl py-1 max-h-64 overflow-y-auto">
           {options.map(opt => {
             const checked = values.includes(opt.value)
             return (
@@ -150,23 +150,23 @@ function MultiSelect({
                 key={opt.value}
                 type="button"
                 onClick={() => onToggle(opt.value)}
-                className="flex items-center gap-2.5 w-full px-3 py-2 text-sm hover:bg-slate-800 transition-colors text-left"
+                className="flex items-center gap-2.5 w-full px-3 py-2 text-sm hover:bg-card transition-colors text-left"
               >
                 <span className={`flex items-center justify-center h-4 w-4 rounded border shrink-0 transition-colors ${
-                  checked ? 'bg-emerald-600 border-emerald-600' : 'border-slate-600'
+                  checked ? 'bg-forest-600 border-forest-600' : 'border-border'
                 }`}>
                   {checked && <Check className="h-3 w-3 text-white" />}
                 </span>
-                <span className={checked ? 'text-slate-200' : 'text-slate-400'}>{opt.label}</span>
+                <span className={checked ? 'text-muted-foreground' : 'text-muted-foreground'}>{opt.label}</span>
               </button>
             )
           })}
           {values.length > 0 && (
-            <div className="border-t border-slate-800 mt-1 pt-1">
+            <div className="border-t border-border mt-1 pt-1">
               <button
                 type="button"
                 onClick={() => values.forEach(v => onToggle(v))}
-                className="flex items-center gap-2 w-full px-3 py-1.5 text-xs text-slate-500 hover:text-slate-300 hover:bg-slate-800"
+                className="flex items-center gap-2 w-full px-3 py-1.5 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-card"
               >
                 <X className="h-3 w-3" /> Clear selection
               </button>
@@ -289,12 +289,12 @@ export function OperativesFilterBar({
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-[200px]">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
           <Input
             value={searchValue}
             onChange={(e) => handleSearch(e.target.value)}
             placeholder="Search name, phone, ref, NI…"
-            className="pl-9 bg-slate-900 border-slate-700 text-slate-200 placeholder:text-slate-500 focus-visible:ring-emerald-500"
+            className="pl-9 bg-background border-border text-muted-foreground placeholder:text-muted-foreground focus-visible:ring-forest-500"
           />
         </div>
 
@@ -318,13 +318,13 @@ export function OperativesFilterBar({
           value={initialLabourType || 'all'}
           onValueChange={(v) => pushUrl({ labour_type: v === 'all' ? '' : v })}
         >
-          <SelectTrigger className="w-36 bg-slate-900 border-slate-700 text-slate-300">
+          <SelectTrigger className="w-36 bg-background border-border text-muted-foreground">
             <SelectValue placeholder="All Types" />
           </SelectTrigger>
-          <SelectContent className="bg-slate-900 border-slate-700">
-            <SelectItem value="all" className="text-slate-300">All Types</SelectItem>
-            <SelectItem value="blue_collar" className="text-slate-300">Blue Collar</SelectItem>
-            <SelectItem value="white_collar" className="text-slate-300">White Collar</SelectItem>
+          <SelectContent className="bg-background border-border">
+            <SelectItem value="all" className="text-muted-foreground">All Types</SelectItem>
+            <SelectItem value="blue_collar" className="text-muted-foreground">Blue Collar</SelectItem>
+            <SelectItem value="white_collar" className="text-muted-foreground">White Collar</SelectItem>
           </SelectContent>
         </Select>
 
@@ -340,12 +340,12 @@ export function OperativesFilterBar({
           value={initialSort || 'created_at:desc'}
           onValueChange={(v) => pushUrl({ sort: v === 'created_at:desc' ? '' : v })}
         >
-          <SelectTrigger className="w-44 bg-slate-900 border-slate-700 text-slate-300">
+          <SelectTrigger className="w-44 bg-background border-border text-muted-foreground">
             <SelectValue placeholder="Sort" />
           </SelectTrigger>
-          <SelectContent className="bg-slate-900 border-slate-700">
+          <SelectContent className="bg-background border-border">
             {SORT_OPTIONS.map((s) => (
-              <SelectItem key={s.value} value={s.value} className="text-slate-300">{s.label}</SelectItem>
+              <SelectItem key={s.value} value={s.value} className="text-muted-foreground">{s.label}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -354,71 +354,71 @@ export function OperativesFilterBar({
           variant="ghost"
           size="sm"
           onClick={() => setShowMore(v => !v)}
-          className={`text-slate-400 hover:text-slate-200 gap-1 ${advancedFilters ? 'text-emerald-400 hover:text-emerald-300' : ''}`}
+          className={`text-muted-foreground hover:text-muted-foreground gap-1 ${advancedFilters ? 'text-forest-400 hover:text-forest-300' : ''}`}
         >
           <SlidersHorizontal className="h-4 w-4" />
           More
-          {advancedFilters && <span className="bg-emerald-600 text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">+</span>}
+          {advancedFilters && <span className="bg-forest-600 text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">+</span>}
           {showMore ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
         </Button>
 
         {hasFilters && (
-          <Button variant="ghost" size="sm" onClick={clearAll} className="text-slate-400 hover:text-slate-200">
+          <Button variant="ghost" size="sm" onClick={clearAll} className="text-muted-foreground hover:text-muted-foreground">
             <X className="h-4 w-4 mr-1" /> Clear
           </Button>
         )}
       </div>
 
       {showMore && (
-        <div className="flex flex-wrap gap-3 rounded-lg border border-slate-800 bg-slate-900/40 p-3">
+        <div className="flex flex-wrap gap-3 rounded-lg border border-border bg-background/40 p-3">
           {nationalities.length > 0 ? (
             <Select value={initialNationality || 'all'} onValueChange={(v) => pushUrl({ nationality: v === 'all' ? '' : v })}>
-              <SelectTrigger className="w-44 bg-slate-900 border-slate-700 text-slate-300"><SelectValue placeholder="Nationality" /></SelectTrigger>
-              <SelectContent className="bg-slate-900 border-slate-700">
-                <SelectItem value="all" className="text-slate-300">All Nationalities</SelectItem>
-                {nationalities.map((n) => <SelectItem key={n} value={n} className="text-slate-300">{n}</SelectItem>)}
+              <SelectTrigger className="w-44 bg-background border-border text-muted-foreground"><SelectValue placeholder="Nationality" /></SelectTrigger>
+              <SelectContent className="bg-background border-border">
+                <SelectItem value="all" className="text-muted-foreground">All Nationalities</SelectItem>
+                {nationalities.map((n) => <SelectItem key={n} value={n} className="text-muted-foreground">{n}</SelectItem>)}
               </SelectContent>
             </Select>
           ) : (
-            <Input value={initialNationality} onChange={(e) => pushUrl({ nationality: e.target.value })} placeholder="Nationality…" className="w-36 bg-slate-900 border-slate-700 text-slate-200 placeholder:text-slate-500" />
+            <Input value={initialNationality} onChange={(e) => pushUrl({ nationality: e.target.value })} placeholder="Nationality…" className="w-36 bg-background border-border text-muted-foreground placeholder:text-muted-foreground" />
           )}
 
           <Select value={initialGrade || 'all'} onValueChange={(v) => pushUrl({ grade: v === 'all' ? '' : v })}>
-            <SelectTrigger className="w-44 bg-slate-900 border-slate-700 text-slate-300"><SelectValue placeholder="Grade" /></SelectTrigger>
-            <SelectContent className="bg-slate-900 border-slate-700">
-              <SelectItem value="all" className="text-slate-300">All Grades</SelectItem>
-              {GRADES.map((g) => <SelectItem key={g.value} value={g.value} className="text-slate-300">{g.label}</SelectItem>)}
+            <SelectTrigger className="w-44 bg-background border-border text-muted-foreground"><SelectValue placeholder="Grade" /></SelectTrigger>
+            <SelectContent className="bg-background border-border">
+              <SelectItem value="all" className="text-muted-foreground">All Grades</SelectItem>
+              {GRADES.map((g) => <SelectItem key={g.value} value={g.value} className="text-muted-foreground">{g.label}</SelectItem>)}
             </SelectContent>
           </Select>
 
           <Select value={initialLanguage || 'all'} onValueChange={(v) => pushUrl({ language: v === 'all' ? '' : v })}>
-            <SelectTrigger className="w-40 bg-slate-900 border-slate-700 text-slate-300"><SelectValue placeholder="Language" /></SelectTrigger>
-            <SelectContent className="bg-slate-900 border-slate-700">
-              <SelectItem value="all" className="text-slate-300">All Languages</SelectItem>
+            <SelectTrigger className="w-40 bg-background border-border text-muted-foreground"><SelectValue placeholder="Language" /></SelectTrigger>
+            <SelectContent className="bg-background border-border">
+              <SelectItem value="all" className="text-muted-foreground">All Languages</SelectItem>
               {languages.map((l) => (
-                <SelectItem key={l} value={l} className="text-slate-300">{LANGUAGE_LABELS[l] ?? l.toUpperCase()}</SelectItem>
+                <SelectItem key={l} value={l} className="text-muted-foreground">{LANGUAGE_LABELS[l] ?? l.toUpperCase()}</SelectItem>
               ))}
             </SelectContent>
           </Select>
 
           <Select value={initialCscsType || 'all'} onValueChange={(v) => pushUrl({ cscs_type: v === 'all' ? '' : v })}>
-            <SelectTrigger className="w-44 bg-slate-900 border-slate-700 text-slate-300"><SelectValue placeholder="CSCS Card" /></SelectTrigger>
-            <SelectContent className="bg-slate-900 border-slate-700">
-              <SelectItem value="all" className="text-slate-300">All CSCS Types</SelectItem>
-              {CSCS_TYPES.map((c) => <SelectItem key={c.value} value={c.value} className="text-slate-300">{c.label}</SelectItem>)}
+            <SelectTrigger className="w-44 bg-background border-border text-muted-foreground"><SelectValue placeholder="CSCS Card" /></SelectTrigger>
+            <SelectContent className="bg-background border-border">
+              <SelectItem value="all" className="text-muted-foreground">All CSCS Types</SelectItem>
+              {CSCS_TYPES.map((c) => <SelectItem key={c.value} value={c.value} className="text-muted-foreground">{c.label}</SelectItem>)}
             </SelectContent>
           </Select>
 
           <div className="flex items-center gap-2">
-            <label className="text-xs text-slate-500 whitespace-nowrap">RAP min</label>
-            <Input type="number" min="1" max="5" step="0.1" value={initialRapMin} onChange={(e) => pushUrl({ rap_min: e.target.value })} placeholder="e.g. 3.5" className="w-24 bg-slate-900 border-slate-700 text-slate-200 placeholder:text-slate-600" />
+            <label className="text-xs text-muted-foreground whitespace-nowrap">RAP min</label>
+            <Input type="number" min="1" max="5" step="0.1" value={initialRapMin} onChange={(e) => pushUrl({ rap_min: e.target.value })} placeholder="e.g. 3.5" className="w-24 bg-background border-border text-muted-foreground placeholder:text-muted-foreground" />
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="text-xs text-slate-500 whitespace-nowrap">Rate £</label>
-            <Input type="number" min="0" value={initialRateMin} onChange={(e) => pushUrl({ rate_min: e.target.value })} placeholder="Min" className="w-20 bg-slate-900 border-slate-700 text-slate-200 placeholder:text-slate-600" />
-            <span className="text-slate-600 text-xs">–</span>
-            <Input type="number" min="0" value={initialRateMax} onChange={(e) => pushUrl({ rate_max: e.target.value })} placeholder="Max" className="w-20 bg-slate-900 border-slate-700 text-slate-200 placeholder:text-slate-600" />
+            <label className="text-xs text-muted-foreground whitespace-nowrap">Rate £</label>
+            <Input type="number" min="0" value={initialRateMin} onChange={(e) => pushUrl({ rate_min: e.target.value })} placeholder="Min" className="w-20 bg-background border-border text-muted-foreground placeholder:text-muted-foreground" />
+            <span className="text-muted-foreground text-xs">–</span>
+            <Input type="number" min="0" value={initialRateMax} onChange={(e) => pushUrl({ rate_max: e.target.value })} placeholder="Max" className="w-20 bg-background border-border text-muted-foreground placeholder:text-muted-foreground" />
           </div>
         </div>
       )}

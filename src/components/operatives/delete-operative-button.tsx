@@ -46,7 +46,7 @@ export function DeleteOperativeButton({ operativeId, operativeName }: {
           variant="ghost"
           disabled={loading}
           onClick={() => setConfirming(false)}
-          className="text-slate-400"
+          className="text-muted-foreground"
         >
           Cancel
         </Button>

@@ -46,17 +46,17 @@ export function ConfirmDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-slate-900 border-slate-800 text-slate-100">
+      <DialogContent className="bg-background border-border text-foreground">
         <DialogHeader>
-          <DialogTitle className="text-slate-100">{title}</DialogTitle>
-          <DialogDescription className="text-slate-400">{description}</DialogDescription>
+          <DialogTitle className="text-foreground">{title}</DialogTitle>
+          <DialogDescription className="text-muted-foreground">{description}</DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}
             disabled={loading}
-            className="border-slate-700 text-slate-300 hover:bg-slate-800"
+            className="border-border text-muted-foreground hover:bg-card"
           >
             {cancelLabel}
           </Button>
@@ -67,7 +67,7 @@ export function ConfirmDialog({
             className={
               variant === 'destructive'
                 ? ''
-                : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                : 'bg-forest-600 text-white hover:bg-forest-700'
             }
           >
             {loading ? 'Please wait…' : confirmLabel}

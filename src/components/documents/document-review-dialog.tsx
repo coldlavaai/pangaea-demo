@@ -119,20 +119,20 @@ export function DocumentReviewDialog() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={close}>
       <div
-        className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col"
+        className="relative bg-background border border-border rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col"
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-slate-800">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-border">
           <div>
-            <h2 className="text-sm font-semibold text-slate-100">Review Document</h2>
+            <h2 className="text-sm font-semibold text-foreground">Review Document</h2>
             {doc && (
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-muted-foreground mt-0.5">
                 {doc.operative_name} · {doc.operative_ref} · {DOC_TYPE_LABELS[doc.document_type] ?? doc.document_type}
               </p>
             )}
           </div>
-          <button onClick={close} className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition-colors">
+          <button onClick={close} className="p-1 rounded hover:bg-card text-muted-foreground hover:text-muted-foreground transition-colors">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -141,14 +141,14 @@ export function DocumentReviewDialog() {
         <div className="flex-1 overflow-y-auto p-5">
           {loading && (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-6 w-6 animate-spin text-slate-500" />
+              <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
             </div>
           )}
 
           {error && !done && (
             <div className="text-center py-8">
               <p className="text-red-400 text-sm">{error}</p>
-              <button onClick={close} className="mt-3 text-xs text-slate-400 hover:text-slate-200">Close</button>
+              <button onClick={close} className="mt-3 text-xs text-muted-foreground hover:text-muted-foreground">Close</button>
             </div>
           )}
 
@@ -156,20 +156,20 @@ export function DocumentReviewDialog() {
             <div className="text-center py-10 space-y-3">
               {done === 'verified' ? (
                 <>
-                  <CheckCircle2 className="h-10 w-10 text-emerald-400 mx-auto" />
-                  <p className="text-sm font-medium text-emerald-400">Document Verified</p>
-                  <p className="text-xs text-slate-400">The operative has been notified.</p>
+                  <CheckCircle2 className="h-10 w-10 text-forest-400 mx-auto" />
+                  <p className="text-sm font-medium text-forest-400">Document Verified</p>
+                  <p className="text-xs text-muted-foreground">The operative has been notified.</p>
                 </>
               ) : (
                 <>
                   <XCircle className="h-10 w-10 text-red-400 mx-auto" />
                   <p className="text-sm font-medium text-red-400">Document Rejected</p>
-                  <p className="text-xs text-slate-400">The operative has been asked to re-upload.</p>
+                  <p className="text-xs text-muted-foreground">The operative has been asked to re-upload.</p>
                 </>
               )}
               <button
                 onClick={close}
-                className="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium transition-colors"
+                className="mt-4 px-4 py-2 bg-card hover:bg-[#444444] text-muted-foreground rounded-lg text-xs font-medium transition-colors"
               >
                 Close
               </button>
@@ -180,7 +180,7 @@ export function DocumentReviewDialog() {
             <div className="space-y-4">
               {/* Document preview */}
               {doc.preview_url ? (
-                <div className="rounded-lg overflow-hidden border border-slate-700 bg-slate-950">
+                <div className="rounded-lg overflow-hidden border border-border bg-background">
                   {doc.file_name?.match(/\.(jpg|jpeg|png|gif|webp)$/i) ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -195,16 +195,16 @@ export function DocumentReviewDialog() {
                       title={doc.file_name}
                     />
                   ) : (
-                    <div className="flex items-center justify-center py-12 text-slate-500">
+                    <div className="flex items-center justify-center py-12 text-muted-foreground">
                       <FileText className="h-8 w-8 mr-2" />
-                      <a href={doc.preview_url} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline text-sm">
+                      <a href={doc.preview_url} target="_blank" rel="noopener noreferrer" className="text-forest-400 hover:underline text-sm">
                         Open {doc.file_name}
                       </a>
                     </div>
                   )}
                 </div>
               ) : (
-                <div className="rounded-lg border border-slate-700 bg-slate-950 flex items-center justify-center py-12 text-slate-500 text-sm">
+                <div className="rounded-lg border border-border bg-background flex items-center justify-center py-12 text-muted-foreground text-sm">
                   No preview available
                 </div>
               )}
@@ -212,36 +212,36 @@ export function DocumentReviewDialog() {
               {/* Document details */}
               <div className="grid grid-cols-2 gap-3 text-xs">
                 <div>
-                  <span className="text-slate-500">Type</span>
-                  <p className="text-slate-200 font-medium">{DOC_TYPE_LABELS[doc.document_type] ?? doc.document_type}</p>
+                  <span className="text-muted-foreground">Type</span>
+                  <p className="text-muted-foreground font-medium">{DOC_TYPE_LABELS[doc.document_type] ?? doc.document_type}</p>
                 </div>
                 <div>
-                  <span className="text-slate-500">Status</span>
-                  <p className={`font-medium ${doc.status === 'verified' ? 'text-emerald-400' : doc.status === 'rejected' ? 'text-red-400' : 'text-amber-400'}`}>
+                  <span className="text-muted-foreground">Status</span>
+                  <p className={`font-medium ${doc.status === 'verified' ? 'text-forest-400' : doc.status === 'rejected' ? 'text-red-400' : 'text-amber-400'}`}>
                     {doc.status.charAt(0).toUpperCase() + doc.status.slice(1)}
                   </p>
                 </div>
                 {doc.expiry_date && (
                   <div>
-                    <span className="text-slate-500">Expiry</span>
-                    <p className="text-slate-200">{new Date(doc.expiry_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                    <span className="text-muted-foreground">Expiry</span>
+                    <p className="text-muted-foreground">{new Date(doc.expiry_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
                   </div>
                 )}
                 <div>
-                  <span className="text-slate-500">Uploaded</span>
-                  <p className="text-slate-200">{new Date(doc.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                  <span className="text-muted-foreground">Uploaded</span>
+                  <p className="text-muted-foreground">{new Date(doc.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
                 </div>
               </div>
 
               {/* AI extracted data */}
               {doc.ai_extracted_data && Object.keys(doc.ai_extracted_data).length > 0 && (
                 <div className="text-xs">
-                  <span className="text-slate-500 text-[10px] uppercase tracking-wider font-semibold">AI Extracted</span>
+                  <span className="text-muted-foreground text-[10px] uppercase tracking-wider font-semibold">AI Extracted</span>
                   <div className="mt-1 space-y-0.5">
                     {Object.entries(doc.ai_extracted_data).map(([key, val]) => (
                       <div key={key} className="flex justify-between gap-2">
-                        <span className="text-slate-500 capitalize">{key.replace(/_/g, ' ')}</span>
-                        <span className="text-slate-300">{String(val)}</span>
+                        <span className="text-muted-foreground capitalize">{key.replace(/_/g, ' ')}</span>
+                        <span className="text-muted-foreground">{String(val)}</span>
                       </div>
                     ))}
                   </div>
@@ -251,13 +251,13 @@ export function DocumentReviewDialog() {
               {/* Reject reason input */}
               {showRejectInput && (
                 <div className="space-y-2">
-                  <label className="text-xs text-slate-400">Rejection reason (sent to operative):</label>
+                  <label className="text-xs text-muted-foreground">Rejection reason (sent to operative):</label>
                   <textarea
                     value={rejectReason}
                     onChange={e => setRejectReason(e.target.value)}
                     rows={2}
                     placeholder="e.g. Photo is blurry, please retake with better lighting"
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-red-600 resize-none"
+                    className="w-full bg-card border border-border rounded-lg px-3 py-2 text-sm text-muted-foreground placeholder:text-muted-foreground focus:outline-none focus:border-red-600 resize-none"
                   />
                 </div>
               )}
@@ -267,7 +267,7 @@ export function DocumentReviewDialog() {
 
         {/* Action bar — only show for pending documents */}
         {doc && !done && !loading && doc.status === 'pending' && (
-          <div className="px-5 py-3 border-t border-slate-800 flex items-center justify-end gap-3">
+          <div className="px-5 py-3 border-t border-border flex items-center justify-end gap-3">
             {!showRejectInput ? (
               <>
                 <button
@@ -280,7 +280,7 @@ export function DocumentReviewDialog() {
                 <button
                   onClick={handleVerify}
                   disabled={!!acting}
-                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-medium transition-colors disabled:opacity-40 flex items-center gap-2"
+                  className="px-4 py-2 bg-forest-600 hover:bg-forest-500 text-white rounded-lg text-xs font-medium transition-colors disabled:opacity-40 flex items-center gap-2"
                 >
                   {acting === 'verify' ? <Loader2 className="h-3 w-3 animate-spin" /> : <CheckCircle2 className="h-3 w-3" />}
                   Verify Document
@@ -290,7 +290,7 @@ export function DocumentReviewDialog() {
               <>
                 <button
                   onClick={() => { setShowRejectInput(false); setRejectReason('') }}
-                  className="px-4 py-2 text-slate-400 hover:text-slate-200 text-xs transition-colors"
+                  className="px-4 py-2 text-muted-foreground hover:text-muted-foreground text-xs transition-colors"
                 >
                   Cancel
                 </button>

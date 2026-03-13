@@ -94,7 +94,7 @@ export function SettingsTabs({ orgId, currentAuthUserId, org, trades, users, sit
   return (
     <div className="space-y-6">
       {/* Tab bar */}
-      <div className="flex gap-1 border-b border-slate-800">
+      <div className="flex gap-1 border-b border-border">
         {TABS.map((t) => {
           const isActive = activeTab === t.key
           const count = t.key === 'trades' ? activeTrades : t.key === 'users' ? activeUsers : null
@@ -105,8 +105,8 @@ export function SettingsTabs({ orgId, currentAuthUserId, org, trades, users, sit
               className={cn(
                 'px-4 py-2.5 text-sm font-medium transition-colors border-b-2 -mb-px whitespace-nowrap flex items-center gap-2',
                 isActive
-                  ? 'border-emerald-500 text-emerald-400'
-                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-600'
+                  ? 'border-forest-500 text-forest-400'
+                  : 'border-transparent text-muted-foreground hover:text-muted-foreground hover:border-border'
               )}
             >
               {t.label}
@@ -115,8 +115,8 @@ export function SettingsTabs({ orgId, currentAuthUserId, org, trades, users, sit
                   className={cn(
                     'text-xs px-1.5 py-0.5 rounded-full tabular-nums',
                     isActive
-                      ? 'bg-emerald-900/50 text-emerald-300'
-                      : 'bg-slate-800 text-slate-500'
+                      ? 'bg-forest-900/50 text-forest-300'
+                      : 'bg-card text-muted-foreground'
                   )}
                 >
                   {count}

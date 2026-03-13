@@ -60,16 +60,16 @@ export function EmailTemplatesPanel({ savedTemplates }: { savedTemplates: SavedT
   return (
     <div className="flex gap-0 min-h-[700px]">
       {/* Template list */}
-      <div className="w-44 shrink-0 space-y-1 border-r border-slate-800 pr-4 mr-5">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-600 mb-3">Templates</p>
+      <div className="w-44 shrink-0 space-y-1 border-r border-border pr-4 mr-5">
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">Templates</p>
         {TEMPLATE_DEFINITIONS.map(def => (
           <button
             key={def.key}
             onClick={() => setSelected(def)}
             className={`w-full text-left px-3 py-2.5 rounded-lg text-sm flex items-center justify-between gap-2 transition-colors ${
               selected.key === def.key
-                ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-800/50'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent'
+                ? 'bg-forest-900/30 text-forest-400 border border-forest-800/50'
+                : 'text-muted-foreground hover:text-muted-foreground hover:bg-card/60 border border-transparent'
             }`}
           >
             <div className="flex items-center gap-2 min-w-0">
@@ -205,8 +205,8 @@ function TemplateEditor({
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold text-slate-200">{definition.name}</p>
-            <p className="text-xs text-slate-500 mt-0.5">{definition.description}</p>
+            <p className="text-sm font-semibold text-muted-foreground">{definition.name}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{definition.description}</p>
           </div>
           {isCustomised && (
             <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider text-amber-500 bg-amber-950/40 border border-amber-800/50 px-2 py-0.5 rounded-full">
@@ -217,18 +217,18 @@ function TemplateEditor({
 
         {/* Subject */}
         <div className="space-y-1.5">
-          <Label className="text-xs text-slate-400">Subject line</Label>
+          <Label className="text-xs text-muted-foreground">Subject line</Label>
           <Input
             value={subject}
             onChange={e => setSubject(e.target.value)}
-            className="h-9 text-sm bg-slate-800 border-slate-700"
+            className="h-9 text-sm bg-card border-border"
             placeholder="Email subject..."
           />
         </div>
 
         {/* Variable chips */}
         <div className="space-y-2">
-          <p className="text-xs text-slate-400">Variables <span className="text-slate-600">(click to insert at cursor)</span></p>
+          <p className="text-xs text-muted-foreground">Variables <span className="text-muted-foreground">(click to insert at cursor)</span></p>
           <div className="flex flex-wrap gap-2">
             {definition.variables.map(v => (
               <VariableChip key={v.key} variable={v} onInsert={insertVariable} />
@@ -237,9 +237,9 @@ function TemplateEditor({
         </div>
 
         {/* WYSIWYG editor */}
-        <div className="rounded-lg border border-slate-700 overflow-visible">
+        <div className="rounded-lg border border-border overflow-visible">
           {/* Toolbar */}
-          <div className="flex items-center gap-0.5 px-2 py-1.5 bg-slate-800/60 border-b border-slate-700 flex-wrap">
+          <div className="flex items-center gap-0.5 px-2 py-1.5 bg-card/60 border-b border-border flex-wrap">
 
             {/* History */}
             <Btn onClick={() => editor?.chain().focus().undo().run()} active={false} title="Undo">
@@ -300,7 +300,7 @@ function TemplateEditor({
                 <Palette className="h-3.5 w-3.5" />
               </Btn>
               {colourPickerOpen && (
-                <div className="absolute top-full left-0 mt-1 z-50 p-2 bg-slate-800 border border-slate-600 rounded-lg shadow-xl flex gap-1.5 flex-wrap w-[140px]">
+                <div className="absolute top-full left-0 mt-1 z-50 p-2 bg-card border border-border rounded-lg shadow-xl flex gap-1.5 flex-wrap w-[140px]">
                   {COLOURS.map(c => (
                     <button
                       key={c.value}
@@ -315,10 +315,10 @@ function TemplateEditor({
                         }
                         setColourPickerOpen(false)
                       }}
-                      className="w-6 h-6 rounded-full border-2 border-slate-600 hover:border-white transition-colors flex items-center justify-center"
+                      className="w-6 h-6 rounded-full border-2 border-border hover:border-white transition-colors flex items-center justify-center"
                       style={{ background: c.value || 'transparent' }}
                     >
-                      {!c.value && <span className="text-slate-400 text-[9px] font-bold">✕</span>}
+                      {!c.value && <span className="text-muted-foreground text-[9px] font-bold">✕</span>}
                     </button>
                   ))}
                 </div>
@@ -362,7 +362,7 @@ function TemplateEditor({
           </div>
 
           {/* Editor content */}
-          <div className="email-editor bg-slate-900">
+          <div className="email-editor bg-background">
             <EditorContent editor={editor} />
           </div>
         </div>
@@ -372,7 +372,7 @@ function TemplateEditor({
           <Button
             onClick={handleSave}
             disabled={!isDirty || isSaving}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white h-9 text-sm"
+            className="bg-forest-600 hover:bg-forest-500 text-white h-9 text-sm"
           >
             {isSaving
               ? <Loader2 className="h-4 w-4 animate-spin" />
@@ -383,7 +383,7 @@ function TemplateEditor({
               variant="ghost"
               onClick={handleReset}
               disabled={isResetting}
-              className="h-9 text-sm border border-slate-700 text-slate-500 hover:text-red-400 hover:border-red-500/50 ml-auto"
+              className="h-9 text-sm border border-border text-muted-foreground hover:text-red-400 hover:border-red-500/50 ml-auto"
             >
               {isResetting
                 ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -396,10 +396,10 @@ function TemplateEditor({
       {/* ── Right: live preview ── */}
       <div className="flex-[3] min-w-0 flex flex-col gap-2">
         <div className="flex items-center justify-between">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-600">Live Preview</p>
-          <p className="text-[10px] text-slate-600">Updates as you type · example values shown</p>
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Live Preview</p>
+          <p className="text-[10px] text-muted-foreground">Updates as you type · example values shown</p>
         </div>
-        <div className="flex-1 rounded-xl border border-slate-800 bg-slate-950 overflow-hidden">
+        <div className="flex-1 rounded-xl border border-border bg-background overflow-hidden">
           <iframe
             srcDoc={previewHtml}
             title="Email preview"
@@ -428,7 +428,7 @@ function Btn({ onClick, active, title, children }: {
       title={title}
       className={cn(
         'p-1.5 rounded transition-colors flex items-center justify-center min-w-[26px]',
-        active ? 'bg-emerald-900/50 text-emerald-400' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700'
+        active ? 'bg-forest-900/50 text-forest-400' : 'text-muted-foreground hover:text-muted-foreground hover:bg-[#444444]'
       )}
     >
       {children}
@@ -437,7 +437,7 @@ function Btn({ onClick, active, title, children }: {
 }
 
 function Sep() {
-  return <div className="w-px h-4 bg-slate-700 mx-0.5 shrink-0" />
+  return <div className="w-px h-4 bg-[#444444] mx-0.5 shrink-0" />
 }
 
 // ─── Variable chip ────────────────────────────────────────────────────────────
@@ -462,15 +462,15 @@ function VariableChip({
     <div className="group relative">
       <button
         onClick={() => onInsert(variable.key)}
-        className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 hover:border-emerald-600/60 hover:bg-slate-700/60 transition-colors"
+        className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-card border border-border hover:border-forest-600/60 hover:bg-[#444444]/60 transition-colors"
         title={`Insert {{${variable.key}}} — ${variable.label}`}
       >
-        <code className="text-[11px] text-emerald-400 font-mono">{`{{${variable.key}}}`}</code>
-        <span className="text-[10px] text-slate-500">{variable.label}</span>
+        <code className="text-[11px] text-forest-400 font-mono">{`{{${variable.key}}}`}</code>
+        <span className="text-[10px] text-muted-foreground">{variable.label}</span>
         <button onClick={handleCopy} className="ml-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
           {copied
-            ? <Check className="h-2.5 w-2.5 text-emerald-400" />
-            : <Copy className="h-2.5 w-2.5 text-slate-500" />}
+            ? <Check className="h-2.5 w-2.5 text-forest-400" />
+            : <Copy className="h-2.5 w-2.5 text-muted-foreground" />}
         </button>
       </button>
     </div>

@@ -68,7 +68,7 @@ export default async function CommsThreadPage({
   return (
     <div className="p-4 space-y-4 h-full flex flex-col">
       <div className="flex items-center gap-3 shrink-0">
-        <Link href="/comms" className="text-slate-500 hover:text-slate-200 transition-colors">
+        <Link href="/comms" className="text-muted-foreground hover:text-muted-foreground transition-colors">
           <ChevronLeft className="h-5 w-5" />
         </Link>
         <div className="flex-1">
@@ -84,7 +84,7 @@ export default async function CommsThreadPage({
                 {intakeState && (
                   <span className={`text-xs font-medium px-2 py-0.5 rounded border ${
                     intakeState === 'rejected'   ? 'bg-red-900/40 text-red-400 border-red-800' :
-                    intakeState === 'qualified'  ? 'bg-emerald-900/40 text-emerald-400 border-emerald-800' :
+                    intakeState === 'qualified'  ? 'bg-forest-900/40 text-forest-400 border-forest-800' :
                     intakeState === 'docs_link_sent' ? 'bg-sky-900/40 text-sky-400 border-sky-800' :
                     'bg-amber-900/40 text-amber-400 border-amber-800'
                   }`}>
@@ -92,7 +92,7 @@ export default async function CommsThreadPage({
                   </span>
                 )}
                 {op && (
-                  <Link href={`/operatives/${op.id}`} className="text-xs text-emerald-400 hover:underline">
+                  <Link href={`/operatives/${op.id}`} className="text-xs text-forest-400 hover:underline">
                     View profile →
                   </Link>
                 )}

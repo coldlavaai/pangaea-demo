@@ -12,17 +12,17 @@ export function DataTable({ data }: { data: DataTableData }) {
     <div className="my-2 overflow-x-auto">
       <table className="w-full text-xs">
         <thead>
-          <tr className="border-b border-slate-700">
+          <tr className="border-b border-border">
             {data.columns.map((col, i) => (
-              <th key={i} className="text-left py-1.5 px-2 text-slate-400 font-medium">{col}</th>
+              <th key={i} className="text-left py-1.5 px-2 text-muted-foreground font-medium">{col}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {data.rows.map((row, ri) => (
-            <tr key={ri} className="border-b border-slate-800/50 hover:bg-slate-800/30">
+            <tr key={ri} className="border-b border-border/50 hover:bg-card/30">
               {row.map((cell, ci) => (
-                <td key={ci} className="py-1.5 px-2 text-slate-300">
+                <td key={ci} className="py-1.5 px-2 text-muted-foreground">
                   {cell == null ? '-' : String(cell)}
                 </td>
               ))}
@@ -30,7 +30,7 @@ export function DataTable({ data }: { data: DataTableData }) {
           ))}
         </tbody>
       </table>
-      {data.rows.length === 0 && <p className="text-xs text-slate-500 py-2 px-2">No results.</p>}
+      {data.rows.length === 0 && <p className="text-xs text-muted-foreground py-2 px-2">No results.</p>}
     </div>
   )
 }

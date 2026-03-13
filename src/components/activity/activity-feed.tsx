@@ -38,51 +38,51 @@ const TYPE_META: Record<string, { icon: React.ReactNode; label: string; group: s
 }
 
 const TYPE_COLOUR: Record<string, string> = {
-  arrive:               'bg-emerald-950/60 text-emerald-400',
+  arrive:               'bg-forest-950/60 text-forest-400',
   ncr:                  'bg-red-950/60 text-red-400',
   rap:                  'bg-amber-950/60 text-amber-400',
   labour_request:       'bg-sky-950/60 text-sky-400',
   finish:               'bg-violet-950/60 text-violet-400',
-  application_complete: 'bg-emerald-950/60 text-emerald-400',
+  application_complete: 'bg-forest-950/60 text-forest-400',
   document_uploaded:    'bg-sky-950/60 text-sky-400',
   cscs_uploaded:        'bg-sky-950/60 text-sky-400',
-  offer_accepted:       'bg-emerald-950/60 text-emerald-400',
+  offer_accepted:       'bg-forest-950/60 text-forest-400',
   offer_declined:       'bg-red-950/60 text-red-400',
   compliance_block:     'bg-red-950/60 text-red-400',
   doc_expiring_30:      'bg-amber-950/60 text-amber-400',
   doc_expiring_60:      'bg-amber-950/60 text-amber-400',
-  doc_expiring_90:      'bg-slate-800 text-slate-400',
+  doc_expiring_90:      'bg-card text-muted-foreground',
   request_ending:       'bg-amber-950/60 text-amber-400',
   missing_timesheet:    'bg-red-950/60 text-red-400',
-  goodwill_doc_reminder:'bg-slate-800 text-slate-400',
+  goodwill_doc_reminder:'bg-card text-muted-foreground',
   email_sent:           'bg-sky-950/60 text-sky-400',
   bulk_import:          'bg-violet-950/60 text-violet-400',
 }
 
 const TYPE_LABEL_COLOUR: Record<string, string> = {
-  arrive:               'text-emerald-600',
+  arrive:               'text-forest-600',
   ncr:                  'text-red-600',
   rap:                  'text-amber-600',
   labour_request:       'text-sky-600',
   finish:               'text-violet-600',
-  application_complete: 'text-emerald-600',
+  application_complete: 'text-forest-600',
   document_uploaded:    'text-sky-600',
   cscs_uploaded:        'text-sky-600',
-  offer_accepted:       'text-emerald-600',
+  offer_accepted:       'text-forest-600',
   offer_declined:       'text-red-600',
   compliance_block:     'text-red-600',
   doc_expiring_30:      'text-amber-600',
   doc_expiring_60:      'text-amber-600',
-  doc_expiring_90:      'text-slate-600',
+  doc_expiring_90:      'text-muted-foreground',
   request_ending:       'text-amber-600',
   missing_timesheet:    'text-red-600',
-  goodwill_doc_reminder:'text-slate-600',
+  goodwill_doc_reminder:'text-muted-foreground',
   email_sent:           'text-sky-600',
   bulk_import:          'text-violet-600',
 }
 
 const SEVERITY_BORDER: Record<string, string> = {
-  info:     'border-l-slate-600',
+  info:     'border-l-forest-600',
   warning:  'border-l-amber-500',
   critical: 'border-l-red-500',
 }
@@ -239,8 +239,8 @@ export function ActivityFeed({ initialItems }: { initialItems: ActivityItem[] })
             onClick={() => setFilter(f.key)}
             className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
               filter === f.key
-                ? 'bg-emerald-600 text-white'
-                : 'bg-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-700'
+                ? 'bg-forest-600 text-white'
+                : 'bg-card text-muted-foreground hover:text-muted-foreground hover:bg-[#444444]'
             }`}
           >
             {f.key === 'all' ? `All${unreadCount > 0 ? ` (${unreadCount} unread)` : ''}` : f.label}
@@ -250,26 +250,26 @@ export function ActivityFeed({ initialItems }: { initialItems: ActivityItem[] })
 
       {/* Feed */}
       {filtered.length === 0 ? (
-        <div className="rounded-lg border border-slate-800 bg-card p-12 text-center">
-          <Info className="h-8 w-8 text-slate-700 mx-auto mb-3" />
-          <p className="text-sm text-slate-500">No activity yet</p>
-          <p className="text-xs text-slate-600 mt-1">Events will appear here in real time</p>
+        <div className="rounded-lg border border-border bg-card p-12 text-center">
+          <Info className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
+          <p className="text-sm text-muted-foreground">No activity yet</p>
+          <p className="text-xs text-muted-foreground mt-1">Events will appear here in real time</p>
         </div>
       ) : (
-        <div className="rounded-lg border border-slate-800 overflow-hidden divide-y divide-slate-800/60">
+        <div className="rounded-lg border border-border overflow-hidden divide-y divide-border/60">
           {filtered.map(item => {
             const meta = TYPE_META[item.type]
             return (
               <button
                 key={item.id}
                 onClick={() => markRead(item)}
-                className={`w-full text-left flex items-start gap-4 px-4 py-3.5 border-l-2 transition-colors hover:bg-slate-800/40 ${
-                  SEVERITY_BORDER[item.severity] ?? 'border-l-slate-600'
+                className={`w-full text-left flex items-start gap-4 px-4 py-3.5 border-l-2 transition-colors hover:bg-card/40 ${
+                  SEVERITY_BORDER[item.severity] ?? 'border-l-forest-600'
                 } ${item.read ? 'opacity-60' : ''}`}
               >
                 {/* Type icon */}
                 <div className={`mt-0.5 shrink-0 h-8 w-8 rounded-full flex items-center justify-center ${
-                  TYPE_COLOUR[item.type] ?? 'bg-slate-800 text-slate-400'
+                  TYPE_COLOUR[item.type] ?? 'bg-card text-muted-foreground'
                 }`}>
                   {meta?.icon ?? <Info className="h-4 w-4" />}
                 </div>
@@ -277,22 +277,22 @@ export function ActivityFeed({ initialItems }: { initialItems: ActivityItem[] })
                 {/* Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
-                    <p className={`text-sm font-medium leading-snug ${item.read ? 'text-slate-500' : 'text-slate-100'}`}>
+                    <p className={`text-sm font-medium leading-snug ${item.read ? 'text-muted-foreground' : 'text-foreground'}`}>
                       {item.title}
                     </p>
-                    <span className="text-[11px] text-slate-600 shrink-0 mt-0.5">{timeAgo(item.created_at)}</span>
+                    <span className="text-[11px] text-muted-foreground shrink-0 mt-0.5">{timeAgo(item.created_at)}</span>
                   </div>
                   {item.body && (
-                    <p className="mt-0.5 text-xs text-slate-500 line-clamp-2">{item.body}</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground line-clamp-2">{item.body}</p>
                   )}
                   <div className="mt-1 flex items-center gap-2">
                     <span className={`text-[10px] uppercase tracking-wider font-medium ${
-                      TYPE_LABEL_COLOUR[item.type] ?? 'text-slate-600'
+                      TYPE_LABEL_COLOUR[item.type] ?? 'text-muted-foreground'
                     }`}>
                       {meta?.label ?? item.type}
                     </span>
                     {!item.read && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-forest-500" />
                     )}
                   </div>
                 </div>

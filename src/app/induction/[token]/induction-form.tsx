@@ -77,13 +77,13 @@ export default function InductionForm({ token, firstName }: Props) {
 
   if (done) {
     return (
-      <div className="rounded-xl border border-emerald-800/40 bg-emerald-950/30 p-6 text-center space-y-4">
+      <div className="rounded-xl border border-forest-800/40 bg-forest-950/30 p-6 text-center space-y-4">
         <div className="text-4xl">✅</div>
         <h2 className="text-xl font-bold text-white">Induction Complete</h2>
-        <p className="text-slate-400 text-sm">
+        <p className="text-muted-foreground text-sm">
           Thank you {firstName}. Your induction has been recorded. You are all set for your first day.
         </p>
-        <p className="text-slate-500 text-xs">You will receive a WhatsApp confirmation shortly.</p>
+        <p className="text-muted-foreground text-xs">You will receive a WhatsApp confirmation shortly.</p>
       </div>
     )
   }
@@ -96,14 +96,14 @@ export default function InductionForm({ token, firstName }: Props) {
         {([1, 2, 3] as const).map(s => (
           <div key={s} className="flex items-center gap-1 flex-1">
             <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors
-              ${step === s ? 'bg-[#D4AF37] text-black' : step > s ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-500'}`}>
+              ${step === s ? 'bg-[#D4AF37] text-black' : step > s ? 'bg-forest-700 text-white' : 'bg-card text-muted-foreground'}`}>
               {step > s ? '✓' : s}
             </div>
-            {s < 3 && <div className={`h-px flex-1 transition-colors ${step > s ? 'bg-emerald-700' : 'bg-slate-800'}`} />}
+            {s < 3 && <div className={`h-px flex-1 transition-colors ${step > s ? 'bg-forest-700' : 'bg-card'}`} />}
           </div>
         ))}
       </div>
-      <div className="flex justify-between text-xs text-slate-500 px-0.5 -mt-1">
+      <div className="flex justify-between text-xs text-muted-foreground px-0.5 -mt-1">
         <span>Medical</span>
         <span>Declarations</span>
         <span>Sign</span>
@@ -111,16 +111,16 @@ export default function InductionForm({ token, firstName }: Props) {
 
       {/* Step 1: Medical */}
       {step === 1 && (
-        <div className="rounded-xl border border-slate-800 bg-slate-900 p-5 space-y-5">
+        <div className="rounded-xl border border-border bg-background p-5 space-y-5">
           <div>
-            <h3 className="font-semibold text-slate-100 mb-1">Medical Questionnaire</h3>
-            <p className="text-xs text-slate-500">Please answer all questions honestly. Any yes answers are treated confidentially.</p>
+            <h3 className="font-semibold text-foreground mb-1">Medical Questionnaire</h3>
+            <p className="text-xs text-muted-foreground">Please answer all questions honestly. Any yes answers are treated confidentially.</p>
           </div>
 
           <div className="space-y-4">
             {MEDICAL_QUESTIONS.map(q => (
               <div key={q.id} className="space-y-2">
-                <p className="text-sm text-slate-300 leading-snug">{q.label}</p>
+                <p className="text-sm text-muted-foreground leading-snug">{q.label}</p>
                 <div className="flex gap-2">
                   {(['YES', 'NO'] as const).map(opt => {
                     const val = opt === 'YES'
@@ -134,8 +134,8 @@ export default function InductionForm({ token, firstName }: Props) {
                           ${isSelected
                             ? isWarning
                               ? 'bg-amber-700/80 border-amber-600 text-white'
-                              : 'bg-emerald-700 border-emerald-600 text-white'
-                            : 'bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700'
+                              : 'bg-forest-700 border-forest-600 text-white'
+                            : 'bg-card border-border text-muted-foreground hover:bg-[#444444]'
                           }`}
                       >
                         {opt}
@@ -149,7 +149,7 @@ export default function InductionForm({ token, firstName }: Props) {
 
           {anyMedicalYes && (
             <div>
-              <label className="block text-xs text-slate-400 mb-1.5">
+              <label className="block text-xs text-muted-foreground mb-1.5">
                 Please provide details for any YES answers above:
               </label>
               <textarea
@@ -157,7 +157,7 @@ export default function InductionForm({ token, firstName }: Props) {
                 onChange={e => setAdditionalNotes(e.target.value)}
                 placeholder="Describe your condition(s)..."
                 rows={3}
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-slate-500 resize-none"
+                className="w-full bg-card border border-border rounded-lg px-3 py-2 text-sm text-white placeholder-muted-foreground focus:outline-none focus:border-border resize-none"
               />
             </div>
           )}
@@ -180,10 +180,10 @@ export default function InductionForm({ token, firstName }: Props) {
 
       {/* Step 2: Declarations */}
       {step === 2 && (
-        <div className="rounded-xl border border-slate-800 bg-slate-900 p-5 space-y-5">
+        <div className="rounded-xl border border-border bg-background p-5 space-y-5">
           <div>
-            <h3 className="font-semibold text-slate-100 mb-1">Declarations</h3>
-            <p className="text-xs text-slate-500">Read each statement carefully and tick to confirm your understanding.</p>
+            <h3 className="font-semibold text-foreground mb-1">Declarations</h3>
+            <p className="text-xs text-muted-foreground">Read each statement carefully and tick to confirm your understanding.</p>
           </div>
 
           <div className="space-y-4">
@@ -195,7 +195,7 @@ export default function InductionForm({ token, firstName }: Props) {
                   onChange={e => setDeclarations(prev => ({ ...prev, [d.id]: e.target.checked }))}
                   className="mt-0.5 h-4 w-4 shrink-0 accent-[#D4AF37]"
                 />
-                <span className="text-sm text-slate-300 leading-snug group-hover:text-slate-100 transition-colors">
+                <span className="text-sm text-muted-foreground leading-snug group-hover:text-foreground transition-colors">
                   {d.text}
                 </span>
               </label>
@@ -205,7 +205,7 @@ export default function InductionForm({ token, firstName }: Props) {
           <div className="flex gap-2">
             <button
               onClick={() => setStep(1)}
-              className="flex-1 py-3 rounded-lg text-sm font-semibold border border-slate-700 text-slate-400 hover:bg-slate-800 transition-colors"
+              className="flex-1 py-3 rounded-lg text-sm font-semibold border border-border text-muted-foreground hover:bg-card transition-colors"
             >
               Back
             </button>
@@ -222,26 +222,26 @@ export default function InductionForm({ token, firstName }: Props) {
 
       {/* Step 3: Signature */}
       {step === 3 && (
-        <div className="rounded-xl border border-slate-800 bg-slate-900 p-5 space-y-5">
+        <div className="rounded-xl border border-border bg-background p-5 space-y-5">
           <div>
-            <h3 className="font-semibold text-slate-100 mb-1">Sign &amp; Submit</h3>
+            <h3 className="font-semibold text-foreground mb-1">Sign &amp; Submit</h3>
           </div>
 
-          <div className="rounded-lg bg-slate-800/60 border border-slate-700 p-3 space-y-2">
-            <p className="text-xs font-semibold text-slate-300">Data Protection</p>
-            <p className="text-xs text-slate-500 leading-relaxed">
+          <div className="rounded-lg bg-card/60 border border-border p-3 space-y-2">
+            <p className="text-xs font-semibold text-muted-foreground">Data Protection</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Pangaea may use the information in this form for health &amp; safety and security purposes, to comply with current legislation, to fulfil statutory requirements, and for statistical analysis of hours worked. By signing below you consent to Pangaea taking and holding a copy of your skills certificates.
             </p>
           </div>
 
           <div>
-            <label className="block text-xs text-slate-400 mb-1.5">Your full name (as signature)</label>
+            <label className="block text-xs text-muted-foreground mb-1.5">Your full name (as signature)</label>
             <input
               type="text"
               value={fullName}
               onChange={e => setFullName(e.target.value)}
               placeholder="e.g. John Smith"
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-slate-500"
+              className="w-full bg-card border border-border rounded-lg px-3 py-2.5 text-sm text-white placeholder-muted-foreground focus:outline-none focus:border-border"
             />
           </div>
 
@@ -252,7 +252,7 @@ export default function InductionForm({ token, firstName }: Props) {
               onChange={e => setConfirmed(e.target.checked)}
               className="mt-0.5 h-4 w-4 shrink-0 accent-[#D4AF37]"
             />
-            <span className="text-sm text-slate-300 leading-snug">
+            <span className="text-sm text-muted-foreground leading-snug">
               I confirm that to the best of my knowledge the answers and information I have provided are accurate and truthful.
             </span>
           </label>
@@ -266,7 +266,7 @@ export default function InductionForm({ token, firstName }: Props) {
           <div className="flex gap-2">
             <button
               onClick={() => setStep(2)}
-              className="flex-1 py-3 rounded-lg text-sm font-semibold border border-slate-700 text-slate-400 hover:bg-slate-800 transition-colors"
+              className="flex-1 py-3 rounded-lg text-sm font-semibold border border-border text-muted-foreground hover:bg-card transition-colors"
             >
               Back
             </button>

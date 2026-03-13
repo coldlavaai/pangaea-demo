@@ -74,7 +74,7 @@ type ColDef = {
 const COLUMN_DEFS: ColDef[] = [
   {
     id: 'ref', label: 'Ref', sortField: 'reference_number', locked: true,
-    render: op => <span className="font-mono text-slate-400">{op.reference_number ?? '—'}</span>,
+    render: op => <span className="font-mono text-muted-foreground">{op.reference_number ?? '—'}</span>,
   },
   {
     id: 'first_name', label: 'First Name(s)', sortField: 'first_name', locked: true,
@@ -86,7 +86,7 @@ const COLUMN_DEFS: ColDef[] = [
             className={`inline-block h-2 w-2 rounded-full shrink-0 ${CSCS_DOT_CLASS[op.cscs_card_type]}`}
           />
         )}
-        <Link href={`/operatives/${op.id}`} className="font-medium text-slate-200 hover:text-emerald-400 transition-colors max-w-[100px] truncate block">
+        <Link href={`/operatives/${op.id}`} className="font-medium text-muted-foreground hover:text-forest-400 transition-colors max-w-[100px] truncate block">
           {op.first_name}
         </Link>
       </div>
@@ -94,7 +94,7 @@ const COLUMN_DEFS: ColDef[] = [
   },
   {
     id: 'last_name', label: 'Surname', sortField: 'last_name', locked: true,
-    render: op => <span className="font-medium text-slate-200 max-w-[100px] truncate block">{op.last_name}</span>,
+    render: op => <span className="font-medium text-muted-foreground max-w-[100px] truncate block">{op.last_name}</span>,
   },
   {
     id: 'data_issues', label: 'Issues', sortField: 'data_completeness_score',
@@ -131,7 +131,7 @@ const COLUMN_DEFS: ColDef[] = [
       const total = checks.length
       const complete = total - missing.length
       if (missing.length === 0) return (
-        <span className="text-[10px] font-medium text-emerald-500">✓ {total}/{total}</span>
+        <span className="text-[10px] font-medium text-forest-500">✓ {total}/{total}</span>
       )
       const pct = complete / total
       const color = pct >= 0.9 ? 'text-amber-400' : pct >= 0.7 ? 'text-orange-400' : 'text-red-400'
@@ -143,8 +143,8 @@ const COLUMN_DEFS: ColDef[] = [
               {complete}/{total}
             </span>
           </TooltipTrigger>
-          <TooltipContent side="right" className="bg-slate-900 border border-slate-700 text-slate-200 p-2 max-w-[280px]">
-            <p className="text-[10px] font-semibold text-slate-400 mb-1.5">Missing ({missing.length} fields)</p>
+          <TooltipContent side="right" className="bg-background border border-border text-muted-foreground p-2 max-w-[280px]">
+            <p className="text-[10px] font-semibold text-muted-foreground mb-1.5">Missing ({missing.length} fields)</p>
             <div className="flex flex-wrap gap-1">
               {missing.map(c => (
                 <span key={c.label} className="text-[10px] px-1 py-px bg-orange-950/60 text-orange-400 border border-orange-900/50 rounded">{c.label}</span>
@@ -159,21 +159,21 @@ const COLUMN_DEFS: ColDef[] = [
     id: 'entry_source', label: 'Source',
     render: op => {
       const cfg: Record<string, { label: string; cls: string }> = {
-        manual:   { label: 'Manual',   cls: 'bg-slate-800 text-slate-400 border-slate-700' },
+        manual:   { label: 'Manual',   cls: 'bg-card text-muted-foreground border-border' },
         import:   { label: 'Import',   cls: 'bg-blue-950/60 text-blue-400 border-blue-900/50' },
-        sophie:   { label: 'Amber',   cls: 'bg-emerald-950/60 text-emerald-400 border-emerald-900/50' },
+        sophie:   { label: 'Amber',   cls: 'bg-forest-950/60 text-forest-400 border-forest-900/50' },
         referral: { label: 'Referral', cls: 'bg-purple-950/60 text-purple-400 border-purple-900/50' },
-        other:    { label: 'Other',    cls: 'bg-slate-800 text-slate-500 border-slate-700' },
+        other:    { label: 'Other',    cls: 'bg-card text-muted-foreground border-border' },
       }
       const s = op.entry_source ?? 'manual'
       const c = cfg[s] ?? cfg.other
       return <span className={`text-[10px] px-1.5 py-0.5 rounded border ${c.cls} whitespace-nowrap`}>{c.label}</span>
     },
   },
-  { id: 'ni_number', label: 'NI', sortField: 'ni_number', render: op => <span className="font-mono text-slate-400">{op.ni_number ?? '—'}</span> },
-  { id: 'phone', label: 'Phone', sortField: 'phone', render: op => <span className="text-slate-400">{op.phone ?? '—'}</span> },
-  { id: 'email', label: 'Email', sortField: 'email', render: op => <span className="text-slate-400 max-w-[160px] truncate block">{op.email ?? '—'}</span> },
-  { id: 'last_worked_date', label: 'Last Worked', sortField: 'last_worked_date', render: op => <span className="text-slate-400">{op.last_worked_date ? new Date(op.last_worked_date).toLocaleDateString('en-GB') : '—'}</span> },
+  { id: 'ni_number', label: 'NI', sortField: 'ni_number', render: op => <span className="font-mono text-muted-foreground">{op.ni_number ?? '—'}</span> },
+  { id: 'phone', label: 'Phone', sortField: 'phone', render: op => <span className="text-muted-foreground">{op.phone ?? '—'}</span> },
+  { id: 'email', label: 'Email', sortField: 'email', render: op => <span className="text-muted-foreground max-w-[160px] truncate block">{op.email ?? '—'}</span> },
+  { id: 'last_worked_date', label: 'Last Worked', sortField: 'last_worked_date', render: op => <span className="text-muted-foreground">{op.last_worked_date ? new Date(op.last_worked_date).toLocaleDateString('en-GB') : '—'}</span> },
   { id: 'status', label: 'Status', sortField: 'status', render: op => (
     <div className="flex flex-col gap-1">
       {op.status ? <StatusBadge status={op.status} /> : '—'}
@@ -185,40 +185,40 @@ const COLUMN_DEFS: ColDef[] = [
       )}
     </div>
   )},
-  { id: 'trade', label: 'Trade', render: op => <span className="text-slate-400">{op.trade_category?.name ?? '—'}</span> },
-  { id: 'grade', label: 'Grade', sortField: 'grade', render: op => <span className="text-slate-400">{op.grade ?? '—'}</span> },
+  { id: 'trade', label: 'Trade', render: op => <span className="text-muted-foreground">{op.trade_category?.name ?? '—'}</span> },
+  { id: 'grade', label: 'Grade', sortField: 'grade', render: op => <span className="text-muted-foreground">{op.grade ?? '—'}</span> },
   { id: 'rap', label: 'RAP', sortField: 'avg_rap_score', render: op => op.rap_traffic_light ? (
     <span className="flex items-center gap-1">
-      <span className={`inline-block h-2 w-2 rounded-full shrink-0 ${op.rap_traffic_light === 'green' ? 'bg-emerald-500' : op.rap_traffic_light === 'amber' ? 'bg-amber-500' : 'bg-red-500'}`} />
-      <span className="text-slate-300 tabular-nums">{op.avg_rap_score?.toFixed(1) ?? '—'}</span>
+      <span className={`inline-block h-2 w-2 rounded-full shrink-0 ${op.rap_traffic_light === 'green' ? 'bg-forest-500' : op.rap_traffic_light === 'amber' ? 'bg-amber-500' : 'bg-red-500'}`} />
+      <span className="text-muted-foreground tabular-nums">{op.avg_rap_score?.toFixed(1) ?? '—'}</span>
     </span>
-  ) : <span className="text-slate-600">—</span> },
-  { id: 'jobs', label: 'Jobs', sortField: 'total_jobs', render: op => <span className="text-slate-400 tabular-nums">{op.total_jobs ?? 0}</span> },
-  { id: 'charge_rate', label: 'Charge £', sortField: 'charge_rate', render: op => <span className="text-slate-400">{op.charge_rate != null ? `£${op.charge_rate}` : '—'}</span> },
-  { id: 'hourly_rate', label: 'Hourly £', sortField: 'hourly_rate', render: op => <span className="text-slate-400">{op.hourly_rate != null ? `£${op.hourly_rate}` : '—'}</span> },
-  { id: 'day_rate', label: 'Day £', sortField: 'day_rate', render: op => <span className="text-slate-400">{op.day_rate != null ? `£${op.day_rate}` : '—'}</span> },
-  { id: 'agency', label: 'Agency', sortField: 'agency_name', render: op => <span className="text-slate-400">{op.agency_name ?? '—'}</span> },
-  { id: 'start_date', label: 'Start Date', sortField: 'start_date', render: op => <span className="text-slate-400">{op.start_date ? new Date(op.start_date).toLocaleDateString('en-GB') : '—'}</span> },
+  ) : <span className="text-muted-foreground">—</span> },
+  { id: 'jobs', label: 'Jobs', sortField: 'total_jobs', render: op => <span className="text-muted-foreground tabular-nums">{op.total_jobs ?? 0}</span> },
+  { id: 'charge_rate', label: 'Charge £', sortField: 'charge_rate', render: op => <span className="text-muted-foreground">{op.charge_rate != null ? `£${op.charge_rate}` : '—'}</span> },
+  { id: 'hourly_rate', label: 'Hourly £', sortField: 'hourly_rate', render: op => <span className="text-muted-foreground">{op.hourly_rate != null ? `£${op.hourly_rate}` : '—'}</span> },
+  { id: 'day_rate', label: 'Day £', sortField: 'day_rate', render: op => <span className="text-muted-foreground">{op.day_rate != null ? `£${op.day_rate}` : '—'}</span> },
+  { id: 'agency', label: 'Agency', sortField: 'agency_name', render: op => <span className="text-muted-foreground">{op.agency_name ?? '—'}</span> },
+  { id: 'start_date', label: 'Start Date', sortField: 'start_date', render: op => <span className="text-muted-foreground">{op.start_date ? new Date(op.start_date).toLocaleDateString('en-GB') : '—'}</span> },
   { id: 'cscs_type', label: 'CSCS', sortField: 'cscs_card_type', render: op => op.cscs_card_type ? (
     <span className="flex items-center gap-1">
       {CSCS_DOT_CLASS[op.cscs_card_type] && <span className={`inline-block h-2 w-2 rounded-full shrink-0 ${CSCS_DOT_CLASS[op.cscs_card_type]}`} />}
-      <span className="text-slate-400 capitalize">{op.cscs_card_type}</span>
+      <span className="text-muted-foreground capitalize">{op.cscs_card_type}</span>
     </span>
-  ) : <span className="text-slate-600">—</span> },
-  { id: 'cscs_expiry', label: 'CSCS Expiry', sortField: 'cscs_expiry', render: op => <span className="text-slate-400">{op.cscs_expiry ? new Date(op.cscs_expiry).toLocaleDateString('en-GB') : '—'}</span> },
-  { id: 'date_of_birth', label: 'DOB', sortField: 'date_of_birth', defaultHidden: true, render: op => <span className="text-slate-400">{op.date_of_birth ? new Date(op.date_of_birth).toLocaleDateString('en-GB') : '—'}</span> },
-  { id: 'postcode', label: 'Postcode', sortField: 'postcode', render: op => <span className="text-slate-400">{op.postcode ?? '—'}</span> },
-  { id: 'city', label: 'Town', sortField: 'city', render: op => <span className="text-slate-400">{op.city ?? '—'}</span> },
-  { id: 'county', label: 'Borough', sortField: 'county', render: op => <span className="text-slate-400">{op.county ?? '—'}</span> },
-  { id: 'address', label: 'Address', defaultHidden: true, render: op => <span className="text-slate-400 max-w-[160px] truncate block">{[op.address_line2, op.address_line1].filter(Boolean).join(', ') || '—'}</span> },
-  { id: 'nok_name', label: 'Emerg. Name', defaultHidden: true, render: op => <span className="text-slate-400 max-w-[120px] truncate block">{op.next_of_kin_name ?? '—'}</span> },
-  { id: 'nok_phone', label: 'Emerg. Phone', defaultHidden: true, render: op => <span className="text-slate-400">{op.next_of_kin_phone ?? '—'}</span> },
-  { id: 'sort_code', label: 'Sort Code', defaultHidden: true, render: op => <span className="font-mono text-slate-500">{op.bank_sort_code ? `${op.bank_sort_code.slice(0, 2)}–••••` : '—'}</span> },
-  { id: 'account_number', label: 'Account No', defaultHidden: true, render: op => <span className="font-mono text-slate-500">{op.bank_account_number ? `••••${op.bank_account_number.slice(-3)}` : '—'}</span> },
-  { id: 'utr', label: 'UTR', defaultHidden: true, render: op => <span className="font-mono text-slate-500">{op.utr_number ? `${op.utr_number.slice(0, 3)}•••••` : '—'}</span> },
-  { id: 'cscs_number', label: 'CSCS No', defaultHidden: true, render: op => <span className="font-mono text-slate-400">{op.cscs_card_number ?? '—'}</span> },
-  { id: 'cscs_title', label: 'CSCS Title', defaultHidden: true, render: op => <span className="text-slate-400 max-w-[120px] truncate block">{op.cscs_card_title ?? '—'}</span> },
-  { id: 'notes', label: 'Notes', defaultHidden: true, render: op => <span className="text-slate-500 max-w-[160px] truncate block">{op.notes ?? '—'}</span> },
+  ) : <span className="text-muted-foreground">—</span> },
+  { id: 'cscs_expiry', label: 'CSCS Expiry', sortField: 'cscs_expiry', render: op => <span className="text-muted-foreground">{op.cscs_expiry ? new Date(op.cscs_expiry).toLocaleDateString('en-GB') : '—'}</span> },
+  { id: 'date_of_birth', label: 'DOB', sortField: 'date_of_birth', defaultHidden: true, render: op => <span className="text-muted-foreground">{op.date_of_birth ? new Date(op.date_of_birth).toLocaleDateString('en-GB') : '—'}</span> },
+  { id: 'postcode', label: 'Postcode', sortField: 'postcode', render: op => <span className="text-muted-foreground">{op.postcode ?? '—'}</span> },
+  { id: 'city', label: 'Town', sortField: 'city', render: op => <span className="text-muted-foreground">{op.city ?? '—'}</span> },
+  { id: 'county', label: 'Borough', sortField: 'county', render: op => <span className="text-muted-foreground">{op.county ?? '—'}</span> },
+  { id: 'address', label: 'Address', defaultHidden: true, render: op => <span className="text-muted-foreground max-w-[160px] truncate block">{[op.address_line2, op.address_line1].filter(Boolean).join(', ') || '—'}</span> },
+  { id: 'nok_name', label: 'Emerg. Name', defaultHidden: true, render: op => <span className="text-muted-foreground max-w-[120px] truncate block">{op.next_of_kin_name ?? '—'}</span> },
+  { id: 'nok_phone', label: 'Emerg. Phone', defaultHidden: true, render: op => <span className="text-muted-foreground">{op.next_of_kin_phone ?? '—'}</span> },
+  { id: 'sort_code', label: 'Sort Code', defaultHidden: true, render: op => <span className="font-mono text-muted-foreground">{op.bank_sort_code ? `${op.bank_sort_code.slice(0, 2)}–••••` : '—'}</span> },
+  { id: 'account_number', label: 'Account No', defaultHidden: true, render: op => <span className="font-mono text-muted-foreground">{op.bank_account_number ? `••••${op.bank_account_number.slice(-3)}` : '—'}</span> },
+  { id: 'utr', label: 'UTR', defaultHidden: true, render: op => <span className="font-mono text-muted-foreground">{op.utr_number ? `${op.utr_number.slice(0, 3)}•••••` : '—'}</span> },
+  { id: 'cscs_number', label: 'CSCS No', defaultHidden: true, render: op => <span className="font-mono text-muted-foreground">{op.cscs_card_number ?? '—'}</span> },
+  { id: 'cscs_title', label: 'CSCS Title', defaultHidden: true, render: op => <span className="text-muted-foreground max-w-[120px] truncate block">{op.cscs_card_title ?? '—'}</span> },
+  { id: 'notes', label: 'Notes', defaultHidden: true, render: op => <span className="text-muted-foreground max-w-[160px] truncate block">{op.notes ?? '—'}</span> },
 ]
 
 const DEFAULT_ORDER = COLUMN_DEFS.map(c => c.id)
@@ -406,7 +406,7 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
         {toolbarLeft && <div className="flex items-center gap-2 min-w-0 flex-1">{toolbarLeft}</div>}
         <div className="flex items-center gap-2">
           {/* Density toggle */}
-          <div className="flex items-center rounded-md border border-slate-700 overflow-hidden">
+          <div className="flex items-center rounded-md border border-border overflow-hidden">
             {([
               { key: 'normal',  icon: AlignJustify, title: 'Normal' },
               { key: 'compact', icon: List,          title: 'Compact' },
@@ -416,7 +416,7 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
                 key={key}
                 title={title}
                 onClick={() => { setDensity(key); try { localStorage.setItem(DENSITY_KEY, key) } catch { /* ignore */ } }}
-                className={`px-2 py-1.5 transition-colors ${density === key ? 'bg-slate-700 text-slate-100' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-800/50'}`}
+                className={`px-2 py-1.5 transition-colors ${density === key ? 'bg-[#444444] text-foreground' : 'text-muted-foreground hover:text-muted-foreground hover:bg-card/50'}`}
               >
                 <Icon className="h-3 w-3" />
               </button>
@@ -428,20 +428,20 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
             variant="outline"
             size="sm"
             onClick={() => setPanelOpen(v => !v)}
-            className={`border-slate-700 text-slate-300 hover:bg-slate-800 h-7 px-2.5 text-xs gap-1.5 ${panelOpen ? 'bg-slate-800' : ''}`}
+            className={`border-border text-muted-foreground hover:bg-card h-7 px-2.5 text-xs gap-1.5 ${panelOpen ? 'bg-card' : ''}`}
           >
             <SlidersHorizontal className="h-3.5 w-3.5" />
             Columns
-            <span className="text-slate-500 text-[10px]">{visibleMoveableCount}/{totalMoveable}</span>
+            <span className="text-muted-foreground text-[10px]">{visibleMoveableCount}/{totalMoveable}</span>
           </Button>
 
           {panelOpen && (
-            <div className="absolute right-0 top-full mt-1 w-52 bg-slate-900 border border-slate-700 rounded-lg shadow-2xl z-50 overflow-hidden">
-              <div className="flex items-center justify-between px-3 py-2 border-b border-slate-800">
-                <span className="text-xs font-medium text-slate-200">Arrange columns</span>
+            <div className="absolute right-0 top-full mt-1 w-52 bg-background border border-border rounded-lg shadow-2xl z-50 overflow-hidden">
+              <div className="flex items-center justify-between px-3 py-2 border-b border-border">
+                <span className="text-xs font-medium text-muted-foreground">Arrange columns</span>
                 <button
                   onClick={resetLayout}
-                  className="text-[10px] text-slate-500 hover:text-slate-300 transition-colors"
+                  className="text-[10px] text-muted-foreground hover:text-muted-foreground transition-colors"
                 >
                   Reset
                 </button>
@@ -450,18 +450,18 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
               <div className="overflow-y-auto max-h-[400px] py-1">
                 {/* Pinned locked columns */}
                 <div className="px-3 pt-1 pb-0.5">
-                  <span className="text-[10px] text-slate-600 uppercase tracking-wider">Pinned</span>
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Pinned</span>
                 </div>
                 {COLUMN_DEFS.filter(c => c.locked).map(col => (
                   <div key={col.id} className="flex items-center gap-2 px-3 py-1.5 opacity-40 select-none">
-                    <Lock className="h-3 w-3 text-slate-600 shrink-0" />
-                    <span className="text-xs text-slate-400">{col.label}</span>
+                    <Lock className="h-3 w-3 text-muted-foreground shrink-0" />
+                    <span className="text-xs text-muted-foreground">{col.label}</span>
                   </div>
                 ))}
 
                 {/* Draggable columns */}
                 <div className="px-3 pt-2 pb-0.5">
-                  <span className="text-[10px] text-slate-600 uppercase tracking-wider">Columns — drag to reorder</span>
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Columns — drag to reorder</span>
                 </div>
                 {panelMoveable.map(col => (
                   <div
@@ -473,18 +473,18 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
                     onDragEnd={onDragEnd}
                     className={`flex items-center gap-2 px-3 py-1.5 select-none transition-colors cursor-grab active:cursor-grabbing
                       ${draggingId === col.id ? 'opacity-40' : ''}
-                      ${dragOverId === col.id && draggingId !== col.id ? 'border-t border-emerald-500' : 'border-t border-transparent'}
-                      hover:bg-slate-800/50`}
+                      ${dragOverId === col.id && draggingId !== col.id ? 'border-t border-forest-500' : 'border-t border-transparent'}
+                      hover:bg-card/50`}
                   >
                     <input
                       type="checkbox"
                       checked={!hiddenCols.has(col.id)}
                       onChange={() => toggleCol(col.id)}
                       onClick={e => e.stopPropagation()}
-                      className="w-3 h-3 rounded-sm accent-emerald-500 cursor-pointer shrink-0"
+                      className="w-3 h-3 rounded-sm accent-forest-500 cursor-pointer shrink-0"
                     />
-                    <GripVertical className="h-3.5 w-3.5 text-slate-600 shrink-0" />
-                    <span className="text-xs text-slate-300 truncate">{col.label}</span>
+                    <GripVertical className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                    <span className="text-xs text-muted-foreground truncate">{col.label}</span>
                   </div>
                 ))}
               </div>
@@ -495,10 +495,10 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
       </div>
 
       {/* Table */}
-      <div className="rounded-lg border border-slate-800 overflow-x-auto">
+      <div className="rounded-lg border border-border overflow-x-auto">
         <table className={`${DENSITY_CONFIG[density].text} whitespace-nowrap`}>
           <thead>
-            <tr className="border-b border-slate-800 bg-slate-900/80">
+            <tr className="border-b border-border bg-background/80">
               {/* Sticky locked headers */}
               {lockedDefs.map(col => {
                 const href = thSortLink(col)
@@ -506,15 +506,15 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
                 return (
                   <th
                     key={col.id}
-                    className={`text-left ${DENSITY_CONFIG[density].th} ${LOCKED_MIN_W[col.id] ?? ''} font-medium sticky ${STICKY[col.id] ?? ''} z-10 transition-colors ${isActive ? 'bg-emerald-950/40 border-b-2 border-emerald-500' : 'bg-slate-900/95'}`}
+                    className={`text-left ${DENSITY_CONFIG[density].th} ${LOCKED_MIN_W[col.id] ?? ''} font-medium sticky ${STICKY[col.id] ?? ''} z-10 transition-colors ${isActive ? 'bg-forest-950/40 border-b-2 border-forest-500' : 'bg-background/95'}`}
                   >
                     {href ? (
-                      <Link href={href} className={`flex items-center gap-0.5 transition-colors hover:text-slate-200 ${isActive ? 'text-slate-200' : 'text-slate-400'}`}>
+                      <Link href={href} className={`flex items-center gap-0.5 transition-colors hover:text-muted-foreground ${isActive ? 'text-muted-foreground' : 'text-muted-foreground'}`}>
                         {col.label}
                         <SortIcon isActive={isActive} dir={isActive ? activeDir : undefined} />
                       </Link>
                     ) : (
-                      <span className="text-slate-400">{col.label}</span>
+                      <span className="text-muted-foreground">{col.label}</span>
                     )}
                   </th>
                 )
@@ -535,16 +535,16 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
                     onDragEnd={onDragEnd}
                     className={`text-left ${DENSITY_CONFIG[density].th} font-medium cursor-grab active:cursor-grabbing transition-colors
                       ${draggingId === col.id ? 'opacity-40' : ''}
-                      ${isOver ? 'border-l-2 border-emerald-500 bg-slate-800/40' : 'border-l-2 border-transparent'}
-                      ${isActive ? 'bg-emerald-950/40 border-b-2 border-emerald-500' : ''}`}
+                      ${isOver ? 'border-l-2 border-forest-500 bg-card/40' : 'border-l-2 border-transparent'}
+                      ${isActive ? 'bg-forest-950/40 border-b-2 border-forest-500' : ''}`}
                   >
                     {href ? (
-                      <Link href={href} className={`flex items-center gap-0.5 transition-colors hover:text-slate-200 ${isActive ? 'text-slate-200' : 'text-slate-400'}`}>
+                      <Link href={href} className={`flex items-center gap-0.5 transition-colors hover:text-muted-foreground ${isActive ? 'text-muted-foreground' : 'text-muted-foreground'}`}>
                         {col.label}
                         <SortIcon isActive={isActive} dir={isActive ? activeDir : undefined} />
                       </Link>
                     ) : (
-                      <span className="text-slate-400 flex items-center">{col.label}</span>
+                      <span className="text-muted-foreground flex items-center">{col.label}</span>
                     )}
                   </th>
                 )
@@ -553,13 +553,13 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
               <th className={DENSITY_CONFIG[density].th} />
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800">
+          <tbody className="divide-y divide-border">
             {rows.map(op => (
-              <tr key={op.id} className="hover:bg-slate-900/50 transition-colors">
+              <tr key={op.id} className="hover:bg-background/50 transition-colors">
                 {lockedDefs.map(col => {
                   const isActive = !!(col.sortField && col.sortField === activeField)
                   return (
-                    <td key={col.id} className={`${DENSITY_CONFIG[density].tdLocked} ${LOCKED_MIN_W[col.id] ?? ''} sticky ${STICKY[col.id] ?? ''} z-10 transition-colors ${isActive ? 'bg-emerald-950/20' : 'bg-slate-950'}`}>
+                    <td key={col.id} className={`${DENSITY_CONFIG[density].tdLocked} ${LOCKED_MIN_W[col.id] ?? ''} sticky ${STICKY[col.id] ?? ''} z-10 transition-colors ${isActive ? 'bg-forest-950/20' : 'bg-background'}`}>
                       {col.render(op)}
                     </td>
                   )
@@ -567,13 +567,13 @@ export function OperativesTable({ rows, currentSort, params, toolbarLeft }: Prop
                 {moveableDefs.map(col => {
                   const isActive = !!(col.sortField && col.sortField === activeField)
                   return (
-                    <td key={col.id} className={`${DENSITY_CONFIG[density].td} transition-colors ${isActive ? 'bg-emerald-950/20' : ''}`}>
+                    <td key={col.id} className={`${DENSITY_CONFIG[density].td} transition-colors ${isActive ? 'bg-forest-950/20' : ''}`}>
                       {col.render(op)}
                     </td>
                   )
                 })}
                 <td className={DENSITY_CONFIG[density].td}>
-                  <Button asChild variant="ghost" size="sm" className="text-slate-400 hover:text-slate-200 hover:bg-slate-800 h-6 px-2 text-[10px]">
+                  <Button asChild variant="ghost" size="sm" className="text-muted-foreground hover:text-muted-foreground hover:bg-card h-6 px-2 text-[10px]">
                     <Link href={`/operatives/${op.id}`}>View</Link>
                   </Button>
                 </td>

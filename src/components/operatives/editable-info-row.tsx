@@ -119,7 +119,7 @@ export function EditableInfoRow({
     const boolVal = localValue === true
     return (
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-xs text-slate-500 shrink-0">{label}</span>
+        <span className="text-xs text-muted-foreground shrink-0">{label}</span>
         <button
           onClick={async () => {
             const newVal = !boolVal
@@ -143,7 +143,7 @@ export function EditableInfoRow({
           disabled={saving}
           className={cn(
             'text-xs font-medium px-1.5 py-0.5 rounded transition-colors cursor-pointer',
-            localValue === true ? 'text-emerald-400 hover:text-emerald-300' : 'text-slate-400 hover:text-slate-300',
+            localValue === true ? 'text-forest-400 hover:text-forest-300' : 'text-muted-foreground hover:text-muted-foreground',
           )}
         >
           {saving ? <Loader2 className="h-3 w-3 animate-spin" /> : localValue === true ? 'Yes' : 'No'}
@@ -157,23 +157,23 @@ export function EditableInfoRow({
     const formatted = displayValue !== undefined ? displayValue : formatDisplay(localValue, prefix, suffix, capitalize)
     return (
       <div
-        className="group flex items-baseline justify-between gap-2 cursor-pointer rounded -mx-1 px-1 hover:bg-slate-800/50 transition-colors"
+        className="group flex items-baseline justify-between gap-2 cursor-pointer rounded -mx-1 px-1 hover:bg-card/50 transition-colors"
         onClick={() => setEditing(true)}
       >
-        <span className="text-xs text-slate-500 shrink-0">{label}</span>
+        <span className="text-xs text-muted-foreground shrink-0">{label}</span>
         <div className="flex items-center gap-1.5">
           <span className={cn(
             'text-xs text-right',
             mono && 'font-mono',
             capitalize && 'capitalize',
-            highlight === 'green' && 'text-emerald-400',
+            highlight === 'green' && 'text-forest-400',
             highlight === 'amber' && 'text-amber-400',
             highlight === 'red' && 'text-red-400',
-            !highlight && 'text-slate-200',
+            !highlight && 'text-muted-foreground',
           )}>
             {formatted ?? '—'}
           </span>
-          <Pencil className="h-2.5 w-2.5 text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+          <Pencil className="h-2.5 w-2.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
         </div>
       </div>
     )
@@ -182,7 +182,7 @@ export function EditableInfoRow({
   // Edit mode
   return (
     <div className="flex items-center gap-1.5 -mx-1 px-1">
-      <span className="text-xs text-slate-500 shrink-0 w-24">{label}</span>
+      <span className="text-xs text-muted-foreground shrink-0 w-24">{label}</span>
       <div className="flex-1 flex items-center gap-1">
         {type === 'select' && options ? (
           <select
@@ -190,7 +190,7 @@ export function EditableInfoRow({
             value={(localValue as string) ?? ''}
             onChange={(e) => setLocalValue(e.target.value || null)}
             onKeyDown={handleKeyDown}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-2 py-0.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-600"
+            className="w-full bg-card border border-border rounded px-2 py-0.5 text-xs text-muted-foreground focus:outline-none focus:border-forest-600"
           >
             <option value="">—</option>
             {options.map(o => (
@@ -204,7 +204,7 @@ export function EditableInfoRow({
             onChange={(e) => setLocalValue(e.target.value)}
             onKeyDown={(e) => { if (e.key === 'Escape') cancel() }}
             rows={3}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 text-xs text-slate-200 focus:outline-none focus:border-emerald-600 resize-none"
+            className="w-full bg-card border border-border rounded px-2 py-1 text-xs text-muted-foreground focus:outline-none focus:border-forest-600 resize-none"
           />
         ) : (
           <input
@@ -222,7 +222,7 @@ export function EditableInfoRow({
             }}
             onKeyDown={handleKeyDown}
             className={cn(
-              'w-full bg-slate-800 border border-slate-700 rounded px-2 py-0.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-600',
+              'w-full bg-card border border-border rounded px-2 py-0.5 text-xs text-muted-foreground focus:outline-none focus:border-forest-600',
               mono && 'font-mono',
             )}
           />
@@ -232,7 +232,7 @@ export function EditableInfoRow({
         <button
           onClick={save}
           disabled={saving}
-          className="p-0.5 rounded hover:bg-emerald-900/50 text-emerald-500 transition-colors shrink-0"
+          className="p-0.5 rounded hover:bg-forest-900/50 text-forest-500 transition-colors shrink-0"
         >
           {saving ? <Loader2 className="h-3 w-3 animate-spin" /> : <Check className="h-3 w-3" />}
         </button>
@@ -264,15 +264,15 @@ export function InfoRow({
 }) {
   return (
     <div className="flex items-baseline justify-between gap-2">
-      <span className="text-xs text-slate-500 shrink-0">{label}</span>
+      <span className="text-xs text-muted-foreground shrink-0">{label}</span>
       <span className={cn(
         'text-xs text-right',
         mono && 'font-mono',
         capitalize && 'capitalize',
-        highlight === 'green' && 'text-emerald-400',
+        highlight === 'green' && 'text-forest-400',
         highlight === 'amber' && 'text-amber-400',
         highlight === 'red' && 'text-red-400',
-        !highlight && 'text-slate-200',
+        !highlight && 'text-muted-foreground',
       )}>
         {value ?? '—'}
       </span>

@@ -196,7 +196,7 @@ export default async function AllocationDetailPage({
                 </InfoCard>
                 <InfoCard label="Completed">
                   {alloc.induction_complete
-                    ? <span className="text-emerald-600 font-medium">Yes — {alloc.induction_completed_at ? new Date(alloc.induction_completed_at).toLocaleDateString('en-GB') : ''}</span>
+                    ? <span className="text-forest-600 font-medium">Yes — {alloc.induction_completed_at ? new Date(alloc.induction_completed_at).toLocaleDateString('en-GB') : ''}</span>
                     : <span className="text-muted-foreground">Pending</span>}
                 </InfoCard>
               </div>

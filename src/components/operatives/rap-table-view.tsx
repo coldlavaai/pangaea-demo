@@ -32,17 +32,17 @@ interface RowScores { r: number; a: number; p: number; s: number; dayRate: strin
 interface SavedScores { r: number; a: number; p: number; s: number; reviewId: string }
 
 const CSCS_DOT: Record<string, string> = {
-  green: 'bg-emerald-500', blue: 'bg-blue-500', gold: 'bg-amber-400',
+  green: 'bg-forest-500', blue: 'bg-blue-500', gold: 'bg-amber-400',
   black: 'bg-neutral-700', red: 'bg-red-500', white: 'bg-white',
 }
 
 const RAG_ROW: Record<string, string> = {
-  green: 'bg-emerald-950/15 border-l-2 border-l-emerald-600',
+  green: 'bg-forest-950/15 border-l-2 border-l-forest-600',
   amber: 'bg-amber-950/15 border-l-2 border-l-amber-600',
   red: 'bg-red-950/15 border-l-2 border-l-red-600',
 }
-const RAG_TEXT: Record<string, string> = { green: 'text-emerald-400', amber: 'text-amber-400', red: 'text-red-400' }
-const RAG_DOT: Record<string, string> = { green: 'bg-emerald-500', amber: 'bg-amber-500', red: 'bg-red-500' }
+const RAG_TEXT: Record<string, string> = { green: 'text-forest-400', amber: 'text-amber-400', red: 'text-red-400' }
+const RAG_DOT: Record<string, string> = { green: 'bg-forest-500', amber: 'bg-amber-500', red: 'bg-red-500' }
 
 function fmtDate(d: string | null) {
   if (!d) return '—'
@@ -55,7 +55,7 @@ function ScorePicker({ value, onChange }: { value: number; onChange: (v: number)
       {[1, 2, 3, 4, 5].map(v => (
         <button key={v} type="button" onClick={() => onChange(v)}
           className={`h-6 w-6 rounded text-[10px] font-bold transition-all ${
-            value === v ? 'bg-emerald-600 text-white scale-110' : 'bg-slate-800 text-slate-500 hover:bg-slate-700 hover:text-slate-300'
+            value === v ? 'bg-forest-600 text-white scale-110' : 'bg-card text-muted-foreground hover:bg-[#444444] hover:text-muted-foreground'
           }`}
         >{v}</button>
       ))}
@@ -64,8 +64,8 @@ function ScorePicker({ value, onChange }: { value: number; onChange: (v: number)
 }
 
 function ScoreCell({ value, hasScore }: { value: number; hasScore: boolean }) {
-  if (!hasScore || value === 0) return <span className="text-slate-600">0</span>
-  const colour = value >= 4 ? 'text-emerald-400 bg-emerald-950/40' : value >= 3 ? 'text-amber-400 bg-amber-950/40' : 'text-red-400 bg-red-950/40'
+  if (!hasScore || value === 0) return <span className="text-muted-foreground">0</span>
+  const colour = value >= 4 ? 'text-forest-400 bg-forest-950/40' : value >= 3 ? 'text-amber-400 bg-amber-950/40' : 'text-red-400 bg-red-950/40'
   return <span className={`inline-flex items-center justify-center h-5 w-5 rounded text-[10px] font-bold ${colour}`}>{value}</span>
 }
 
@@ -87,12 +87,12 @@ function SortHeader({
   const href = `/operatives?${params.toString()}`
 
   return (
-    <th className={`${className ?? ''} cursor-pointer select-none hover:text-slate-200 transition-colors`}>
+    <th className={`${className ?? ''} cursor-pointer select-none hover:text-muted-foreground transition-colors`}>
       <Link href={href} className="inline-flex items-center gap-0.5">
         {label}
         <span className="inline-flex flex-col -space-y-1">
-          <ChevronUp className={`h-2.5 w-2.5 ${isActive && activeDir === 'asc' ? 'text-emerald-400' : 'text-slate-600'}`} />
-          <ChevronDown className={`h-2.5 w-2.5 ${isActive && activeDir === 'desc' ? 'text-emerald-400' : 'text-slate-600'}`} />
+          <ChevronUp className={`h-2.5 w-2.5 ${isActive && activeDir === 'asc' ? 'text-forest-400' : 'text-muted-foreground'}`} />
+          <ChevronDown className={`h-2.5 w-2.5 ${isActive && activeDir === 'desc' ? 'text-forest-400' : 'text-muted-foreground'}`} />
         </span>
       </Link>
     </th>
@@ -232,25 +232,25 @@ export function RapTableView({ rows, currentSort }: { rows: RapOperative[]; curr
   // Server-side sorting via URL params — rows arrive pre-sorted from the page query
   const liveTotal = scores.r + scores.a + scores.p + scores.s
   const liveAvg = liveTotal / 4
-  const liveRagCol = liveAvg >= 4 ? 'text-emerald-400' : liveAvg >= 3 ? 'text-amber-400' : 'text-red-400'
+  const liveRagCol = liveAvg >= 4 ? 'text-forest-400' : liveAvg >= 3 ? 'text-amber-400' : 'text-red-400'
   const liveRag = liveAvg >= 4 ? 'Green' : liveAvg >= 3 ? 'Amber' : 'Red'
 
   return (
-    <div className="rounded-lg border border-slate-800 overflow-x-auto">
+    <div className="rounded-lg border border-border overflow-x-auto">
       <table className="w-full text-[11px]">
         <thead>
-          <tr className="border-b border-slate-800 bg-slate-900/80 text-slate-400 text-[10px] uppercase tracking-wider">
-            <SortHeader label="Name" field="last_name" currentSort={currentSort} className="text-left px-3 py-2 font-medium sticky left-0 bg-slate-900/80 z-10" />
+          <tr className="border-b border-border bg-background/80 text-muted-foreground text-[10px] uppercase tracking-wider">
+            <SortHeader label="Name" field="last_name" currentSort={currentSort} className="text-left px-3 py-2 font-medium sticky left-0 bg-background/80 z-10" />
             <SortHeader label="Ref" field="reference_number" currentSort={currentSort} className="text-left px-2 py-2 font-medium" />
             <SortHeader label="Trade" field="trade_category_id" currentSort={currentSort} className="text-left px-2 py-2 font-medium" />
             <SortHeader label="Grade" field="grade" currentSort={currentSort} className="text-left px-2 py-2 font-medium" />
             <SortHeader label="CSCS" field="cscs_card_type" currentSort={currentSort} className="text-center px-1 py-2 font-medium" />
             <SortHeader label="DOB" field="date_of_birth" currentSort={currentSort} className="text-left px-2 py-2 font-medium" />
             <SortHeader label="Last Worked" field="last_worked_date" currentSort={currentSort} className="text-left px-2 py-2 font-medium" />
-            <th className="text-center px-1 py-2 font-medium w-[70px] bg-emerald-950/30">R</th>
-            <th className="text-center px-1 py-2 font-medium w-[70px] bg-emerald-950/30">A</th>
-            <th className="text-center px-1 py-2 font-medium w-[70px] bg-emerald-950/30">P</th>
-            <th className="text-center px-1 py-2 font-medium w-[70px] bg-emerald-950/30">S</th>
+            <th className="text-center px-1 py-2 font-medium w-[70px] bg-forest-950/30">R</th>
+            <th className="text-center px-1 py-2 font-medium w-[70px] bg-forest-950/30">A</th>
+            <th className="text-center px-1 py-2 font-medium w-[70px] bg-forest-950/30">P</th>
+            <th className="text-center px-1 py-2 font-medium w-[70px] bg-forest-950/30">S</th>
             <SortHeader label="Total" field="avg_rap_score" currentSort={currentSort} className="text-center px-2 py-2 font-medium" />
             <th className="text-center px-2 py-2 font-medium">RAG</th>
             <SortHeader label="Pay £" field="day_rate" currentSort={currentSort} className="text-right px-2 py-2 font-medium" />
@@ -271,94 +271,94 @@ export function RapTableView({ rows, currentSort }: { rows: RapOperative[]; curr
             const rag = op.rap_traffic_light ?? (total > 0 ? (total / 4 >= 4 ? 'green' : total / 4 >= 3 ? 'amber' : 'red') : null)
 
             const rowClass = isEditing
-              ? 'bg-emerald-950/20'
+              ? 'bg-forest-950/20'
               : hasScore && rag
                 ? RAG_ROW[rag] ?? ''
-                : 'hover:bg-slate-900/40'
+                : 'hover:bg-background/40'
 
             return (
-              <tr key={op.id} className={`border-b border-slate-800/40 transition-colors group ${rowClass}`}>
+              <tr key={op.id} className={`border-b border-border/40 transition-colors group ${rowClass}`}>
                 <td className="px-3 py-1.5 sticky left-0 bg-inherit z-10">
                   <div className="flex items-center gap-1">
-                    <Link href={`/operatives/${op.id}`} className="text-slate-200 hover:text-emerald-400 font-medium whitespace-nowrap">
+                    <Link href={`/operatives/${op.id}`} className="text-muted-foreground hover:text-forest-400 font-medium whitespace-nowrap">
                       {op.first_name} {op.last_name}
                     </Link>
                     {hasScore && (
                       <button
                         onClick={() => resetRow(op)}
                         title="Reset RAP score (delete latest review)"
-                        className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-600 hover:text-red-400 ml-1"
+                        className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-red-400 ml-1"
                       >
                         {resetting === op.id ? <Loader2 className="h-3 w-3 animate-spin" /> : <RotateCcw className="h-3 w-3" />}
                       </button>
                     )}
                   </div>
                 </td>
-                <td className="px-2 py-1.5 font-mono text-slate-500 whitespace-nowrap">{op.reference_number ?? '—'}</td>
-                <td className="px-2 py-1.5 text-slate-400 whitespace-nowrap">{op.trade_category?.name ?? '—'}</td>
-                <td className="px-2 py-1.5 text-slate-400 capitalize whitespace-nowrap">{op.grade?.replace(/_/g, ' ') ?? '—'}</td>
+                <td className="px-2 py-1.5 font-mono text-muted-foreground whitespace-nowrap">{op.reference_number ?? '—'}</td>
+                <td className="px-2 py-1.5 text-muted-foreground whitespace-nowrap">{op.trade_category?.name ?? '—'}</td>
+                <td className="px-2 py-1.5 text-muted-foreground capitalize whitespace-nowrap">{op.grade?.replace(/_/g, ' ') ?? '—'}</td>
                 <td className="px-1 py-1.5 text-center">
-                  {op.cscs_card_type ? <span className={`inline-block h-2.5 w-2.5 rounded-full ${CSCS_DOT[op.cscs_card_type] ?? 'bg-slate-600'}`} title={op.cscs_card_type} /> : <span className="text-slate-600">—</span>}
+                  {op.cscs_card_type ? <span className={`inline-block h-2.5 w-2.5 rounded-full ${CSCS_DOT[op.cscs_card_type] ?? 'bg-[#5C5C5C]'}`} title={op.cscs_card_type} /> : <span className="text-muted-foreground">—</span>}
                 </td>
-                <td className="px-2 py-1.5 text-slate-500 tabular-nums whitespace-nowrap">{fmtDate(op.date_of_birth)}</td>
-                <td className="px-2 py-1.5 text-slate-500 tabular-nums whitespace-nowrap">{fmtDate(op.last_worked_date)}</td>
+                <td className="px-2 py-1.5 text-muted-foreground tabular-nums whitespace-nowrap">{fmtDate(op.date_of_birth)}</td>
+                <td className="px-2 py-1.5 text-muted-foreground tabular-nums whitespace-nowrap">{fmtDate(op.last_worked_date)}</td>
 
                 {isEditing ? (
                   <>
-                    <td className="px-1 py-1 bg-emerald-950/20"><ScorePicker value={scores.r} onChange={r => setScores(s => ({ ...s, r }))} /></td>
-                    <td className="px-1 py-1 bg-emerald-950/20"><ScorePicker value={scores.a} onChange={a => setScores(s => ({ ...s, a }))} /></td>
-                    <td className="px-1 py-1 bg-emerald-950/20"><ScorePicker value={scores.p} onChange={p => setScores(s => ({ ...s, p }))} /></td>
-                    <td className="px-1 py-1 bg-emerald-950/20"><ScorePicker value={scores.s} onChange={sv => setScores(prev => ({ ...prev, s: sv }))} /></td>
-                    <td className="px-2 py-1.5 text-center font-bold text-slate-200 tabular-nums">{liveTotal}</td>
+                    <td className="px-1 py-1 bg-forest-950/20"><ScorePicker value={scores.r} onChange={r => setScores(s => ({ ...s, r }))} /></td>
+                    <td className="px-1 py-1 bg-forest-950/20"><ScorePicker value={scores.a} onChange={a => setScores(s => ({ ...s, a }))} /></td>
+                    <td className="px-1 py-1 bg-forest-950/20"><ScorePicker value={scores.p} onChange={p => setScores(s => ({ ...s, p }))} /></td>
+                    <td className="px-1 py-1 bg-forest-950/20"><ScorePicker value={scores.s} onChange={sv => setScores(prev => ({ ...prev, s: sv }))} /></td>
+                    <td className="px-2 py-1.5 text-center font-bold text-muted-foreground tabular-nums">{liveTotal}</td>
                     <td className="px-2 py-1.5 text-center"><span className={`text-[10px] font-bold ${liveRagCol}`}>{liveRag}</span></td>
-                    <td className="px-1 py-1"><input value={scores.dayRate} onChange={e => setScores(s => ({ ...s, dayRate: e.target.value }))} className="w-16 h-6 bg-slate-800 border border-slate-700 rounded px-1.5 text-[11px] text-right text-slate-200" inputMode="decimal" /></td>
-                    <td className="px-1 py-1"><input value={scores.chargeRate} onChange={e => setScores(s => ({ ...s, chargeRate: e.target.value }))} className="w-16 h-6 bg-slate-800 border border-slate-700 rounded px-1.5 text-[11px] text-right text-slate-200" inputMode="decimal" /></td>
+                    <td className="px-1 py-1"><input value={scores.dayRate} onChange={e => setScores(s => ({ ...s, dayRate: e.target.value }))} className="w-16 h-6 bg-card border border-border rounded px-1.5 text-[11px] text-right text-muted-foreground" inputMode="decimal" /></td>
+                    <td className="px-1 py-1"><input value={scores.chargeRate} onChange={e => setScores(s => ({ ...s, chargeRate: e.target.value }))} className="w-16 h-6 bg-card border border-border rounded px-1.5 text-[11px] text-right text-muted-foreground" inputMode="decimal" /></td>
                     <td className="px-2 py-1.5 text-right tabular-nums">
                       {(() => {
                         const dv = parseFloat(scores.dayRate.replace('£', ''))
                         const cv = parseFloat(scores.chargeRate.replace('£', ''))
-                        if (isNaN(dv) || isNaN(cv) || cv <= 0) return <span className="text-slate-600">—</span>
+                        if (isNaN(dv) || isNaN(cv) || cv <= 0) return <span className="text-muted-foreground">—</span>
                         const m = ((cv - dv) / cv * 100)
-                        return <span className={m >= 20 ? 'text-emerald-400' : m >= 10 ? 'text-amber-400' : m > 0 ? 'text-orange-400' : 'text-red-400'}>{m.toFixed(0)}%</span>
+                        return <span className={m >= 20 ? 'text-forest-400' : m >= 10 ? 'text-amber-400' : m > 0 ? 'text-orange-400' : 'text-red-400'}>{m.toFixed(0)}%</span>
                       })()}
                     </td>
                     <td className="px-2 py-1.5 text-center">
                       <button onClick={() => saveRow(op)} disabled={saving}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-semibold bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50">
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-semibold bg-forest-600 text-white hover:bg-forest-700 disabled:opacity-50">
                         {saving ? <Loader2 className="h-3 w-3 animate-spin" /> : <Check className="h-3 w-3" />} Save
                       </button>
                     </td>
                   </>
                 ) : (
                   <>
-                    <td className="px-1 py-1.5 text-center cursor-pointer hover:bg-emerald-950/30" onClick={() => startEdit(op)}><ScoreCell value={latest?.r ?? 0} hasScore={hasScore} /></td>
-                    <td className="px-1 py-1.5 text-center cursor-pointer hover:bg-emerald-950/30" onClick={() => startEdit(op)}><ScoreCell value={latest?.a ?? 0} hasScore={hasScore} /></td>
-                    <td className="px-1 py-1.5 text-center cursor-pointer hover:bg-emerald-950/30" onClick={() => startEdit(op)}><ScoreCell value={latest?.p ?? 0} hasScore={hasScore} /></td>
-                    <td className="px-1 py-1.5 text-center cursor-pointer hover:bg-emerald-950/30" onClick={() => startEdit(op)}><ScoreCell value={latest?.s ?? 0} hasScore={hasScore} /></td>
-                    <td className="px-2 py-1.5 text-center font-bold tabular-nums text-slate-300">{total}</td>
+                    <td className="px-1 py-1.5 text-center cursor-pointer hover:bg-forest-950/30" onClick={() => startEdit(op)}><ScoreCell value={latest?.r ?? 0} hasScore={hasScore} /></td>
+                    <td className="px-1 py-1.5 text-center cursor-pointer hover:bg-forest-950/30" onClick={() => startEdit(op)}><ScoreCell value={latest?.a ?? 0} hasScore={hasScore} /></td>
+                    <td className="px-1 py-1.5 text-center cursor-pointer hover:bg-forest-950/30" onClick={() => startEdit(op)}><ScoreCell value={latest?.p ?? 0} hasScore={hasScore} /></td>
+                    <td className="px-1 py-1.5 text-center cursor-pointer hover:bg-forest-950/30" onClick={() => startEdit(op)}><ScoreCell value={latest?.s ?? 0} hasScore={hasScore} /></td>
+                    <td className="px-2 py-1.5 text-center font-bold tabular-nums text-muted-foreground">{total}</td>
                     <td className="px-2 py-1.5 text-center">
                       {rag ? (
                         <span className="inline-flex items-center gap-1">
-                          <span className={`h-2 w-2 rounded-full ${RAG_DOT[rag] ?? 'bg-slate-600'}`} />
-                          <span className={`text-[10px] font-bold ${RAG_TEXT[rag] ?? 'text-slate-500'}`}>
+                          <span className={`h-2 w-2 rounded-full ${RAG_DOT[rag] ?? 'bg-[#5C5C5C]'}`} />
+                          <span className={`text-[10px] font-bold ${RAG_TEXT[rag] ?? 'text-muted-foreground'}`}>
                             {rag.charAt(0).toUpperCase() + rag.slice(1)}
                           </span>
                         </span>
-                      ) : <span className="text-slate-600">—</span>}
+                      ) : <span className="text-muted-foreground">—</span>}
                     </td>
-                    <td className="px-2 py-1.5 text-right tabular-nums text-slate-400">{op.day_rate != null ? `£${Number(op.day_rate).toFixed(0)}` : '—'}</td>
-                    <td className="px-2 py-1.5 text-right tabular-nums text-slate-400">{charge != null ? `£${charge.toFixed(0)}` : '—'}</td>
+                    <td className="px-2 py-1.5 text-right tabular-nums text-muted-foreground">{op.day_rate != null ? `£${Number(op.day_rate).toFixed(0)}` : '—'}</td>
+                    <td className="px-2 py-1.5 text-right tabular-nums text-muted-foreground">{charge != null ? `£${charge.toFixed(0)}` : '—'}</td>
                     <td className="px-2 py-1.5 text-right tabular-nums">
                       {margin != null ? (
-                        <span className={margin >= 20 ? 'text-emerald-400' : margin >= 10 ? 'text-amber-400' : margin > 0 ? 'text-orange-400' : 'text-red-400'}>{margin.toFixed(0)}%</span>
-                      ) : <span className="text-slate-600">—</span>}
+                        <span className={margin >= 20 ? 'text-forest-400' : margin >= 10 ? 'text-amber-400' : margin > 0 ? 'text-orange-400' : 'text-red-400'}>{margin.toFixed(0)}%</span>
+                      ) : <span className="text-muted-foreground">—</span>}
                     </td>
                     <td className="px-2 py-1.5 text-center">
                       {justSaved ? (
-                        <span className="text-emerald-400 text-[10px] font-semibold">✓ Saved</span>
+                        <span className="text-forest-400 text-[10px] font-semibold">✓ Saved</span>
                       ) : (
                         <button onClick={() => startEdit(op)}
-                          className="px-2 py-1 rounded text-[10px] text-slate-500 hover:text-emerald-400 hover:bg-emerald-900/30 transition-colors">
+                          className="px-2 py-1 rounded text-[10px] text-muted-foreground hover:text-forest-400 hover:bg-forest-900/30 transition-colors">
                           {hasScore ? 'Edit' : 'Score'}
                         </button>
                       )}

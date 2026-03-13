@@ -25,11 +25,11 @@ const dotColours: Record<string, string> = {
   red:          'bg-[#D62828]',
   expired:      'bg-[#9B2226]',
   // Neutral
-  prospect:     'bg-slate-400',
-  unavailable:  'bg-slate-400',
-  completed:    'bg-slate-400',
-  cancelled:    'bg-slate-400',
-  expected:     'bg-slate-400',
+  prospect:     'bg-muted',
+  unavailable:  'bg-muted',
+  completed:    'bg-muted',
+  cancelled:    'bg-muted',
+  expected:     'bg-muted',
   confirmed:    'bg-[#2D6A4F]',
   partial:      'bg-[#E09F3E]',
 }
@@ -61,11 +61,11 @@ const pillColours: Record<string, string> = {
   red:          'bg-[#FFEBEE] text-[#9B2226] dark:bg-[#D62828]/15 dark:text-[#D62828]',
   expired:      'bg-[#FFEBEE] text-[#9B2226] dark:bg-[#9B2226]/15 dark:text-[#D62828]',
   // Neutral — grey
-  prospect:     'bg-slate-100 text-slate-600 dark:bg-slate-700/30 dark:text-slate-400',
-  unavailable:  'bg-slate-100 text-slate-600 dark:bg-slate-700/30 dark:text-slate-400',
-  completed:    'bg-slate-100 text-slate-600 dark:bg-slate-700/30 dark:text-slate-400',
-  cancelled:    'bg-slate-100 text-slate-600 dark:bg-slate-700/30 dark:text-slate-400',
-  expected:     'bg-slate-100 text-slate-600 dark:bg-slate-700/30 dark:text-slate-400',
+  prospect:     'bg-muted text-muted-foreground dark:bg-[#444444]/30 dark:text-muted-foreground',
+  unavailable:  'bg-muted text-muted-foreground dark:bg-[#444444]/30 dark:text-muted-foreground',
+  completed:    'bg-muted text-muted-foreground dark:bg-[#444444]/30 dark:text-muted-foreground',
+  cancelled:    'bg-muted text-muted-foreground dark:bg-[#444444]/30 dark:text-muted-foreground',
+  expected:     'bg-muted text-muted-foreground dark:bg-[#444444]/30 dark:text-muted-foreground',
 }
 
 const displayLabels: Record<string, string> = {
@@ -102,8 +102,8 @@ interface StatusBadgeProps {
 }
 
 export function StatusBadge({ status, className }: StatusBadgeProps) {
-  const pill = pillColours[status] ?? 'bg-slate-100 text-slate-600 dark:bg-slate-700/30 dark:text-slate-400'
-  const dot = dotColours[status] ?? 'bg-slate-400'
+  const pill = pillColours[status] ?? 'bg-muted text-muted-foreground dark:bg-[#444444]/30 dark:text-muted-foreground'
+  const dot = dotColours[status] ?? 'bg-muted'
   const label = displayLabels[status] ?? status.replace(/_/g, ' ')
 
   return (

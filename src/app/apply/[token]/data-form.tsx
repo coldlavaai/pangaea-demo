@@ -122,11 +122,11 @@ export default function DataForm({ token, firstName, dataFields, lang = 'en' }: 
   if (success) {
     return (
       <div className="text-center space-y-4 py-6">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-900/40 border border-emerald-700 text-2xl mx-auto">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-forest-900/40 border border-forest-700 text-2xl mx-auto">
           ✓
         </div>
         <h2 className="text-lg font-bold text-white">✓</h2>
-        <p className="text-slate-400 text-sm leading-relaxed">
+        <p className="text-muted-foreground text-sm leading-relaxed">
           {t('success', lang)}
         </p>
       </div>
@@ -145,11 +145,11 @@ export default function DataForm({ token, firstName, dataFields, lang = 'en' }: 
         return (
           <div key={field} className="space-y-2">
             {dataFields.length > 1 && (
-              <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
+              <div className="flex items-center gap-2 pb-2 border-b border-border">
                 <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-xs font-bold">
                   {sectionNum}
                 </span>
-                <p className="text-sm font-semibold text-slate-200">
+                <p className="text-sm font-semibold text-muted-foreground">
                   {displayLabel}
                   {isRequired && <span className="text-red-400 ml-1">*</span>}
                 </p>
@@ -157,12 +157,12 @@ export default function DataForm({ token, firstName, dataFields, lang = 'en' }: 
             )}
             {dataFields.length === 1 && (
               <div>
-                <p className="text-sm font-semibold text-slate-200 mb-0.5">
+                <p className="text-sm font-semibold text-muted-foreground mb-0.5">
                   {displayLabel}
                   {isRequired && <span className="text-red-400 ml-1">*</span>}
                 </p>
                 {config.hint && (
-                  <p className="text-xs text-slate-500">{config.hint}</p>
+                  <p className="text-xs text-muted-foreground">{config.hint}</p>
                 )}
               </div>
             )}
@@ -173,7 +173,7 @@ export default function DataForm({ token, firstName, dataFields, lang = 'en' }: 
                 value={values[field]}
                 onChange={e => setValues(v => ({ ...v, [field]: e.target.value }))}
                 required={isRequired}
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-slate-100 text-sm placeholder-slate-600 focus:outline-none focus:border-slate-500 resize-none"
+                className="w-full bg-card border border-border rounded-lg px-3 py-2.5 text-foreground text-sm placeholder-muted-foreground focus:outline-none focus:border-border resize-none"
               />
             ) : (
               <input
@@ -182,11 +182,11 @@ export default function DataForm({ token, firstName, dataFields, lang = 'en' }: 
                 value={values[field]}
                 onChange={e => setValues(v => ({ ...v, [field]: e.target.value }))}
                 required={isRequired}
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-slate-100 text-sm placeholder-slate-600 focus:outline-none focus:border-slate-500"
+                className="w-full bg-card border border-border rounded-lg px-3 py-2.5 text-foreground text-sm placeholder-muted-foreground focus:outline-none focus:border-border"
               />
             )}
             {dataFields.length > 1 && config.hint && (
-              <p className="text-xs text-slate-600">{config.hint}</p>
+              <p className="text-xs text-muted-foreground">{config.hint}</p>
             )}
           </div>
         )
@@ -204,8 +204,8 @@ export default function DataForm({ token, firstName, dataFields, lang = 'en' }: 
         className={`
           w-full py-3 rounded-lg font-semibold text-sm transition-all
           ${submitting || !canSubmit
-            ? 'bg-slate-800 text-slate-600 cursor-not-allowed'
-            : 'bg-[#D4AF37] hover:bg-[#c9a72f] text-slate-900 active:scale-[0.98]'
+            ? 'bg-card text-muted-foreground cursor-not-allowed'
+            : 'bg-[#D4AF37] hover:bg-[#c9a72f] text-foreground active:scale-[0.98]'
           }
         `}
       >
@@ -220,7 +220,7 @@ export default function DataForm({ token, firstName, dataFields, lang = 'en' }: 
         ) : t('submit', lang)}
       </button>
 
-      <p className="text-center text-xs text-slate-700">
+      <p className="text-center text-xs text-muted-foreground">
         Securely stored · Pangaea team only
       </p>
     </form>

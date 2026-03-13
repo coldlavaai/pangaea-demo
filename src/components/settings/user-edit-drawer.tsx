@@ -90,14 +90,14 @@ export function UserEditDrawer({ user, isCurrentUser, onClose, onSave, onDelete 
       />
 
       {/* Drawer */}
-      <div className="fixed right-0 top-0 h-full w-96 bg-slate-900 border-l border-slate-700 z-50 flex flex-col shadow-2xl">
+      <div className="fixed right-0 top-0 h-full w-96 bg-background border-l border-border z-50 flex flex-col shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-700">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-border">
           <div>
-            <p className="text-sm font-semibold text-slate-100">{user.first_name} {user.last_name}</p>
-            <p className="text-xs text-slate-500">{user.email}</p>
+            <p className="text-sm font-semibold text-foreground">{user.first_name} {user.last_name}</p>
+            <p className="text-xs text-muted-foreground">{user.email}</p>
           </div>
-          <button onClick={onClose} className="text-slate-500 hover:text-slate-300 transition-colors">
+          <button onClick={onClose} className="text-muted-foreground hover:text-muted-foreground transition-colors">
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -107,25 +107,25 @@ export function UserEditDrawer({ user, isCurrentUser, onClose, onSave, onDelete 
 
           {/* Name */}
           <div className="space-y-3">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-600">Name</p>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Name</p>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <Label className="text-xs text-slate-400">First name</Label>
+                <Label className="text-xs text-muted-foreground">First name</Label>
                 <div className="relative">
-                  <User className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-500" />
+                  <User className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
                   <Input
                     value={firstName}
                     onChange={e => setFirstName(e.target.value)}
-                    className="pl-8 h-9 text-sm bg-slate-800 border-slate-700"
+                    className="pl-8 h-9 text-sm bg-card border-border"
                   />
                 </div>
               </div>
               <div className="space-y-1">
-                <Label className="text-xs text-slate-400">Last name</Label>
+                <Label className="text-xs text-muted-foreground">Last name</Label>
                 <Input
                   value={lastName}
                   onChange={e => setLastName(e.target.value)}
-                  className="h-9 text-sm bg-slate-800 border-slate-700"
+                  className="h-9 text-sm bg-card border-border"
                 />
               </div>
             </div>
@@ -133,42 +133,42 @@ export function UserEditDrawer({ user, isCurrentUser, onClose, onSave, onDelete 
 
           {/* Email — read only */}
           <div className="space-y-1">
-            <Label className="text-xs text-slate-400">Email</Label>
+            <Label className="text-xs text-muted-foreground">Email</Label>
             <Input
               value={user.email}
               readOnly
-              className="h-9 text-sm bg-slate-800/40 border-slate-800 text-slate-500 cursor-not-allowed"
+              className="h-9 text-sm bg-card/40 border-border text-muted-foreground cursor-not-allowed"
             />
-            <p className="text-[10px] text-slate-600">Email is managed via Supabase Auth</p>
+            <p className="text-[10px] text-muted-foreground">Email is managed via Supabase Auth</p>
           </div>
 
           {/* Phone */}
           <div className="space-y-1">
-            <Label className="text-xs text-slate-400">Phone number</Label>
+            <Label className="text-xs text-muted-foreground">Phone number</Label>
             <div className="relative">
-              <Phone className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-500" />
+              <Phone className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
               <Input
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
                 placeholder="+44..."
-                className="pl-8 h-9 text-sm bg-slate-800 border-slate-700"
+                className="pl-8 h-9 text-sm bg-card border-border"
               />
             </div>
           </div>
 
           {/* Telegram */}
           <div className="space-y-1">
-            <Label className="text-xs text-slate-400">Telegram Chat ID</Label>
+            <Label className="text-xs text-muted-foreground">Telegram Chat ID</Label>
             <div className="relative">
-              <Send className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-500" />
+              <Send className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
               <Input
                 value={telegramId}
                 onChange={e => setTelegramId(e.target.value)}
                 placeholder="e.g. 123456789"
-                className="pl-8 h-9 text-sm bg-slate-800 border-slate-700 font-mono"
+                className="pl-8 h-9 text-sm bg-card border-border font-mono"
               />
             </div>
-            <p className="text-[10px] text-slate-600">
+            <p className="text-[10px] text-muted-foreground">
               To find your Chat ID: message <span className="text-sky-500">@userinfobot</span> on Telegram
             </p>
             {telegramId && (
@@ -183,19 +183,19 @@ export function UserEditDrawer({ user, isCurrentUser, onClose, onSave, onDelete 
 
           {/* Joined */}
           <div className="space-y-1">
-            <Label className="text-xs text-slate-400">Joined</Label>
-            <p className="text-sm text-slate-400">
+            <Label className="text-xs text-muted-foreground">Joined</Label>
+            <p className="text-sm text-muted-foreground">
               {user.created_at ? new Date(user.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '—'}
             </p>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="border-t border-slate-700 px-5 py-4 space-y-3">
+        <div className="border-t border-border px-5 py-4 space-y-3">
           <Button
             onClick={handleSave}
             disabled={!isDirty || isPending}
-            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white h-9 text-sm"
+            className="w-full bg-forest-600 hover:bg-forest-500 text-white h-9 text-sm"
           >
             {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Save changes'}
           </Button>
@@ -208,7 +208,7 @@ export function UserEditDrawer({ user, isCurrentUser, onClose, onSave, onDelete 
               className={`w-full h-9 text-sm border ${
                 confirmDelete
                   ? 'border-red-500 text-red-400 hover:bg-red-950/40'
-                  : 'border-slate-700 text-slate-500 hover:text-red-400 hover:border-red-500/50'
+                  : 'border-border text-muted-foreground hover:text-red-400 hover:border-red-500/50'
               }`}
             >
               {isDeleting ? (
@@ -221,7 +221,7 @@ export function UserEditDrawer({ user, isCurrentUser, onClose, onSave, onDelete 
             </Button>
           )}
           {confirmDelete && (
-            <button onClick={() => setConfirmDelete(false)} className="w-full text-xs text-slate-600 hover:text-slate-400">
+            <button onClick={() => setConfirmDelete(false)} className="w-full text-xs text-muted-foreground hover:text-muted-foreground">
               Cancel
             </button>
           )}

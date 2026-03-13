@@ -71,7 +71,7 @@ const ROLE_LABELS: Record<string, string> = {
 const ROLE_COLOURS: Record<string, string> = {
   super_admin: 'text-fuchsia-400 bg-fuchsia-950/60 border-fuchsia-900',
   admin: 'text-amber-400 bg-amber-950/60 border-amber-900',
-  staff: 'text-emerald-400 bg-emerald-950/60 border-emerald-900',
+  staff: 'text-forest-400 bg-forest-950/60 border-forest-900',
   site_manager: 'text-sky-400 bg-sky-950/60 border-sky-900',
   auditor: 'text-violet-400 bg-violet-950/60 border-violet-900',
   director: 'text-rose-400 bg-rose-950/60 border-rose-900',
@@ -316,35 +316,35 @@ export function UsersPanel({
   return (
     <div className="space-y-4 max-w-3xl">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-muted-foreground">
           {active.length} active user{active.length !== 1 ? 's' : ''}
           {inactive.length > 0 && `, ${inactive.length} inactive`}
         </p>
         <Button
           size="sm"
           onClick={() => setInviteOpen(true)}
-          className="gap-2 bg-emerald-600 hover:bg-emerald-500 text-white"
+          className="gap-2 bg-forest-600 hover:bg-forest-500 text-white"
         >
           <UserPlus className="h-4 w-4" />
           Invite User
         </Button>
       </div>
 
-      <p className="text-xs text-slate-600">
+      <p className="text-xs text-muted-foreground">
         Role changes take effect on the user&apos;s next login (JWT expires after ~1 hour).
       </p>
 
-      <div className="rounded-lg border border-slate-800 overflow-hidden">
+      <div className="rounded-lg border border-border overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-slate-800 bg-slate-900/80">
-              <th className="text-left px-4 py-3 text-slate-400 font-medium">User</th>
-              <th className="text-left px-4 py-3 text-slate-400 font-medium">Role</th>
-              <th className="text-left px-4 py-3 text-slate-400 font-medium">Joined</th>
-              <th className="text-right px-4 py-3 text-slate-400 font-medium">Status</th>
+            <tr className="border-b border-border bg-background/80">
+              <th className="text-left px-4 py-3 text-muted-foreground font-medium">User</th>
+              <th className="text-left px-4 py-3 text-muted-foreground font-medium">Role</th>
+              <th className="text-left px-4 py-3 text-muted-foreground font-medium">Joined</th>
+              <th className="text-right px-4 py-3 text-muted-foreground font-medium">Status</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800">
+          <tbody className="divide-y divide-border">
             {users.map((user) => {
               const assignedSites = getSitesForUser(user.id)
               const unassigned = getUnassignedSites(user.id)
@@ -354,22 +354,22 @@ export function UsersPanel({
                 <>
                   <tr
                     key={user.id}
-                    className={`transition-opacity hover:bg-slate-900/50 ${user.is_active === false ? 'opacity-50' : ''}`}
+                    className={`transition-opacity hover:bg-background/50 ${user.is_active === false ? 'opacity-50' : ''}`}
                   >
                     <td className="px-4 py-3">
                       <button
                         onClick={() => setEditingUser(user)}
-                        className="flex items-center gap-1 font-medium text-slate-200 hover:text-emerald-400 transition-colors group"
+                        className="flex items-center gap-1 font-medium text-muted-foreground hover:text-forest-400 transition-colors group"
                       >
                         {user.first_name} {user.last_name}
                         <ChevronRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </button>
-                      <div className="text-xs text-slate-500">{user.email}</div>
+                      <div className="text-xs text-muted-foreground">{user.email}</div>
                       {/* Site assignment — inline for site_manager */}
                       {user.role === 'site_manager' && (
                         <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
                           {assignedSites.length === 0 && (
-                            <span className="text-xs text-slate-600 italic">No sites assigned</span>
+                            <span className="text-xs text-muted-foreground italic">No sites assigned</span>
                           )}
                           {assignedSites.map((site) => {
                             const key = `${user.id}-${site.id}`
@@ -399,7 +399,7 @@ export function UsersPanel({
                               onValueChange={(siteId) => handleAddSite(user.id, siteId)}
                               disabled={addingSite === user.id}
                             >
-                              <SelectTrigger className="h-6 w-auto min-w-[100px] text-xs border border-slate-700 bg-slate-800/60 text-slate-400 rounded-full px-2 gap-1">
+                              <SelectTrigger className="h-6 w-auto min-w-[100px] text-xs border border-border bg-card/60 text-muted-foreground rounded-full px-2 gap-1">
                                 {addingSite === user.id ? (
                                   <Loader2 className="h-3 w-3 animate-spin" />
                                 ) : (
@@ -409,9 +409,9 @@ export function UsersPanel({
                                   </>
                                 )}
                               </SelectTrigger>
-                              <SelectContent className="bg-slate-800 border-slate-700">
+                              <SelectContent className="bg-card border-border">
                                 {unassigned.map((site) => (
-                                  <SelectItem key={site.id} value={site.id} className="text-xs text-slate-200">
+                                  <SelectItem key={site.id} value={site.id} className="text-xs text-muted-foreground">
                                     {site.name}
                                   </SelectItem>
                                 ))}
@@ -430,7 +430,7 @@ export function UsersPanel({
                                 setPhoneInputs((p) => ({ ...p, [user.id]: e.target.value }))
                               }
                               placeholder="+447700900000"
-                              className="h-6 w-36 text-xs bg-slate-800 border-slate-700 text-slate-200 px-2 py-0"
+                              className="h-6 w-36 text-xs bg-card border-border text-muted-foreground px-2 py-0"
                               onKeyDown={(e) => {
                                 if (e.key === 'Enter') handleSavePhone(user.id)
                                 if (e.key === 'Escape') setEditingPhone(null)
@@ -439,13 +439,13 @@ export function UsersPanel({
                             />
                             <button
                               onClick={() => handleSavePhone(user.id)}
-                              className="text-emerald-400 hover:text-emerald-300"
+                              className="text-forest-400 hover:text-forest-300"
                             >
                               <Check className="h-3.5 w-3.5" />
                             </button>
                             <button
                               onClick={() => setEditingPhone(null)}
-                              className="text-slate-500 hover:text-slate-300"
+                              className="text-muted-foreground hover:text-muted-foreground"
                             >
                               <X className="h-3.5 w-3.5" />
                             </button>
@@ -453,13 +453,13 @@ export function UsersPanel({
                         ) : (
                           <button
                             onClick={() => startEditPhone(user)}
-                            className="flex items-center gap-1 text-xs text-slate-600 hover:text-slate-400 transition-colors"
+                            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-muted-foreground transition-colors"
                           >
                             <Phone className="h-3 w-3" />
                             {isSavingPhone ? (
                               <Loader2 className="h-3 w-3 animate-spin" />
                             ) : user.phone_number ? (
-                              <span className="text-slate-400">{user.phone_number}</span>
+                              <span className="text-muted-foreground">{user.phone_number}</span>
                             ) : (
                               <span className="italic">Add phone</span>
                             )}
@@ -480,7 +480,7 @@ export function UsersPanel({
                         disabled={savingRole === user.id}
                       >
                         <SelectTrigger
-                          className={`h-7 w-40 text-xs border rounded-full px-3 ${ROLE_COLOURS[user.role] ?? 'text-slate-300 bg-slate-800 border-slate-700'}`}
+                          className={`h-7 w-40 text-xs border rounded-full px-3 ${ROLE_COLOURS[user.role] ?? 'text-muted-foreground bg-card border-border'}`}
                         >
                           {savingRole === user.id ? (
                             <Loader2 className="h-3 w-3 animate-spin" />
@@ -488,16 +488,16 @@ export function UsersPanel({
                             <SelectValue />
                           )}
                         </SelectTrigger>
-                        <SelectContent className="bg-slate-800 border-slate-700">
+                        <SelectContent className="bg-card border-border">
                           {Object.entries(ROLE_LABELS).map(([val, lbl]) => (
-                            <SelectItem key={val} value={val} className="text-xs text-slate-200">
+                            <SelectItem key={val} value={val} className="text-xs text-muted-foreground">
                               {lbl}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                     </td>
-                    <td className="px-4 py-3 text-xs text-slate-500">
+                    <td className="px-4 py-3 text-xs text-muted-foreground">
                       {user.created_at ? format(new Date(user.created_at), 'd MMM yyyy') : '—'}
                     </td>
                     <td className="px-4 py-3 text-right">
@@ -517,7 +517,7 @@ export function UsersPanel({
                             <Button
                               size="sm"
                               variant="ghost"
-                              className="h-6 px-2 text-xs text-slate-500"
+                              className="h-6 px-2 text-xs text-muted-foreground"
                               onClick={() => setConfirmDelete(null)}
                             >
                               No
@@ -531,7 +531,7 @@ export function UsersPanel({
                               className={`h-6 w-6 inline-flex items-center justify-center rounded transition-colors ${
                                 user.receive_notifications !== false
                                   ? 'text-amber-400 hover:text-amber-300'
-                                  : 'text-slate-700 hover:text-slate-500'
+                                  : 'text-muted-foreground hover:text-muted-foreground'
                               }`}
                             >
                               {user.receive_notifications !== false
@@ -542,7 +542,7 @@ export function UsersPanel({
                             <Button
                               size="sm"
                               variant="ghost"
-                              className={`h-6 px-2 text-xs transition-colors ${user.is_active === false ? 'text-emerald-400' : 'text-slate-500'}`}
+                              className={`h-6 px-2 text-xs transition-colors ${user.is_active === false ? 'text-forest-400' : 'text-muted-foreground'}`}
                               onClick={() => handleToggleActive(user.id, user.is_active)}
                               disabled={!!savingToggle}
                             >
@@ -558,7 +558,7 @@ export function UsersPanel({
                               <Button
                                 size="sm"
                                 variant="ghost"
-                                className="h-6 w-6 p-0 text-slate-700 hover:text-red-400 hover:bg-red-950/30 transition-colors"
+                                className="h-6 w-6 p-0 text-muted-foreground hover:text-red-400 hover:bg-red-950/30 transition-colors"
                                 onClick={() => setConfirmDelete(user.id)}
                                 title="Delete user"
                               >
@@ -576,7 +576,7 @@ export function UsersPanel({
             })}
             {users.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-8 text-center text-xs text-slate-600">
+                <td colSpan={4} className="px-4 py-8 text-center text-xs text-muted-foreground">
                   No users found
                 </td>
               </tr>
@@ -587,9 +587,9 @@ export function UsersPanel({
 
       {/* Invite User Modal */}
       <Dialog open={inviteOpen} onOpenChange={(open) => { if (!open) handleInviteDone() }}>
-        <DialogContent className="bg-slate-900 border-slate-700 text-slate-200 max-w-md">
+        <DialogContent className="bg-background border-border text-muted-foreground max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-slate-100">
+            <DialogTitle className="text-foreground">
               {inviteLink ? 'Share invite link' : 'Invite User'}
             </DialogTitle>
           </DialogHeader>
@@ -597,10 +597,10 @@ export function UsersPanel({
           {/* ── Link screen — shown after successful invite ── */}
           {inviteLink && (
             <div className="space-y-4 py-2">
-              <p className="text-sm text-slate-400">
-                Account created for <span className="text-slate-200 font-medium">{invitedName}</span>.
+              <p className="text-sm text-muted-foreground">
+                Account created for <span className="text-muted-foreground font-medium">{invitedName}</span>.
                 {invitedPhone
-                  ? <> WhatsApp sent to <span className="text-emerald-400">{invitedPhone}</span>.</>
+                  ? <> WhatsApp sent to <span className="text-forest-400">{invitedPhone}</span>.</>
                   : <> Copy and send this link so they can set their password.</>
                 }
               </p>
@@ -616,18 +616,18 @@ export function UsersPanel({
                 <Input
                   readOnly
                   value={inviteLink}
-                  className="bg-slate-800 border-slate-700 text-slate-300 text-xs"
+                  className="bg-card border-border text-muted-foreground text-xs"
                 />
                 <Button
                   onClick={handleCopyLink}
-                  className={`shrink-0 gap-1.5 transition-colors ${copied ? 'bg-emerald-700 text-white' : 'bg-slate-700 hover:bg-slate-600 text-slate-200'}`}
+                  className={`shrink-0 gap-1.5 transition-colors ${copied ? 'bg-forest-700 text-white' : 'bg-[#444444] hover:bg-[#5C5C5C] text-muted-foreground'}`}
                 >
                   {copied ? <CheckCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   {copied ? 'Copied!' : 'Copy'}
                 </Button>
               </div>
               <DialogFooter>
-                <Button onClick={handleInviteDone} className="bg-emerald-600 hover:bg-emerald-500 text-white w-full">
+                <Button onClick={handleInviteDone} className="bg-forest-600 hover:bg-forest-500 text-white w-full">
                   Done
                 </Button>
               </DialogFooter>
@@ -638,48 +638,48 @@ export function UsersPanel({
           {!inviteLink && <div className="space-y-4 py-2">
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <Label className="text-xs text-slate-400">First name</Label>
+                <Label className="text-xs text-muted-foreground">First name</Label>
                 <Input
                   value={inviteForm.first_name}
                   onChange={(e) => setInviteForm((f) => ({ ...f, first_name: e.target.value }))}
                   placeholder="James"
-                  className="bg-slate-800 border-slate-700 text-slate-200"
+                  className="bg-card border-border text-muted-foreground"
                 />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs text-slate-400">Last name</Label>
+                <Label className="text-xs text-muted-foreground">Last name</Label>
                 <Input
                   value={inviteForm.last_name}
                   onChange={(e) => setInviteForm((f) => ({ ...f, last_name: e.target.value }))}
                   placeholder="Smith"
-                  className="bg-slate-800 border-slate-700 text-slate-200"
+                  className="bg-card border-border text-muted-foreground"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-xs text-slate-400">Email</Label>
+              <Label className="text-xs text-muted-foreground">Email</Label>
               <Input
                 type="email"
                 value={inviteForm.email}
                 onChange={(e) => setInviteForm((f) => ({ ...f, email: e.target.value }))}
                 placeholder="user@company.co.uk"
-                className="bg-slate-800 border-slate-700 text-slate-200"
+                className="bg-card border-border text-muted-foreground"
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-xs text-slate-400">Role</Label>
+              <Label className="text-xs text-muted-foreground">Role</Label>
               <Select
                 value={inviteForm.role}
                 onValueChange={(v) => setInviteForm((f) => ({ ...f, role: v, site_ids: [] }))}
               >
-                <SelectTrigger className="bg-slate-800 border-slate-700 text-slate-200">
+                <SelectTrigger className="bg-card border-border text-muted-foreground">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
+                <SelectContent className="bg-card border-border">
                   {Object.entries(ROLE_LABELS).map(([val, lbl]) => (
-                    <SelectItem key={val} value={val} className="text-slate-200">
+                    <SelectItem key={val} value={val} className="text-muted-foreground">
                       {lbl}
                     </SelectItem>
                   ))}
@@ -688,7 +688,7 @@ export function UsersPanel({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-xs text-slate-400">
+              <Label className="text-xs text-muted-foreground">
                 Phone number
                 {inviteForm.role === 'site_manager' && (
                   <span className="ml-1 text-sky-400">— required for WhatsApp bot</span>
@@ -699,14 +699,14 @@ export function UsersPanel({
                 value={inviteForm.phone_number}
                 onChange={(e) => setInviteForm((f) => ({ ...f, phone_number: e.target.value }))}
                 placeholder="+447700900000"
-                className="bg-slate-800 border-slate-700 text-slate-200"
+                className="bg-card border-border text-muted-foreground"
               />
             </div>
 
             {/* Site assignment — only shown for site_manager */}
             {inviteForm.role === 'site_manager' && sites.length > 0 && (
               <div className="space-y-2">
-                <Label className="text-xs text-slate-400">Assign to sites</Label>
+                <Label className="text-xs text-muted-foreground">Assign to sites</Label>
                 <div className="flex flex-wrap gap-2">
                   {sites.map((site) => {
                     const selected = inviteForm.site_ids.includes(site.id)
@@ -718,7 +718,7 @@ export function UsersPanel({
                         className={`px-3 py-1 rounded-full text-xs border transition-colors ${
                           selected
                             ? 'bg-sky-900/60 border-sky-700 text-sky-300'
-                            : 'bg-slate-800/60 border-slate-700 text-slate-400 hover:border-slate-500'
+                            : 'bg-card/60 border-border text-muted-foreground hover:border-border'
                         }`}
                       >
                         {selected && <Check className="h-3 w-3 inline mr-1" />}
@@ -728,7 +728,7 @@ export function UsersPanel({
                   })}
                 </div>
                 {inviteForm.site_ids.length === 0 && (
-                  <p className="text-xs text-slate-600">
+                  <p className="text-xs text-muted-foreground">
                     No sites selected — user will have access to all sites (admin-level).
                   </p>
                 )}
@@ -739,14 +739,14 @@ export function UsersPanel({
                 variant="ghost"
                 onClick={handleInviteDone}
                 disabled={inviting}
-                className="text-slate-400"
+                className="text-muted-foreground"
               >
                 Cancel
               </Button>
               <Button
                 onClick={handleInvite}
                 disabled={inviting}
-                className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2"
+                className="bg-forest-600 hover:bg-forest-500 text-white gap-2"
               >
                 {inviting ? <Loader2 className="h-4 w-4 animate-spin" /> : <UserPlus className="h-4 w-4" />}
                 {inviting ? 'Creating account...' : 'Create & get link'}

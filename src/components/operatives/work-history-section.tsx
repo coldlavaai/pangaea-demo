@@ -123,18 +123,18 @@ export function WorkHistorySection({ operativeId, cvSummary, workHistory }: Work
   }
 
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-900 p-5 space-y-4">
+    <div className="rounded-lg border border-border bg-background p-5 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Briefcase className="h-4 w-4 text-slate-400" />
-          <h3 className="font-medium text-slate-100">Work History</h3>
+          <Briefcase className="h-4 w-4 text-muted-foreground" />
+          <h3 className="font-medium text-foreground">Work History</h3>
         </div>
         <div className="flex items-center gap-2">
           <Button
             size="sm"
             variant="outline"
-            className="h-7 text-xs border-slate-700 text-slate-300 hover:bg-slate-800"
+            className="h-7 text-xs border-border text-muted-foreground hover:bg-card"
             onClick={() => setShowAddForm((v) => !v)}
           >
             <Plus className="h-3 w-3 mr-1" />
@@ -143,7 +143,7 @@ export function WorkHistorySection({ operativeId, cvSummary, workHistory }: Work
           <Button
             size="sm"
             variant="outline"
-            className="h-7 text-xs border-slate-700 text-slate-300 hover:bg-slate-800"
+            className="h-7 text-xs border-border text-muted-foreground hover:bg-card"
             onClick={() => fileRef.current?.click()}
             disabled={uploading}
           >
@@ -166,64 +166,64 @@ export function WorkHistorySection({ operativeId, cvSummary, workHistory }: Work
 
       {/* AI Summary */}
       {cvSummary && (
-        <div className="rounded-md bg-slate-800/60 border border-slate-700 px-4 py-3">
-          <p className="text-xs font-medium text-slate-400 uppercase tracking-wide mb-1">AI Summary</p>
-          <p className="text-sm text-slate-300 leading-relaxed">{cvSummary}</p>
+        <div className="rounded-md bg-card/60 border border-border px-4 py-3">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">AI Summary</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">{cvSummary}</p>
         </div>
       )}
 
       {/* Add entry form */}
       {showAddForm && (
-        <div className="rounded-md border border-slate-700 bg-slate-800/40 p-4 space-y-3">
+        <div className="rounded-md border border-border bg-card/40 p-4 space-y-3">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-slate-300">Add role</p>
-            <button onClick={() => setShowAddForm(false)} className="text-slate-500 hover:text-slate-300">
+            <p className="text-sm font-medium text-muted-foreground">Add role</p>
+            <button onClick={() => setShowAddForm(false)} className="text-muted-foreground hover:text-muted-foreground">
               <X className="h-4 w-4" />
             </button>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1 col-span-2">
-              <Label className="text-xs text-slate-400">Job Title *</Label>
+              <Label className="text-xs text-muted-foreground">Job Title *</Label>
               <Input
                 value={newEntry.job_title}
                 onChange={(e) => setNewEntry((p) => ({ ...p, job_title: e.target.value }))}
-                className="h-8 text-sm bg-slate-800 border-slate-700 text-slate-100"
+                className="h-8 text-sm bg-card border-border text-foreground"
                 placeholder="e.g. Groundworker"
               />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs text-slate-400">Employer</Label>
+              <Label className="text-xs text-muted-foreground">Employer</Label>
               <Input
                 value={newEntry.employer}
                 onChange={(e) => setNewEntry((p) => ({ ...p, employer: e.target.value }))}
-                className="h-8 text-sm bg-slate-800 border-slate-700 text-slate-100"
+                className="h-8 text-sm bg-card border-border text-foreground"
                 placeholder="Company name"
               />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs text-slate-400">Start Date</Label>
+              <Label className="text-xs text-muted-foreground">Start Date</Label>
               <Input
                 type="date"
                 value={newEntry.start_date}
                 onChange={(e) => setNewEntry((p) => ({ ...p, start_date: e.target.value }))}
-                className="h-8 text-sm bg-slate-800 border-slate-700 text-slate-100"
+                className="h-8 text-sm bg-card border-border text-foreground"
               />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs text-slate-400">End Date</Label>
+              <Label className="text-xs text-muted-foreground">End Date</Label>
               <Input
                 type="date"
                 value={newEntry.end_date}
                 onChange={(e) => setNewEntry((p) => ({ ...p, end_date: e.target.value }))}
-                className="h-8 text-sm bg-slate-800 border-slate-700 text-slate-100"
+                className="h-8 text-sm bg-card border-border text-foreground"
               />
             </div>
             <div className="space-y-1 col-span-2">
-              <Label className="text-xs text-slate-400">Description</Label>
+              <Label className="text-xs text-muted-foreground">Description</Label>
               <Input
                 value={newEntry.description}
                 onChange={(e) => setNewEntry((p) => ({ ...p, description: e.target.value }))}
-                className="h-8 text-sm bg-slate-800 border-slate-700 text-slate-100"
+                className="h-8 text-sm bg-card border-border text-foreground"
                 placeholder="Brief description of responsibilities"
               />
             </div>
@@ -232,7 +232,7 @@ export function WorkHistorySection({ operativeId, cvSummary, workHistory }: Work
             size="sm"
             onClick={handleAdd}
             disabled={addLoading}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white h-7 text-xs"
+            className="bg-forest-600 hover:bg-forest-500 text-white h-7 text-xs"
           >
             {addLoading && <Loader2 className="h-3 w-3 mr-1 animate-spin" />}
             Save
@@ -242,7 +242,7 @@ export function WorkHistorySection({ operativeId, cvSummary, workHistory }: Work
 
       {/* Work history list */}
       {workHistory.length === 0 && !showAddForm ? (
-        <p className="text-sm text-slate-500 text-center py-4">
+        <p className="text-sm text-muted-foreground text-center py-4">
           No work history yet. Upload a CV or add roles manually.
         </p>
       ) : (
@@ -250,33 +250,33 @@ export function WorkHistorySection({ operativeId, cvSummary, workHistory }: Work
           {workHistory.map((entry) => (
             <div
               key={entry.id}
-              className="flex items-start gap-3 rounded-md border border-slate-800 bg-slate-800/30 px-3 py-2.5"
+              className="flex items-start gap-3 rounded-md border border-border bg-card/30 px-3 py-2.5"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="text-sm font-medium text-slate-200">{entry.job_title}</span>
+                  <span className="text-sm font-medium text-muted-foreground">{entry.job_title}</span>
                   {entry.employer && (
-                    <span className="text-xs text-slate-400">@ {entry.employer}</span>
+                    <span className="text-xs text-muted-foreground">@ {entry.employer}</span>
                   )}
                   {entry.source === 'cv_parsed' && (
-                    <span className="text-xs text-slate-600 font-mono">AI</span>
+                    <span className="text-xs text-muted-foreground font-mono">AI</span>
                   )}
                 </div>
                 {(entry.start_date || entry.end_date) && (
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-xs text-muted-foreground mt-0.5">
                     {fmtDate(entry.start_date) ?? '?'}
                     {' → '}
                     {entry.end_date ? fmtDate(entry.end_date) : 'Present'}
                   </p>
                 )}
                 {entry.description && (
-                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">{entry.description}</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{entry.description}</p>
                 )}
               </div>
               <button
                 onClick={() => handleDelete(entry.id)}
                 disabled={deleting === entry.id}
-                className="shrink-0 text-slate-600 hover:text-red-400 transition-colors mt-0.5"
+                className="shrink-0 text-muted-foreground hover:text-red-400 transition-colors mt-0.5"
               >
                 {deleting === entry.id
                   ? <Loader2 className="h-3.5 w-3.5 animate-spin" />

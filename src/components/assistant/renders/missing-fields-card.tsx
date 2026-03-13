@@ -73,23 +73,23 @@ export function MissingFieldsCard({ data, onAction }: { data: MissingFieldsData;
   const totalMissing = allItems.length
 
   return (
-    <div className="bg-slate-800/60 rounded-xl border border-slate-700/50 overflow-hidden text-xs">
+    <div className="bg-card/60 rounded-xl border border-border/50 overflow-hidden text-xs">
       {/* Header */}
-      <div className="flex items-center justify-between px-3 py-2 border-b border-slate-700/50 bg-slate-900/40">
+      <div className="flex items-center justify-between px-3 py-2 border-b border-border/50 bg-background/40">
         <div>
-          <span className="font-medium text-slate-200">{data.operative_name}</span>
-          <span className="text-slate-500 ml-2">{data.ref} · {data.trade ?? 'No trade'} · {data.status}</span>
+          <span className="font-medium text-muted-foreground">{data.operative_name}</span>
+          <span className="text-muted-foreground ml-2">{data.ref} · {data.trade ?? 'No trade'} · {data.status}</span>
           {totalMissing > 0 && (
             <span className="ml-2 text-[10px] text-amber-400/80">— {totalMissing} item{totalMissing !== 1 ? 's' : ''} outstanding</span>
           )}
         </div>
-        <Link href={`/operatives/${data.operative_id}`} className="text-slate-500 hover:text-emerald-400 transition-colors">
+        <Link href={`/operatives/${data.operative_id}`} className="text-muted-foreground hover:text-forest-400 transition-colors">
           <ExternalLink className="h-3 w-3" />
         </Link>
       </div>
 
       {totalMissing === 0 ? (
-        <div className="px-3 py-3 text-emerald-400 font-medium">✓ Profile complete</div>
+        <div className="px-3 py-3 text-forest-400 font-medium">✓ Profile complete</div>
       ) : (
         <>
           <div className="px-3 py-2 space-y-3">
@@ -105,7 +105,7 @@ export function MissingFieldsCard({ data, onAction }: { data: MissingFieldsData;
                         onChange={() => toggle(item.key)}
                         className="w-3 h-3 accent-amber-500 rounded"
                       />
-                      <span className={`transition-colors ${checked.has(item.key) ? 'text-slate-300 group-hover:text-slate-100' : 'text-slate-600 line-through'}`}>
+                      <span className={`transition-colors ${checked.has(item.key) ? 'text-muted-foreground group-hover:text-foreground' : 'text-muted-foreground line-through'}`}>
                         {item.label}
                       </span>
                     </label>
@@ -116,7 +116,7 @@ export function MissingFieldsCard({ data, onAction }: { data: MissingFieldsData;
 
             {data.optional.length > 0 && (
               <div>
-                <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Missing — Optional</p>
+                <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">Missing — Optional</p>
                 <div className="space-y-0.5">
                   {data.optional.map(item => (
                     <label key={item.key} className="flex items-center gap-2 cursor-pointer group py-0.5">
@@ -124,9 +124,9 @@ export function MissingFieldsCard({ data, onAction }: { data: MissingFieldsData;
                         type="checkbox"
                         checked={checked.has(item.key)}
                         onChange={() => toggle(item.key)}
-                        className="w-3 h-3 accent-slate-400 rounded"
+                        className="w-3 h-3 accent-forest-400 rounded"
                       />
-                      <span className={`transition-colors ${checked.has(item.key) ? 'text-slate-400 group-hover:text-slate-200' : 'text-slate-600 line-through'}`}>
+                      <span className={`transition-colors ${checked.has(item.key) ? 'text-muted-foreground group-hover:text-muted-foreground' : 'text-muted-foreground line-through'}`}>
                         {item.label}
                       </span>
                     </label>
@@ -147,7 +147,7 @@ export function MissingFieldsCard({ data, onAction }: { data: MissingFieldsData;
                         onChange={() => toggle(item.key)}
                         className="w-3 h-3 accent-amber-500 rounded"
                       />
-                      <span className={`transition-colors ${checked.has(item.key) ? 'text-slate-300 group-hover:text-slate-100' : 'text-slate-600 line-through'}`}>
+                      <span className={`transition-colors ${checked.has(item.key) ? 'text-muted-foreground group-hover:text-foreground' : 'text-muted-foreground line-through'}`}>
                         {item.label}
                       </span>
                     </label>
@@ -171,19 +171,19 @@ export function MissingFieldsCard({ data, onAction }: { data: MissingFieldsData;
             )}
 
             {data.present.length > 0 && (
-              <p className="text-[10px] text-slate-600 pt-1 border-t border-slate-700/50">
+              <p className="text-[10px] text-muted-foreground pt-1 border-t border-border/50">
                 ✓ {data.present.join(' · ')}
               </p>
             )}
           </div>
 
           {/* Action bar */}
-          <div className="px-3 py-2 border-t border-slate-700/50 bg-slate-900/30 flex items-center justify-between">
-            <span className="text-[10px] text-slate-500">{checked.size} of {totalMissing} selected</span>
+          <div className="px-3 py-2 border-t border-border/50 bg-background/30 flex items-center justify-between">
+            <span className="text-[10px] text-muted-foreground">{checked.size} of {totalMissing} selected</span>
             <button
               onClick={handleAction}
               disabled={!hasAction || !onAction}
-              className="px-3 py-1 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-600/40 text-emerald-400 rounded-md text-[10px] font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-1 bg-forest-600/20 hover:bg-forest-600/30 border border-forest-600/40 text-forest-400 rounded-md text-[10px] font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Action selected →
             </button>

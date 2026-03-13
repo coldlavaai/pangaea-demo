@@ -23,7 +23,7 @@ interface Props {
 }
 
 const ACTION_STYLES: Record<string, string> = {
-  INSERT: 'bg-emerald-950/60 text-emerald-400 border-emerald-900',
+  INSERT: 'bg-forest-950/60 text-forest-400 border-forest-900',
   UPDATE: 'bg-amber-950/60 text-amber-400 border-amber-900',
   DELETE: 'bg-red-950/60 text-red-400 border-red-900',
 }
@@ -92,7 +92,7 @@ export function AuditLogTable({ entries, userMap, operativeMap }: Props) {
         <select
           value={tableFilter}
           onChange={(e) => setTableFilter(e.target.value)}
-          className="h-8 rounded-md border border-slate-700 bg-slate-800 text-xs text-slate-300 px-2"
+          className="h-8 rounded-md border border-border bg-card text-xs text-muted-foreground px-2"
         >
           <option value="all">All tables</option>
           {Object.entries(TABLE_LABELS).map(([val, lbl]) => (
@@ -102,31 +102,31 @@ export function AuditLogTable({ entries, userMap, operativeMap }: Props) {
         <select
           value={actionFilter}
           onChange={(e) => setActionFilter(e.target.value)}
-          className="h-8 rounded-md border border-slate-700 bg-slate-800 text-xs text-slate-300 px-2"
+          className="h-8 rounded-md border border-border bg-card text-xs text-muted-foreground px-2"
         >
           <option value="all">All actions</option>
           <option value="INSERT">Insert</option>
           <option value="UPDATE">Update</option>
           <option value="DELETE">Delete</option>
         </select>
-        <span className="text-xs text-slate-600 self-center">
+        <span className="text-xs text-muted-foreground self-center">
           {filtered.length} {filtered.length === 1 ? 'entry' : 'entries'}
         </span>
       </div>
 
       {/* Table */}
-      <div className="rounded-lg border border-slate-800 overflow-hidden">
+      <div className="rounded-lg border border-border overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-slate-800 bg-slate-900/80">
-              <th className="text-left px-4 py-3 text-slate-400 font-medium">Time</th>
-              <th className="text-left px-4 py-3 text-slate-400 font-medium">Action</th>
-              <th className="text-left px-4 py-3 text-slate-400 font-medium">Table</th>
-              <th className="text-left px-4 py-3 text-slate-400 font-medium">Record</th>
-              <th className="text-left px-4 py-3 text-slate-400 font-medium">User</th>
+            <tr className="border-b border-border bg-background/80">
+              <th className="text-left px-4 py-3 text-muted-foreground font-medium">Time</th>
+              <th className="text-left px-4 py-3 text-muted-foreground font-medium">Action</th>
+              <th className="text-left px-4 py-3 text-muted-foreground font-medium">Table</th>
+              <th className="text-left px-4 py-3 text-muted-foreground font-medium">Record</th>
+              <th className="text-left px-4 py-3 text-muted-foreground font-medium">User</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800">
+          <tbody className="divide-y divide-border">
             {filtered.map((entry) => {
               const isExpanded = expanded === entry.id
               const diff = getDiff(entry.old_values, entry.new_values)
@@ -138,64 +138,64 @@ export function AuditLogTable({ entries, userMap, operativeMap }: Props) {
                   <tr
                     key={entry.id}
                     className={cn(
-                      'hover:bg-slate-900/50 transition-colors cursor-pointer',
-                      isExpanded && 'bg-slate-900/50'
+                      'hover:bg-background/50 transition-colors cursor-pointer',
+                      isExpanded && 'bg-background/50'
                     )}
                     onClick={() => setExpanded(isExpanded ? null : entry.id)}
                   >
-                    <td className="px-4 py-3 text-xs text-slate-400 whitespace-nowrap">
+                    <td className="px-4 py-3 text-xs text-muted-foreground whitespace-nowrap">
                       {format(new Date(entry.created_at), 'd MMM yyyy HH:mm:ss')}
                     </td>
                     <td className="px-4 py-3">
                       <span className={cn(
                         'inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border',
-                        ACTION_STYLES[entry.action] ?? 'bg-slate-800 text-slate-400 border-slate-700'
+                        ACTION_STYLES[entry.action] ?? 'bg-card text-muted-foreground border-border'
                       )}>
                         {entry.action}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-xs text-slate-300">
+                    <td className="px-4 py-3 text-xs text-muted-foreground">
                       {TABLE_LABELS[entry.table_name] ?? entry.table_name}
                     </td>
                     <td className="px-4 py-3">
-                      <div className="text-xs text-slate-300">{recordLabel}</div>
-                      <div className="text-[10px] text-slate-600 font-mono">
+                      <div className="text-xs text-muted-foreground">{recordLabel}</div>
+                      <div className="text-[10px] text-muted-foreground font-mono">
                         {entry.record_id ? entry.record_id.split('-')[0] + '…' : ''}
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <div className="text-xs text-slate-300">{userName}</div>
+                      <div className="text-xs text-muted-foreground">{userName}</div>
                       {entry.changed_by_role && (
-                        <div className="text-[10px] text-slate-600 capitalize">{entry.changed_by_role}</div>
+                        <div className="text-[10px] text-muted-foreground capitalize">{entry.changed_by_role}</div>
                       )}
                     </td>
                   </tr>
 
                   {/* Expanded diff row */}
                   {isExpanded && (
-                    <tr key={`${entry.id}-detail`} className="bg-slate-900/30">
+                    <tr key={`${entry.id}-detail`} className="bg-background/30">
                       <td colSpan={5} className="px-4 py-3">
                         {entry.action === 'INSERT' && entry.new_values && (
                           <div className="space-y-1">
-                            <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Created with</p>
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Created with</p>
                             {Object.entries(entry.new_values)
                               .filter(([k]) => k !== 'updated_at' && k !== 'created_at')
                               .map(([k, v]) => (
                                 <div key={k} className="flex gap-3 text-xs">
-                                  <span className="text-slate-500 w-40 shrink-0">{k}</span>
-                                  <span className="text-emerald-400">{formatVal(v)}</span>
+                                  <span className="text-muted-foreground w-40 shrink-0">{k}</span>
+                                  <span className="text-forest-400">{formatVal(v)}</span>
                                 </div>
                               ))}
                           </div>
                         )}
                         {entry.action === 'DELETE' && entry.old_values && (
                           <div className="space-y-1">
-                            <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Deleted record</p>
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Deleted record</p>
                             {Object.entries(entry.old_values)
                               .filter(([k]) => k !== 'updated_at' && k !== 'created_at')
                               .map(([k, v]) => (
                                 <div key={k} className="flex gap-3 text-xs">
-                                  <span className="text-slate-500 w-40 shrink-0">{k}</span>
+                                  <span className="text-muted-foreground w-40 shrink-0">{k}</span>
                                   <span className="text-red-400">{formatVal(v)}</span>
                                 </div>
                               ))}
@@ -203,21 +203,21 @@ export function AuditLogTable({ entries, userMap, operativeMap }: Props) {
                         )}
                         {entry.action === 'UPDATE' && diff && (
                           <div className="space-y-1">
-                            <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-2">
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">
                               {diff.length} field{diff.length !== 1 ? 's' : ''} changed
                             </p>
                             {diff.map(({ key, from, to }) => (
                               <div key={key} className="flex gap-3 text-xs items-start">
-                                <span className="text-slate-500 w-40 shrink-0">{key}</span>
+                                <span className="text-muted-foreground w-40 shrink-0">{key}</span>
                                 <span className="text-red-400 line-through">{formatVal(from)}</span>
-                                <span className="text-slate-500">→</span>
-                                <span className="text-emerald-400">{formatVal(to)}</span>
+                                <span className="text-muted-foreground">→</span>
+                                <span className="text-forest-400">{formatVal(to)}</span>
                               </div>
                             ))}
                           </div>
                         )}
                         {entry.action === 'UPDATE' && diff?.length === 0 && (
-                          <p className="text-xs text-slate-600">No field changes detected</p>
+                          <p className="text-xs text-muted-foreground">No field changes detected</p>
                         )}
                       </td>
                     </tr>
@@ -227,7 +227,7 @@ export function AuditLogTable({ entries, userMap, operativeMap }: Props) {
             })}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-xs text-slate-600">
+                <td colSpan={5} className="px-4 py-8 text-center text-xs text-muted-foreground">
                   No audit entries found
                 </td>
               </tr>

@@ -75,7 +75,7 @@ export default async function ApplyPage({
         : 'Operative Registration'
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-lg mx-auto px-4 py-8">
 
         {/* Header */}
@@ -84,21 +84,21 @@ export default async function ApplyPage({
             <span className="text-[#D4AF37] font-bold text-base">A</span>
           </div>
           <div>
-            <p className="font-bold text-slate-100 tracking-wide text-sm">AZTEC LANDSCAPES</p>
-            <p className="text-xs text-slate-500">{subtitle}</p>
+            <p className="font-bold text-foreground tracking-wide text-sm">AZTEC LANDSCAPES</p>
+            <p className="text-xs text-muted-foreground">{subtitle}</p>
           </div>
         </div>
 
         {isExpired ? (
-          <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center space-y-4">
+          <div className="rounded-xl border border-border bg-background p-6 text-center space-y-4">
             <div className="text-4xl">⏰</div>
             <h2 className="text-xl font-bold text-white">Link Expired</h2>
-            <p className="text-slate-400 text-sm">
+            <p className="text-muted-foreground text-sm">
               {t('link_expired', lang)}
             </p>
             <a
               href="https://wa.me/447414157366"
-              className="inline-block bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors"
+              className="inline-block bg-forest-700 hover:bg-forest-600 text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors"
             >
               WhatsApp Pangaea
             </a>
@@ -106,11 +106,11 @@ export default async function ApplyPage({
         ) : (
           <div className="space-y-4">
             {/* Welcome card */}
-            <div className="rounded-xl border border-slate-800 bg-slate-900 p-5">
-              <h2 className="text-base font-semibold text-slate-100 mb-1">
+            <div className="rounded-xl border border-border bg-background p-5">
+              <h2 className="text-base font-semibold text-foreground mb-1">
                 Hi {firstName},
               </h2>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {isCombined
                   ? t('instruction_multiple_fields', lang)
                   : isWorkflowData
@@ -129,13 +129,13 @@ export default async function ApplyPage({
               <>
                 {/* Combined mode: data form (if fields) + one upload card per doc type */}
                 {dataFields.length > 0 && (
-                  <div className="rounded-xl border border-slate-800 bg-slate-900 p-5">
-                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Your Details</p>
+                  <div className="rounded-xl border border-border bg-background p-5">
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">Your Details</p>
                     <DataForm token={token} firstName={firstName} dataFields={dataFields} lang={lang} />
                   </div>
                 )}
                 {docTypes.map((docType) => (
-                  <div key={docType} className="rounded-xl border border-slate-800 bg-slate-900 p-5">
+                  <div key={docType} className="rounded-xl border border-border bg-background p-5">
                     <UploadForm
                       token={token}
                       firstName={firstName}
@@ -147,7 +147,7 @@ export default async function ApplyPage({
               </>
             ) : (
               /* Standard single-mode form card */
-              <div className="rounded-xl border border-slate-800 bg-slate-900 p-5">
+              <div className="rounded-xl border border-border bg-background p-5">
                 {isWorkflowData ? (
                   <DataForm token={token} firstName={firstName} dataFields={dataFields} lang={lang} />
                 ) : (
@@ -163,7 +163,7 @@ export default async function ApplyPage({
           </div>
         )}
 
-        <p className="text-center text-xs text-slate-700 mt-8">
+        <p className="text-center text-xs text-muted-foreground mt-8">
           Pangaea Limited · Secure portal
         </p>
       </div>

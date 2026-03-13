@@ -52,7 +52,7 @@ export function DataTable<TData, TValue>({
     return (
       <div className="space-y-2">
         {Array.from({ length: Math.min(pageSize, 10) }).map((_, i) => (
-          <Skeleton key={i} className="h-12 w-full bg-slate-800" />
+          <Skeleton key={i} className="h-12 w-full bg-card" />
         ))}
       </div>
     )
@@ -60,15 +60,15 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="rounded-lg border border-slate-800 overflow-hidden">
+      <div className="rounded-lg border border-border overflow-hidden">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className="border-slate-800 hover:bg-transparent">
+              <TableRow key={headerGroup.id} className="border-border hover:bg-transparent">
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="text-slate-400 bg-slate-900/80 select-none"
+                    className="text-muted-foreground bg-background/80 select-none"
                     onClick={header.column.getToggleSortingHandler()}
                     style={{ cursor: header.column.getCanSort() ? 'pointer' : 'default' }}
                   >
@@ -98,10 +98,10 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  className="border-slate-800 hover:bg-slate-900/50 transition-colors"
+                  className="border-border hover:bg-background/50 transition-colors"
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="text-slate-200">
+                    <TableCell key={cell.id} className="text-muted-foreground">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -109,7 +109,7 @@ export function DataTable<TData, TValue>({
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center text-slate-500">
+                <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
                   No results.
                 </TableCell>
               </TableRow>
@@ -120,7 +120,7 @@ export function DataTable<TData, TValue>({
 
       {table.getPageCount() > 1 && (
         <div className="flex items-center justify-between mt-4">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-muted-foreground">
             Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
             {' '}· {data.length} total
           </p>
@@ -130,7 +130,7 @@ export function DataTable<TData, TValue>({
               size="sm"
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
-              className="border-slate-700 text-slate-300 hover:bg-slate-800"
+              className="border-border text-muted-foreground hover:bg-card"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -139,7 +139,7 @@ export function DataTable<TData, TValue>({
               size="sm"
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
-              className="border-slate-700 text-slate-300 hover:bg-slate-800"
+              className="border-border text-muted-foreground hover:bg-card"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>

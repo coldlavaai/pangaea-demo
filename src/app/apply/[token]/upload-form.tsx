@@ -52,8 +52,8 @@ function FileSlot({
   return (
     <div className="space-y-2">
       <div>
-        <p className="text-sm font-semibold text-slate-200">{label}</p>
-        <p className="text-xs text-slate-500 mt-0.5">{sublabel}</p>
+        <p className="text-sm font-semibold text-muted-foreground">{label}</p>
+        <p className="text-xs text-muted-foreground mt-0.5">{sublabel}</p>
       </div>
 
       <div
@@ -61,21 +61,21 @@ function FileSlot({
         className={`
           relative border rounded-lg p-4 cursor-pointer transition-all
           ${error ? 'border-red-600 bg-red-950/20' :
-            value ? 'border-emerald-700 bg-emerald-950/20' :
-            'border-slate-700 bg-slate-800/50 hover:border-slate-500'}
+            value ? 'border-forest-700 bg-forest-950/20' :
+            'border-border bg-card/50 hover:border-border'}
         `}
       >
         {value ? (
           <div className="flex items-center gap-3">
             {value.file.type.startsWith('image/') ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={value.url} alt="preview" className="w-14 h-14 object-cover rounded-md border border-slate-700 shrink-0" />
+              <img src={value.url} alt="preview" className="w-14 h-14 object-cover rounded-md border border-border shrink-0" />
             ) : (
-              <div className="w-14 h-14 bg-slate-700 rounded-md flex items-center justify-center text-xl shrink-0">📄</div>
+              <div className="w-14 h-14 bg-[#444444] rounded-md flex items-center justify-center text-xl shrink-0">📄</div>
             )}
             <div className="flex-1 min-w-0">
-              <p className="text-emerald-400 text-sm font-medium">✓ Selected</p>
-              <p className="text-slate-500 text-xs truncate mt-0.5">{value.name}</p>
+              <p className="text-forest-400 text-sm font-medium">✓ Selected</p>
+              <p className="text-muted-foreground text-xs truncate mt-0.5">{value.name}</p>
             </div>
             <button
               type="button"
@@ -84,21 +84,21 @@ function FileSlot({
                 onChange(null)
                 if (ref.current) ref.current.value = ''
               }}
-              className="text-slate-600 hover:text-red-400 transition-colors text-lg leading-none shrink-0"
+              className="text-muted-foreground hover:text-red-400 transition-colors text-lg leading-none shrink-0"
             >
               ×
             </button>
           </div>
         ) : (
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-lg bg-slate-700 flex items-center justify-center text-slate-400 shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-[#444444] flex items-center justify-center text-muted-foreground shrink-0">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
             <div>
-              <p className="text-slate-300 text-sm font-medium">Tap to take photo or choose file</p>
-              <p className="text-slate-600 text-xs mt-0.5">JPG, PNG or PDF</p>
+              <p className="text-muted-foreground text-sm font-medium">Tap to take photo or choose file</p>
+              <p className="text-muted-foreground text-xs mt-0.5">JPG, PNG or PDF</p>
             </div>
           </div>
         )}
@@ -237,13 +237,13 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
   if (success) {
     return (
       <div className="text-center space-y-4 py-6">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-900/40 border border-emerald-700 text-2xl mx-auto">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-forest-900/40 border border-forest-700 text-2xl mx-auto">
           ✓
         </div>
         <h2 className="text-lg font-bold text-white">
           {isWorkflow ? 'Document Received' : 'Documents Received'}
         </h2>
-        <p className="text-slate-400 text-sm leading-relaxed">
+        <p className="text-muted-foreground text-sm leading-relaxed">
           {isWorkflow
             ? `Thanks ${firstName}! We've received your ${docConfig?.label ?? 'document'}. We'll be in touch shortly.`
             : `Thanks ${firstName}. Our labour manager will review your documents and be in touch within 1–3 working days. Keep an eye on your WhatsApp!`}
@@ -258,9 +258,9 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
       {/* Section 1: Address — Amber intake only */}
       {!isWorkflow && (
         <div className="space-y-3">
-          <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
+          <div className="flex items-center gap-2 pb-2 border-b border-border">
             <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-xs font-bold">1</span>
-            <p className="text-sm font-semibold text-slate-200">Your Home Address</p>
+            <p className="text-sm font-semibold text-muted-foreground">Your Home Address</p>
           </div>
           <input
             type="text"
@@ -268,14 +268,14 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
             value={addressLine1}
             onChange={e => setAddressLine1(e.target.value)}
             required
-            className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-slate-100 text-sm placeholder-slate-600 focus:outline-none focus:border-slate-500"
+            className="w-full bg-card border border-border rounded-lg px-3 py-2.5 text-foreground text-sm placeholder-muted-foreground focus:outline-none focus:border-border"
           />
           <input
             type="text"
             placeholder="Address line 2 (optional)"
             value={addressLine2}
             onChange={e => setAddressLine2(e.target.value)}
-            className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-slate-100 text-sm placeholder-slate-600 focus:outline-none focus:border-slate-500"
+            className="w-full bg-card border border-border rounded-lg px-3 py-2.5 text-foreground text-sm placeholder-muted-foreground focus:outline-none focus:border-border"
           />
           <div className="grid grid-cols-2 gap-2">
             <input
@@ -284,7 +284,7 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
               value={city}
               onChange={e => setCity(e.target.value)}
               required
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-slate-100 text-sm placeholder-slate-600 focus:outline-none focus:border-slate-500"
+              className="w-full bg-card border border-border rounded-lg px-3 py-2.5 text-foreground text-sm placeholder-muted-foreground focus:outline-none focus:border-border"
             />
             <input
               type="text"
@@ -292,7 +292,7 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
               value={postcode}
               onChange={e => setPostcode(e.target.value)}
               required
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-slate-100 text-sm placeholder-slate-600 focus:outline-none focus:border-slate-500"
+              className="w-full bg-card border border-border rounded-lg px-3 py-2.5 text-foreground text-sm placeholder-muted-foreground focus:outline-none focus:border-border"
             />
           </div>
         </div>
@@ -301,9 +301,9 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
       {/* Document upload slot */}
       <div className="space-y-3">
         {!isWorkflow && (
-          <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
+          <div className="flex items-center gap-2 pb-2 border-b border-border">
             <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-xs font-bold">2</span>
-            <p className="text-sm font-semibold text-slate-200">Proof of Identity <span className="text-red-400">*</span></p>
+            <p className="text-sm font-semibold text-muted-foreground">Proof of Identity <span className="text-red-400">*</span></p>
           </div>
         )}
         <FileSlot
@@ -319,9 +319,9 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
       {/* Section 3: CSCS Card — Amber intake only, when card was declared during intake */}
       {hasCSCS && !isWorkflow && (
         <div className="space-y-3">
-          <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
+          <div className="flex items-center gap-2 pb-2 border-b border-border">
             <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-xs font-bold">3</span>
-            <p className="text-sm font-semibold text-slate-200">CSCS Card</p>
+            <p className="text-sm font-semibold text-muted-foreground">CSCS Card</p>
           </div>
           <FileSlot
             label="CSCS Card (front)"
@@ -335,9 +335,9 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
       )}
 
       {/* Photo tips */}
-      <div className="rounded-lg border border-slate-800 bg-slate-800/30 px-4 py-3 space-y-1">
-        <p className="text-xs font-semibold text-slate-400">Photo tips</p>
-        <ul className="text-xs text-slate-600 space-y-0.5 list-disc list-inside">
+      <div className="rounded-lg border border-border bg-card/30 px-4 py-3 space-y-1">
+        <p className="text-xs font-semibold text-muted-foreground">Photo tips</p>
+        <ul className="text-xs text-muted-foreground space-y-0.5 list-disc list-inside">
           <li>Lay the document flat on a surface</li>
           <li>Good lighting — no glare or shadows</li>
           <li>All four edges must be in frame</li>
@@ -358,8 +358,8 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
         className={`
           w-full py-3 rounded-lg font-semibold text-sm transition-all
           ${submitting || !canSubmit
-            ? 'bg-slate-800 text-slate-600 cursor-not-allowed'
-            : 'bg-[#D4AF37] hover:bg-[#c9a72f] text-slate-900 active:scale-[0.98]'
+            ? 'bg-card text-muted-foreground cursor-not-allowed'
+            : 'bg-[#D4AF37] hover:bg-[#c9a72f] text-foreground active:scale-[0.98]'
           }
         `}
       >
@@ -374,7 +374,7 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
         ) : 'Submit Documents'}
       </button>
 
-      <p className="text-center text-xs text-slate-700">
+      <p className="text-center text-xs text-muted-foreground">
         Securely stored · Pangaea team only
       </p>
     </form>

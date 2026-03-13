@@ -24,7 +24,7 @@ export default async function DashboardLayout({
   const userRole = await getUserRole()
 
   return (
-    <div className="flex h-screen bg-slate-950 overflow-hidden">
+    <div className="flex h-screen bg-background overflow-hidden">
       <Sidebar userEmail={user.email} userRole={userRole ?? 'staff'} />
 
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">

@@ -132,7 +132,7 @@ const REEMPLOY_LABELS: Record<string, string> = {
 }
 
 const REEMPLOY_COLOURS: Record<string, string> = {
-  active: 'text-emerald-400',
+  active: 'text-forest-400',
   caution: 'text-amber-400',
   do_not_rehire: 'text-red-400',
 }
@@ -339,7 +339,7 @@ export default async function OperativeProfilePage({
             asChild
             variant="outline"
             size="sm"
-            className="border-slate-700 text-slate-300 hover:bg-slate-800"
+            className="border-border text-muted-foreground hover:bg-card"
           >
             <Link href={`/operatives/${id}/edit`}>Edit</Link>
           </Button>
@@ -347,7 +347,7 @@ export default async function OperativeProfilePage({
             asChild
             variant="outline"
             size="sm"
-            className="border-slate-700 text-slate-300 hover:bg-slate-800"
+            className="border-border text-muted-foreground hover:bg-card"
           >
             <Link href="/operatives">
               <ArrowLeft className="h-4 w-4 mr-1" />
@@ -358,7 +358,7 @@ export default async function OperativeProfilePage({
       </div>
 
       {/* Status strip */}
-      <div className="flex flex-wrap items-center gap-4 rounded-lg border border-slate-800 bg-slate-900 px-5 py-3">
+      <div className="flex flex-wrap items-center gap-4 rounded-lg border border-border bg-background px-5 py-3">
         <div className="flex items-center gap-2">
           {op.status ? <StatusBadge status={op.status} /> : '—'}
           {op.compliance_alert === 'expiring_soon' && (
@@ -375,16 +375,16 @@ export default async function OperativeProfilePage({
         {op.cscs_card_type && CSCS_DOT_CLASS[op.cscs_card_type] && (
           <div className="flex items-center gap-1.5 text-sm">
             <span className={`inline-block h-2.5 w-2.5 rounded-full shrink-0 ${CSCS_DOT_CLASS[op.cscs_card_type]}`} />
-            <span className="text-slate-300">{CSCS_COLOUR_LABEL[op.cscs_card_type] ?? op.cscs_card_type} CSCS</span>
+            <span className="text-muted-foreground">{CSCS_COLOUR_LABEL[op.cscs_card_type] ?? op.cscs_card_type} CSCS</span>
           </div>
         )}
         {op.nationality && (
-          <span className="text-sm text-slate-400 bg-slate-800 px-2 py-0.5 rounded">
+          <span className="text-sm text-muted-foreground bg-card px-2 py-0.5 rounded">
             {op.nationality}
           </span>
         )}
         {op.preferred_language && op.preferred_language !== 'en' && (
-          <span className="text-xs text-slate-400 bg-slate-800 px-2 py-0.5 rounded uppercase">
+          <span className="text-xs text-muted-foreground bg-card px-2 py-0.5 rounded uppercase">
             Lang: {op.preferred_language}
           </span>
         )}
@@ -393,28 +393,28 @@ export default async function OperativeProfilePage({
             <span
               className={`inline-block h-2.5 w-2.5 rounded-full shrink-0 ${
                 op.rap_traffic_light === 'green'
-                  ? 'bg-emerald-500'
+                  ? 'bg-forest-500'
                   : op.rap_traffic_light === 'amber'
                     ? 'bg-amber-500'
                     : 'bg-red-500'
               }`}
             />
-            <span className="text-slate-300 tabular-nums">
+            <span className="text-muted-foreground tabular-nums">
               RAP {op.avg_rap_score?.toFixed(1) ?? '—'}
             </span>
-            <span className="text-slate-600">·</span>
-            <span className="text-slate-400">{op.total_reviews ?? 0} reviews</span>
+            <span className="text-muted-foreground">·</span>
+            <span className="text-muted-foreground">{op.total_reviews ?? 0} reviews</span>
           </div>
         )}
         {op.reemploy_status && (
           <div className="text-sm">
-            <span className="text-slate-500">Re-employ: </span>
-            <span className={REEMPLOY_COLOURS[op.reemploy_status] ?? 'text-slate-300'}>
+            <span className="text-muted-foreground">Re-employ: </span>
+            <span className={REEMPLOY_COLOURS[op.reemploy_status] ?? 'text-muted-foreground'}>
               {REEMPLOY_LABELS[op.reemploy_status] ?? op.reemploy_status}
             </span>
           </div>
         )}
-        <div className="ml-auto text-sm text-slate-500">
+        <div className="ml-auto text-sm text-muted-foreground">
           {op.total_jobs ?? 0} job{(op.total_jobs ?? 0) !== 1 ? 's' : ''} completed
         </div>
       </div>
@@ -432,7 +432,7 @@ export default async function OperativeProfilePage({
       <DataQualityWarning op={op} operativeId={id} docs={docs} />
 
       {/* Tab nav */}
-      <div className="flex gap-1 border-b border-slate-800">
+      <div className="flex gap-1 border-b border-border">
         {TABS.map((t) => {
           const count =
             t.key === 'documents'
@@ -453,8 +453,8 @@ export default async function OperativeProfilePage({
               className={cn(
                 'px-4 py-2.5 text-sm font-medium transition-colors border-b-2 -mb-px whitespace-nowrap flex items-center gap-1.5',
                 activeTab === t.key
-                  ? 'border-emerald-500 text-emerald-400'
-                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-600'
+                  ? 'border-forest-500 text-forest-400'
+                  : 'border-transparent text-muted-foreground hover:text-muted-foreground hover:border-border'
               )}
             >
               {t.label}
@@ -462,17 +462,17 @@ export default async function OperativeProfilePage({
                 <span
                   className={cn(
                     'text-xs',
-                    t.key === 'ncrs' ? 'text-red-400' : 'text-slate-500'
+                    t.key === 'ncrs' ? 'text-red-400' : 'text-muted-foreground'
                   )}
                 >
                   ({count})
                 </span>
               )}
               {rapDot && (
-                <span className="flex items-center gap-1 text-xs text-slate-400">
+                <span className="flex items-center gap-1 text-xs text-muted-foreground">
                   <span className={cn(
                     'inline-block h-2 w-2 rounded-full',
-                    rapDot === 'green' ? 'bg-emerald-500' : rapDot === 'amber' ? 'bg-amber-500' : 'bg-red-500'
+                    rapDot === 'green' ? 'bg-forest-500' : rapDot === 'amber' ? 'bg-amber-500' : 'bg-red-500'
                   )} />
                   {op.avg_rap_score!.toFixed(1)}
                 </span>
@@ -593,9 +593,9 @@ function EngagementStrip({ op, allocs }: { op: OperativeRow; allocs: AllocationR
 
   if (!op.engagement_method) {
     return (
-      <div className="flex items-center gap-3 rounded-lg border border-slate-700 border-dashed bg-slate-800/30 px-5 py-3 text-sm text-slate-500">
+      <div className="flex items-center gap-3 rounded-lg border border-border border-dashed bg-card/30 px-5 py-3 text-sm text-muted-foreground">
         <span>Engagement method not set</span>
-        <Link href={`/operatives/${op.id}/edit`} className="text-xs text-slate-400 hover:text-slate-200 underline underline-offset-2">
+        <Link href={`/operatives/${op.id}/edit`} className="text-xs text-muted-foreground hover:text-muted-foreground underline underline-offset-2">
           Edit profile to set
         </Link>
       </div>
@@ -603,36 +603,36 @@ function EngagementStrip({ op, allocs }: { op: OperativeRow; allocs: AllocationR
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 rounded-lg border border-slate-700 bg-slate-800/50 px-5 py-3 text-sm">
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 rounded-lg border border-border bg-card/50 px-5 py-3 text-sm">
       <div className="flex items-center gap-2">
-        <span className="text-slate-500 text-xs uppercase tracking-wide font-medium">Engagement</span>
-        <span className="text-slate-200 font-medium">{ENGAGEMENT_LABELS[op.engagement_method] ?? op.engagement_method}</span>
+        <span className="text-muted-foreground text-xs uppercase tracking-wide font-medium">Engagement</span>
+        <span className="text-muted-foreground font-medium">{ENGAGEMENT_LABELS[op.engagement_method] ?? op.engagement_method}</span>
       </div>
       {op.agency_name && (
         <div className="flex items-center gap-2">
-          <span className="text-slate-500 text-xs uppercase tracking-wide font-medium">Agency</span>
-          <span className="text-slate-300">{op.agency_name}</span>
+          <span className="text-muted-foreground text-xs uppercase tracking-wide font-medium">Agency</span>
+          <span className="text-muted-foreground">{op.agency_name}</span>
         </div>
       )}
       {op.trading_name && (
         <div className="flex items-center gap-2">
-          <span className="text-slate-500 text-xs uppercase tracking-wide font-medium">Trading As</span>
-          <span className="text-slate-300">{op.trading_name}</span>
+          <span className="text-muted-foreground text-xs uppercase tracking-wide font-medium">Trading As</span>
+          <span className="text-muted-foreground">{op.trading_name}</span>
         </div>
       )}
       {op.utr_number && (
         <div className="flex items-center gap-2">
-          <span className="text-slate-500 text-xs uppercase tracking-wide font-medium">UTR</span>
-          <span className="font-mono text-slate-300">{op.utr_number}</span>
+          <span className="text-muted-foreground text-xs uppercase tracking-wide font-medium">UTR</span>
+          <span className="font-mono text-muted-foreground">{op.utr_number}</span>
         </div>
       )}
       {greenLightDate && (
         <div className={`ml-auto flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium border ${
           isGreen
-            ? 'border-emerald-700 bg-emerald-950/40 text-emerald-400'
+            ? 'border-forest-700 bg-forest-950/40 text-forest-400'
             : 'border-amber-700 bg-amber-950/40 text-amber-400'
         }`}>
-          <span className={`h-2 w-2 rounded-full ${isGreen ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+          <span className={`h-2 w-2 rounded-full ${isGreen ? 'bg-forest-400' : 'bg-amber-400'}`} />
           {isGreen
             ? 'Direct engagement: green light'
             : `Direct engagement after: ${fmtDate(greenLightDate.toISOString().slice(0, 10))}`
@@ -689,13 +689,13 @@ function DocumentsTab({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-muted-foreground">
           {docs.length} document{docs.length !== 1 ? 's' : ''}
         </p>
         <Button
           asChild
           size="sm"
-          className="bg-emerald-600 hover:bg-emerald-700"
+          className="bg-forest-600 hover:bg-forest-700"
         >
           <Link href={`/operatives/${operativeId}/documents/upload`}>
             <Upload className="h-4 w-4 mr-2" />
@@ -711,39 +711,39 @@ function DocumentsTab({
           description="Upload the operative's first document above."
         />
       ) : (
-        <div className="rounded-lg border border-slate-800 overflow-hidden">
+        <div className="rounded-lg border border-border overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-800 bg-slate-900/80">
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Type</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">File</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Status</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Expiry</th>
+              <tr className="border-b border-border bg-background/80">
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Type</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">File</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Status</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Expiry</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800">
+            <tbody className="divide-y divide-border">
               {docs.map((doc) => {
                 const expired = doc.expiry_date && doc.expiry_date < today
                 return (
-                  <tr key={doc.id} className="hover:bg-slate-900/50">
-                    <td className="px-4 py-3 text-slate-300">
+                  <tr key={doc.id} className="hover:bg-background/50">
+                    <td className="px-4 py-3 text-muted-foreground">
                       <Link
                         href={`/operatives/${operativeId}/documents/${doc.id}`}
-                        className="hover:underline text-emerald-400"
+                        className="hover:underline text-forest-400"
                       >
                         {DOC_TYPE_LABELS[doc.document_type] ?? doc.document_type}
                       </Link>
                     </td>
-                    <td className="px-4 py-3 text-slate-400">
+                    <td className="px-4 py-3 text-muted-foreground">
                       {doc.file_name ? (
                         <Link
                           href={`/operatives/${operativeId}/documents/${doc.id}`}
-                          className="text-slate-300 hover:text-emerald-400 hover:underline"
+                          className="text-muted-foreground hover:text-forest-400 hover:underline"
                         >
                           {doc.file_name}
                         </Link>
                       ) : (
-                        <span className="text-slate-600">—</span>
+                        <span className="text-muted-foreground">—</span>
                       )}
                     </td>
                     <td className="px-4 py-3">
@@ -752,7 +752,7 @@ function DocumentsTab({
                     <td
                       className={cn(
                         'px-4 py-3 tabular-nums',
-                        expired ? 'text-red-400' : 'text-slate-400'
+                        expired ? 'text-red-400' : 'text-muted-foreground'
                       )}
                     >
                       {fmtDate(doc.expiry_date)}
@@ -789,36 +789,36 @@ function AllocationsTab({
           description="This operative has not been allocated to any site."
         />
       ) : (
-        <div className="rounded-lg border border-slate-800 overflow-hidden">
+        <div className="rounded-lg border border-border overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-800 bg-slate-900/80">
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Site</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Start</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">End</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Status</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Rate</th>
+              <tr className="border-b border-border bg-background/80">
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Site</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Start</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">End</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Status</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Rate</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800">
+            <tbody className="divide-y divide-border">
               {allocs.map((a) => {
                 const canTerminate = ['pending', 'confirmed', 'active'].includes(a.status ?? '')
                 return (
-                <tr key={a.id} className="hover:bg-slate-900/50">
-                  <td className="px-4 py-3 text-slate-300">
+                <tr key={a.id} className="hover:bg-background/50">
+                  <td className="px-4 py-3 text-muted-foreground">
                     {a.site?.name ?? '—'}
                   </td>
-                  <td className="px-4 py-3 text-slate-400 tabular-nums whitespace-nowrap">
+                  <td className="px-4 py-3 text-muted-foreground tabular-nums whitespace-nowrap">
                     {fmtDate(a.start_date)}
                   </td>
-                  <td className="px-4 py-3 text-slate-400 tabular-nums whitespace-nowrap">
+                  <td className="px-4 py-3 text-muted-foreground tabular-nums whitespace-nowrap">
                     {fmtDate(a.end_date)}
                   </td>
                   <td className="px-4 py-3">
                     {a.status ? <StatusBadge status={a.status} /> : '—'}
                   </td>
-                  <td className="px-4 py-3 text-slate-400 tabular-nums">
+                  <td className="px-4 py-3 text-muted-foreground tabular-nums">
                     {a.agreed_day_rate != null ? `£${a.agreed_day_rate}/d` : '—'}
                   </td>
                   <td className="px-4 py-3 text-right">
@@ -854,12 +854,12 @@ function RapTab({
   operativeId: string
 }) {
   const TL_DOT: Record<string, string> = {
-    green: 'bg-emerald-500',
+    green: 'bg-forest-500',
     amber: 'bg-amber-500',
     red: 'bg-red-500',
   }
   const TL_RING: Record<string, string> = {
-    green: 'bg-emerald-900/60',
+    green: 'bg-forest-900/60',
     amber: 'bg-amber-900/60',
     red: 'bg-red-900/60',
   }
@@ -867,32 +867,32 @@ function RapTab({
   return (
     <div className="space-y-4">
       {/* Score card + Add Review button */}
-      <div className="rounded-lg border border-slate-800 bg-slate-900 p-4">
+      <div className="rounded-lg border border-border bg-background p-4">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
               Current RAP Score
             </h3>
             {op.rap_traffic_light ? (
               <div className="flex items-center gap-4">
-                <span className={cn('inline-flex h-10 w-10 rounded-full items-center justify-center', TL_RING[op.rap_traffic_light] ?? 'bg-slate-800')}>
-                  <span className={cn('h-4 w-4 rounded-full', TL_DOT[op.rap_traffic_light] ?? 'bg-slate-500')} />
+                <span className={cn('inline-flex h-10 w-10 rounded-full items-center justify-center', TL_RING[op.rap_traffic_light] ?? 'bg-card')}>
+                  <span className={cn('h-4 w-4 rounded-full', TL_DOT[op.rap_traffic_light] ?? 'bg-muted')} />
                 </span>
                 <div>
-                  <p className="text-3xl font-bold text-slate-100 tabular-nums">
+                  <p className="text-3xl font-bold text-foreground tabular-nums">
                     {op.avg_rap_score?.toFixed(1) ?? '—'}
-                    <span className="text-base text-slate-500 ml-1">/ 5.0</span>
+                    <span className="text-base text-muted-foreground ml-1">/ 5.0</span>
                     {op.avg_rap_score != null && (
-                      <span className="text-base text-slate-600 ml-3">({(op.avg_rap_score * 4).toFixed(0)}/20)</span>
+                      <span className="text-base text-muted-foreground ml-3">({(op.avg_rap_score * 4).toFixed(0)}/20)</span>
                     )}
                   </p>
-                  <p className="text-xs text-slate-400 mt-0.5">
+                  <p className="text-xs text-muted-foreground mt-0.5">
                     Based on {op.total_reviews ?? 0} review{(op.total_reviews ?? 0) !== 1 ? 's' : ''}
                   </p>
                 </div>
               </div>
             ) : (
-              <p className="text-slate-500 text-sm">No reviews yet.</p>
+              <p className="text-muted-foreground text-sm">No reviews yet.</p>
             )}
           </div>
           <RapAddReview operativeId={operativeId} operativeName={`${op.first_name} ${op.last_name}`} allocations={allocations} />
@@ -901,7 +901,7 @@ function RapTab({
 
       {/* Review history */}
       {reviews.length > 0 && (
-        <div className="rounded-lg border border-slate-800 bg-card overflow-hidden">
+        <div className="rounded-lg border border-border bg-card overflow-hidden">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b bg-muted/40">
@@ -927,13 +927,13 @@ function RapTab({
                   <td className="px-3 py-2.5 text-center tabular-nums">{r.reliability_score}/5</td>
                   <td className="px-3 py-2.5 text-center tabular-nums">{r.attitude_score}/5</td>
                   <td className="px-3 py-2.5 text-center tabular-nums">{r.performance_score}/5</td>
-                  <td className="px-3 py-2.5 text-center tabular-nums text-slate-500">{(r as Record<string, unknown>).safety_score != null ? `${(r as Record<string, unknown>).safety_score}/5` : '—'}</td>
+                  <td className="px-3 py-2.5 text-center tabular-nums text-muted-foreground">{(r as Record<string, unknown>).safety_score != null ? `${(r as Record<string, unknown>).safety_score}/5` : '—'}</td>
                   <td className="px-3 py-2.5 text-center">
                     <span className={cn(
                       'inline-flex items-center gap-1 text-xs font-semibold',
-                      r.traffic_light === 'green' ? 'text-emerald-400' : r.traffic_light === 'amber' ? 'text-amber-400' : 'text-red-400'
+                      r.traffic_light === 'green' ? 'text-forest-400' : r.traffic_light === 'amber' ? 'text-amber-400' : 'text-red-400'
                     )}>
-                      <span className={cn('h-2 w-2 rounded-full', TL_DOT[r.traffic_light ?? ''] ?? 'bg-slate-500')} />
+                      <span className={cn('h-2 w-2 rounded-full', TL_DOT[r.traffic_light ?? ''] ?? 'bg-muted')} />
                       {r.rap_average?.toFixed(1) ?? '—'}
                     </span>
                   </td>
@@ -968,43 +968,43 @@ function NcrsTab({ ncrs }: { ncrs: NcrRow[] }) {
           description="No non-conformance incidents have been raised against this operative."
         />
       ) : (
-        <div className="rounded-lg border border-slate-800 overflow-hidden">
+        <div className="rounded-lg border border-border overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-800 bg-slate-900/80">
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Ref</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Type</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Severity</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Date</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Site</th>
-                <th className="text-left px-4 py-3 text-slate-400 font-medium">Resolved</th>
+              <tr className="border-b border-border bg-background/80">
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Ref</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Type</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Severity</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Date</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Site</th>
+                <th className="text-left px-4 py-3 text-muted-foreground font-medium">Resolved</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800">
+            <tbody className="divide-y divide-border">
               {ncrs.map((n) => (
-                <tr key={n.id} className="hover:bg-slate-900/50">
+                <tr key={n.id} className="hover:bg-background/50">
                   <td className="px-4 py-3">
-                    <span className="font-mono text-xs text-slate-400">
+                    <span className="font-mono text-xs text-muted-foreground">
                       {n.reference_number ?? '—'}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-slate-300">
+                  <td className="px-4 py-3 text-muted-foreground">
                     {NCR_TYPE_LABELS[n.incident_type] ?? n.incident_type}
                   </td>
                   <td className="px-4 py-3">
-                    <span className={cn('capitalize', SEV_COLOUR[n.severity] ?? 'text-slate-400')}>
+                    <span className={cn('capitalize', SEV_COLOUR[n.severity] ?? 'text-muted-foreground')}>
                       {n.severity}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-slate-400 tabular-nums whitespace-nowrap">
+                  <td className="px-4 py-3 text-muted-foreground tabular-nums whitespace-nowrap">
                     {fmtDate(n.incident_date)}
                   </td>
-                  <td className="px-4 py-3 text-slate-400">
+                  <td className="px-4 py-3 text-muted-foreground">
                     {n.site?.name ?? '—'}
                   </td>
                   <td className="px-4 py-3">
                     {n.resolved ? (
-                      <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                      <CheckCircle2 className="h-4 w-4 text-forest-500" />
                     ) : (
                       <XCircle className="h-4 w-4 text-red-500" />
                     )}

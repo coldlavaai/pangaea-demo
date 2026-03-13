@@ -24,7 +24,7 @@ export function TerminateAllocationButton({ allocationId, siteName }: Props) {
         size="sm"
         variant="ghost"
         onClick={() => setConfirming(true)}
-        className="h-7 px-2 text-slate-500 hover:text-red-400 hover:bg-red-950/40"
+        className="h-7 px-2 text-muted-foreground hover:text-red-400 hover:bg-red-950/40"
       >
         <X className="h-3.5 w-3.5" />
         End
@@ -34,7 +34,7 @@ export function TerminateAllocationButton({ allocationId, siteName }: Props) {
 
   return (
     <div className="flex items-center gap-1.5">
-      <span className="text-xs text-slate-400">End {siteName}?</span>
+      <span className="text-xs text-muted-foreground">End {siteName}?</span>
       <Button
         size="sm"
         variant="ghost"
@@ -60,7 +60,7 @@ export function TerminateAllocationButton({ allocationId, siteName }: Props) {
         size="sm"
         variant="ghost"
         onClick={() => setConfirming(false)}
-        className="h-7 px-2 text-slate-500"
+        className="h-7 px-2 text-muted-foreground"
       >
         Cancel
       </Button>

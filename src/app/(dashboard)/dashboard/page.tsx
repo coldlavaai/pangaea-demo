@@ -219,41 +219,41 @@ export default async function DashboardPage() {
       />
 
       {/* ── Stats strip ────────────────────────────────────────────────────── */}
-      <div className="flex items-center gap-px rounded-lg border border-slate-800 bg-slate-900/40 overflow-hidden divide-x divide-slate-800">
+      <div className="flex items-center gap-px rounded-lg border border-border bg-background/40 overflow-hidden divide-x divide-border">
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <Users className="h-3.5 w-3.5 text-slate-500 shrink-0" />
-          <span className="text-lg font-bold text-slate-100 tabular-nums">{totalOperatives ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Operatives</span>
+          <Users className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+          <span className="text-lg font-bold text-foreground tabular-nums">{totalOperatives ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Operatives</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <span className="text-lg font-bold text-emerald-400 tabular-nums">{contactableOperatives ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Contactable</span>
+          <span className="text-lg font-bold text-forest-400 tabular-nums">{contactableOperatives ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Contactable</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <MapPin className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+          <MapPin className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
           <span className="text-lg font-bold text-blue-400 tabular-nums">{activeSites ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Sites</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Sites</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <span className={`text-lg font-bold tabular-nums ${(openRequests ?? 0) > 0 ? 'text-amber-400' : 'text-slate-400'}`}>{openRequests ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Requests</span>
+          <span className={`text-lg font-bold tabular-nums ${(openRequests ?? 0) > 0 ? 'text-amber-400' : 'text-muted-foreground'}`}>{openRequests ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Requests</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <HardHat className="h-3.5 w-3.5 text-slate-500 shrink-0" />
-          <span className="text-lg font-bold text-slate-100 tabular-nums">{workingToday ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Working</span>
+          <HardHat className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+          <span className="text-lg font-bold text-foreground tabular-nums">{workingToday ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Working</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <span className={`text-lg font-bold tabular-nums ${(openNcrs ?? 0) > 0 ? 'text-red-400' : 'text-slate-400'}`}>{openNcrs ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">NCRs</span>
+          <span className={`text-lg font-bold tabular-nums ${(openNcrs ?? 0) > 0 ? 'text-red-400' : 'text-muted-foreground'}`}>{openNcrs ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">NCRs</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <span className={`text-lg font-bold tabular-nums ${(pendingOffers ?? 0) > 0 ? 'text-purple-400' : 'text-slate-400'}`}>{pendingOffers ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Offers</span>
+          <span className={`text-lg font-bold tabular-nums ${(pendingOffers ?? 0) > 0 ? 'text-purple-400' : 'text-muted-foreground'}`}>{pendingOffers ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Offers</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <span className={`text-lg font-bold tabular-nums ${(docsAwaitingReview ?? 0) > 0 ? 'text-amber-400' : 'text-slate-400'}`}>{docsAwaitingReview ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Docs Review</span>
+          <span className={`text-lg font-bold tabular-nums ${(docsAwaitingReview ?? 0) > 0 ? 'text-amber-400' : 'text-muted-foreground'}`}>{docsAwaitingReview ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Docs Review</span>
         </div>
       </div>
 
@@ -261,16 +261,16 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
 
         {/* Compliance Alerts */}
-        <div className="rounded-lg border border-slate-800 bg-slate-900">
-          <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-800">
-            <h2 className="text-sm font-semibold text-slate-200">Compliance Alerts</h2>
+        <div className="rounded-lg border border-border bg-background">
+          <div className="flex items-center justify-between px-4 py-2.5 border-b border-border">
+            <h2 className="text-sm font-semibold text-muted-foreground">Compliance Alerts</h2>
             {totalCompliance > 0 && (
               <span className="rounded-full bg-red-900 px-2 py-0.5 text-xs font-medium text-red-300">
                 {totalCompliance} issue{totalCompliance !== 1 ? 's' : ''}
               </span>
             )}
           </div>
-          <div className="divide-y divide-slate-800">
+          <div className="divide-y divide-border">
             <ComplianceRow
               icon={FileX}
               label="Expired documents"
@@ -310,12 +310,12 @@ export default async function DashboardPage() {
         </div>
 
         {/* Today's Attendance */}
-        <div className="rounded-lg border border-slate-800 bg-slate-900">
-          <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-800">
-            <h2 className="text-sm font-semibold text-slate-200">Today&apos;s Attendance</h2>
-            <div className="flex items-center gap-3 text-xs text-slate-500">
+        <div className="rounded-lg border border-border bg-background">
+          <div className="flex items-center justify-between px-4 py-2.5 border-b border-border">
+            <h2 className="text-sm font-semibold text-muted-foreground">Today&apos;s Attendance</h2>
+            <div className="flex items-center gap-3 text-xs text-muted-foreground">
               <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+                <CheckCircle2 className="h-3 w-3 text-forest-500" />
                 {arrivedCount} arrived
               </span>
               <span className="flex items-center gap-1">
@@ -323,7 +323,7 @@ export default async function DashboardPage() {
                 {noShowCount} no show
               </span>
               <span className="flex items-center gap-1">
-                <Clock className="h-3 w-3 text-slate-500" />
+                <Clock className="h-3 w-3 text-muted-foreground" />
                 {awaitingCount} awaiting
               </span>
             </div>
@@ -338,16 +338,16 @@ export default async function DashboardPage() {
               />
             </div>
           ) : (
-            <div className="divide-y divide-slate-800 max-h-64 overflow-y-auto">
+            <div className="divide-y divide-border max-h-64 overflow-y-auto">
               {allocs.map((alloc) => {
                 const attStatus = alloc.attendance?.[0]?.status
                 return (
                   <div key={alloc.id} className="flex items-center justify-between px-4 py-2">
                     <div>
-                      <p className="text-sm font-medium text-slate-200">
+                      <p className="text-sm font-medium text-muted-foreground">
                         {alloc.operative?.first_name} {alloc.operative?.last_name}
                       </p>
-                      <p className="text-xs text-slate-500">{alloc.site?.name ?? '—'}</p>
+                      <p className="text-xs text-muted-foreground">{alloc.site?.name ?? '—'}</p>
                     </div>
                     <StatusBadge status={attStatus ?? 'expected'} />
                   </div>
@@ -362,10 +362,10 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-3">
 
         {/* Recent Activity */}
-        <div className="xl:col-span-2 rounded-lg border border-slate-800 bg-slate-900">
-          <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-800">
-            <h2 className="text-sm font-semibold text-slate-200">Recent Activity</h2>
-            <Link href="/activity" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
+        <div className="xl:col-span-2 rounded-lg border border-border bg-background">
+          <div className="flex items-center justify-between px-4 py-2.5 border-b border-border">
+            <h2 className="text-sm font-semibold text-muted-foreground">Recent Activity</h2>
+            <Link href="/activity" className="text-xs text-muted-foreground hover:text-muted-foreground transition-colors">
               View all →
             </Link>
           </div>
@@ -379,19 +379,19 @@ export default async function DashboardPage() {
               />
             </div>
           ) : (
-            <div className="divide-y divide-slate-800">
+            <div className="divide-y divide-border">
               {collapseImports(recentNotifications as Array<{ id: string; type: string; title: string; body: string | null; severity: string; created_at: string }>).slice(0, 8).map((n) => {
                 const dotColor =
                   n.severity === 'critical' ? 'bg-red-500' :
-                  n.severity === 'warning' ? 'bg-amber-500' : 'bg-emerald-500'
+                  n.severity === 'warning' ? 'bg-amber-500' : 'bg-forest-500'
                 return (
                   <div key={n.id} className="flex items-start gap-3 px-4 py-2">
                     <span className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${dotColor}`} />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-slate-200 truncate">{n.title}</p>
-                      {n.body && <p className="text-xs text-slate-500 truncate">{n.body}</p>}
+                      <p className="text-sm text-muted-foreground truncate">{n.title}</p>
+                      {n.body && <p className="text-xs text-muted-foreground truncate">{n.body}</p>}
                     </div>
-                    <p className="text-xs text-slate-600 shrink-0">
+                    <p className="text-xs text-muted-foreground shrink-0">
                       {format(toZonedTime(new Date(n.created_at), TZ), 'd MMM, HH:mm')}
                     </p>
                   </div>
@@ -402,9 +402,9 @@ export default async function DashboardPage() {
         </div>
 
         {/* Quick Actions */}
-        <div className="rounded-lg border border-slate-800 bg-slate-900">
-          <div className="px-4 py-2.5 border-b border-slate-800">
-            <h2 className="text-sm font-semibold text-slate-200">Quick Actions</h2>
+        <div className="rounded-lg border border-border bg-background">
+          <div className="px-4 py-2.5 border-b border-border">
+            <h2 className="text-sm font-semibold text-muted-foreground">Quick Actions</h2>
           </div>
           <div className="p-3 space-y-1.5">
             <RapQuickAdd />
@@ -439,16 +439,16 @@ function ComplianceRow({
       ? severity === 'red'
         ? 'text-red-400'
         : 'text-amber-400'
-      : 'text-slate-600'
+      : 'text-muted-foreground'
 
   return (
     <Link
       href={href}
-      className="flex items-center justify-between px-4 py-2 hover:bg-slate-800/50 transition-colors"
+      className="flex items-center justify-between px-4 py-2 hover:bg-card/50 transition-colors"
     >
       <div className="flex items-center gap-3">
         <Icon className={`h-4 w-4 ${colorClass}`} />
-        <span className="text-sm text-slate-300">{label}</span>
+        <span className="text-sm text-muted-foreground">{label}</span>
       </div>
       <span
         className={`text-sm font-semibold tabular-nums ${
@@ -456,7 +456,7 @@ function ComplianceRow({
             ? severity === 'red'
               ? 'text-red-400'
               : 'text-amber-400'
-            : 'text-slate-600'
+            : 'text-muted-foreground'
         }`}
       >
         {count}
@@ -478,7 +478,7 @@ function QuickAction({
     <Button
       asChild
       variant="outline"
-      className="w-full justify-start gap-2 border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100"
+      className="w-full justify-start gap-2 border-border text-muted-foreground hover:bg-card hover:text-foreground"
     >
       <Link href={href}>
         <Icon className="h-4 w-4" />

@@ -31,8 +31,8 @@ function ScoreButton({ value, selected, onClick }: { value: number; selected: bo
       onClick={onClick}
       className={`h-9 w-9 rounded-md text-sm font-semibold transition-colors ${
         selected
-          ? 'bg-emerald-600 text-white'
-          : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200'
+          ? 'bg-forest-600 text-white'
+          : 'bg-card text-muted-foreground hover:bg-[#444444] hover:text-muted-foreground'
       }`}
     >
       {value}
@@ -43,7 +43,7 @@ function ScoreButton({ value, selected, onClick }: { value: number; selected: bo
 function ScoreRow({ label, shortLabel, value, onChange }: { label: string; shortLabel: string; value: number; onChange: (v: number) => void }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="text-xs text-slate-400 w-20 shrink-0" title={label}>{shortLabel}</span>
+      <span className="text-xs text-muted-foreground w-20 shrink-0" title={label}>{shortLabel}</span>
       <div className="flex gap-1">
         {[1, 2, 3, 4, 5].map(v => (
           <ScoreButton key={v} value={v} selected={value === v} onClick={() => onChange(v)} />
@@ -214,7 +214,7 @@ export function RapQuickAdd() {
     return (
       <Button
         variant="outline"
-        className="w-full justify-start gap-2 border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100"
+        className="w-full justify-start gap-2 border-border text-muted-foreground hover:bg-card hover:text-foreground"
         onClick={() => setOpen(true)}
       >
         <Star className="h-4 w-4" />
@@ -229,10 +229,10 @@ export function RapQuickAdd() {
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" onClick={() => { setOpen(false); reset() }} />
 
     {/* Modal */}
-    <div className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-lg border border-emerald-800/50 bg-slate-900 shadow-2xl">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-emerald-950/30 sticky top-0 z-10">
-        <h3 className="text-sm font-semibold text-emerald-400">Quick RAP Score</h3>
-        <button onClick={() => { setOpen(false); reset() }} className="text-slate-500 hover:text-slate-300">
+    <div className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-lg border border-forest-800/50 bg-background shadow-2xl">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-forest-950/30 sticky top-0 z-10">
+        <h3 className="text-sm font-semibold text-forest-400">Quick RAP Score</h3>
+        <button onClick={() => { setOpen(false); reset() }} className="text-muted-foreground hover:text-muted-foreground">
           <X className="h-4 w-4" />
         </button>
       </div>
@@ -242,14 +242,14 @@ export function RapQuickAdd() {
           <p className="text-xs text-red-400 bg-red-900/20 border border-red-800 rounded px-3 py-2">{error}</p>
         )}
         {success && (
-          <p className="text-xs text-emerald-400 bg-emerald-900/20 border border-emerald-800 rounded px-3 py-2">{success}</p>
+          <p className="text-xs text-forest-400 bg-forest-900/20 border border-forest-800 rounded px-3 py-2">{success}</p>
         )}
 
         {/* Operative search */}
         {!selectedOp ? (
           <div className="relative">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
               <Input
                 placeholder="Search operative by name or ref..."
                 value={searchQuery}
@@ -259,7 +259,7 @@ export function RapQuickAdd() {
               />
             </div>
             {searchResults.length > 0 && (
-              <div className="w-full mt-1 rounded-md border border-slate-700 bg-slate-800 max-h-64 overflow-y-auto">
+              <div className="w-full mt-1 rounded-md border border-border bg-card max-h-64 overflow-y-auto">
                 {searchResults.map(op => {
                   const currentSite = op.allocations?.[0]?.site?.name ?? null
                   const phoneLast4 = op.phone ? `···${op.phone.slice(-4)}` : null
@@ -267,13 +267,13 @@ export function RapQuickAdd() {
                     <button
                       key={op.id}
                       onClick={() => selectOperative(op)}
-                      className="w-full text-left px-3 py-2.5 hover:bg-slate-800 transition-colors border-b border-slate-800/50 last:border-0"
+                      className="w-full text-left px-3 py-2.5 hover:bg-card transition-colors border-b border-border/50 last:border-0"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-slate-200">{op.first_name} {op.last_name}</span>
-                        <span className="text-[10px] font-mono text-slate-500">{op.reference_number ?? '—'}</span>
+                        <span className="text-sm font-medium text-muted-foreground">{op.first_name} {op.last_name}</span>
+                        <span className="text-[10px] font-mono text-muted-foreground">{op.reference_number ?? '—'}</span>
                       </div>
-                      <div className="flex items-center gap-2 mt-0.5 text-[11px] text-slate-500">
+                      <div className="flex items-center gap-2 mt-0.5 text-[11px] text-muted-foreground">
                         {op.trade_category?.name && <span>{op.trade_category.name}</span>}
                         {currentSite && <span>· {currentSite}</span>}
                         {phoneLast4 && <span>· {phoneLast4}</span>}
@@ -287,22 +287,22 @@ export function RapQuickAdd() {
                 })}
               </div>
             )}
-            {searching && <p className="text-xs text-slate-500 mt-1">Searching...</p>}
+            {searching && <p className="text-xs text-muted-foreground mt-1">Searching...</p>}
           </div>
         ) : (
-          <div className="flex items-center justify-between bg-slate-800/50 rounded-md px-3 py-2.5">
+          <div className="flex items-center justify-between bg-card/50 rounded-md px-3 py-2.5">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-slate-200">{selectedOp.first_name} {selectedOp.last_name}</span>
-                <span className="text-[10px] font-mono text-slate-500">{selectedOp.reference_number}</span>
+                <span className="text-sm font-medium text-muted-foreground">{selectedOp.first_name} {selectedOp.last_name}</span>
+                <span className="text-[10px] font-mono text-muted-foreground">{selectedOp.reference_number}</span>
               </div>
-              <div className="flex items-center gap-2 mt-0.5 text-[11px] text-slate-500">
+              <div className="flex items-center gap-2 mt-0.5 text-[11px] text-muted-foreground">
                 {selectedOp.trade_category?.name && <span>{selectedOp.trade_category.name}</span>}
                 {selectedOp.allocations?.[0]?.site?.name && <span>· {selectedOp.allocations[0].site.name}</span>}
                 {selectedOp.phone && <span>· ···{selectedOp.phone.slice(-4)}</span>}
               </div>
             </div>
-            <button onClick={() => setSelectedOp(null)} className="text-slate-500 hover:text-slate-300">
+            <button onClick={() => setSelectedOp(null)} className="text-muted-foreground hover:text-muted-foreground">
               <X className="h-3.5 w-3.5" />
             </button>
           </div>
@@ -321,7 +321,7 @@ export function RapQuickAdd() {
             {/* Rates + Site manager */}
             <div className="grid grid-cols-3 gap-2">
               <div>
-                <Label htmlFor="rap-day" className="text-xs text-slate-400">Pay Rate £</Label>
+                <Label htmlFor="rap-day" className="text-xs text-muted-foreground">Pay Rate £</Label>
                 <Input
                   id="rap-day"
                   value={dayRate}
@@ -332,7 +332,7 @@ export function RapQuickAdd() {
                 />
               </div>
               <div>
-                <Label htmlFor="rap-charge" className="text-xs text-slate-400">Charge Rate £</Label>
+                <Label htmlFor="rap-charge" className="text-xs text-muted-foreground">Charge Rate £</Label>
                 <Input
                   id="rap-charge"
                   value={chargeRate}
@@ -343,7 +343,7 @@ export function RapQuickAdd() {
                 />
               </div>
               <div>
-                <Label htmlFor="rap-sm" className="text-xs text-slate-400">Completed By</Label>
+                <Label htmlFor="rap-sm" className="text-xs text-muted-foreground">Completed By</Label>
                 <Input
                   id="rap-sm"
                   value={siteManagerName}
@@ -360,18 +360,18 @@ export function RapQuickAdd() {
               const c = parseFloat(chargeRate.replace('£', ''))
               if (isNaN(d) || isNaN(c) || c <= 0) return null
               const margin = ((c - d) / c * 100)
-              const colour = margin >= 20 ? 'text-emerald-400' : margin >= 10 ? 'text-amber-400' : margin > 0 ? 'text-orange-400' : 'text-red-400'
+              const colour = margin >= 20 ? 'text-forest-400' : margin >= 10 ? 'text-amber-400' : margin > 0 ? 'text-orange-400' : 'text-red-400'
               return (
-                <div className="text-center text-xs text-slate-400">
+                <div className="text-center text-xs text-muted-foreground">
                   Margin: <span className={`font-bold ${colour}`}>{margin.toFixed(1)}%</span>
-                  <span className="text-slate-500 ml-1">(£{(c - d).toFixed(2)}/day)</span>
+                  <span className="text-muted-foreground ml-1">(£{(c - d).toFixed(2)}/day)</span>
                 </div>
               )
             })()}
 
             {/* Comment */}
             <div>
-              <Label htmlFor="rap-comment" className="text-xs text-slate-400">
+              <Label htmlFor="rap-comment" className="text-xs text-muted-foreground">
                 Comment {[reliability, attitude, performance, safety].some(s => s <= 2) && <span className="text-red-400">*</span>}
               </Label>
               <Textarea
@@ -389,11 +389,11 @@ export function RapQuickAdd() {
               const total = reliability + attitude + performance + safety
               const avg = total / 4
               const rag = avg >= 4.0 ? 'Green' : avg >= 3.0 ? 'Amber' : 'Red'
-              const ragColour = avg >= 4.0 ? 'text-emerald-400' : avg >= 3.0 ? 'text-amber-400' : 'text-red-400'
+              const ragColour = avg >= 4.0 ? 'text-forest-400' : avg >= 3.0 ? 'text-amber-400' : 'text-red-400'
               return (
                 <div className="flex items-center justify-center gap-4 text-sm">
-                  <span className="text-slate-400">Total: <span className="font-bold text-slate-200">{total}</span>/20</span>
-                  <span className="text-slate-400">Avg: <span className="font-bold text-slate-200">{avg.toFixed(1)}</span>/5</span>
+                  <span className="text-muted-foreground">Total: <span className="font-bold text-muted-foreground">{total}</span>/20</span>
+                  <span className="text-muted-foreground">Avg: <span className="font-bold text-muted-foreground">{avg.toFixed(1)}</span>/5</span>
                   <span className={`font-bold ${ragColour}`}>{rag}</span>
                 </div>
               )

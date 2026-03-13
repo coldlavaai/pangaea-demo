@@ -54,7 +54,7 @@ export default async function AdvertsPage() {
         title="Adverts"
         description="Job adverts across all platforms"
         action={
-          <Button asChild size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white">
+          <Button asChild size="sm" className="bg-forest-600 hover:bg-forest-700 text-white">
             <Link href="/adverts/new">
               <Plus className="h-4 w-4 mr-1" />
               New Advert
@@ -66,15 +66,15 @@ export default async function AdvertsPage() {
       {/* Stats row */}
       <div className="grid grid-cols-4 gap-3">
         {[
-          { label: 'Active', value: stats.active, icon: Megaphone, colour: 'text-emerald-400' },
-          { label: 'Impressions', value: stats.impressions.toLocaleString(), icon: Eye, colour: 'text-slate-300' },
-          { label: 'Clicks', value: stats.clicks.toLocaleString(), icon: MousePointer, colour: 'text-slate-300' },
-          { label: 'Applications', value: stats.applications.toLocaleString(), icon: Users, colour: 'text-slate-300' },
+          { label: 'Active', value: stats.active, icon: Megaphone, colour: 'text-forest-400' },
+          { label: 'Impressions', value: stats.impressions.toLocaleString(), icon: Eye, colour: 'text-muted-foreground' },
+          { label: 'Clicks', value: stats.clicks.toLocaleString(), icon: MousePointer, colour: 'text-muted-foreground' },
+          { label: 'Applications', value: stats.applications.toLocaleString(), icon: Users, colour: 'text-muted-foreground' },
         ].map(({ label, value, icon: Icon, colour }) => (
-          <div key={label} className="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+          <div key={label} className="rounded-lg border border-border bg-background/60 p-4">
             <div className="flex items-center gap-2 mb-1">
               <Icon className={`h-4 w-4 ${colour}`} />
-              <span className="text-xs text-slate-500 uppercase tracking-wide">{label}</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
             </div>
             <p className={`text-2xl font-semibold tabular-nums ${colour}`}>{value}</p>
           </div>
@@ -84,7 +84,7 @@ export default async function AdvertsPage() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         {/* Adverts table */}
         <div className="xl:col-span-2 space-y-2">
-          <h2 className="text-sm font-medium text-slate-300">All Adverts</h2>
+          <h2 className="text-sm font-medium text-muted-foreground">All Adverts</h2>
 
           {advertList.length === 0 ? (
             <EmptyState
@@ -92,31 +92,31 @@ export default async function AdvertsPage() {
               title="No adverts yet"
               description="Create your first advert to start tracking recruitment."
               action={
-                <Button asChild size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                <Button asChild size="sm" className="bg-forest-600 hover:bg-forest-700 text-white">
                   <Link href="/adverts/new"><Plus className="h-4 w-4 mr-1" />New Advert</Link>
                 </Button>
               }
             />
           ) : (
-            <div className="rounded-lg border border-slate-800 overflow-hidden">
+            <div className="rounded-lg border border-border overflow-hidden">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800 bg-slate-900/80">
-                    <th className="text-left px-4 py-3 text-slate-400 font-medium">Platform</th>
-                    <th className="text-left px-4 py-3 text-slate-400 font-medium">Status</th>
-                    <th className="text-right px-4 py-3 text-slate-400 font-medium">Impr.</th>
-                    <th className="text-right px-4 py-3 text-slate-400 font-medium">Clicks</th>
-                    <th className="text-right px-4 py-3 text-slate-400 font-medium">Apps</th>
-                    <th className="text-right px-4 py-3 text-slate-400 font-medium">Budget</th>
+                  <tr className="border-b border-border bg-background/80">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">Platform</th>
+                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">Status</th>
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">Impr.</th>
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">Clicks</th>
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">Apps</th>
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">Budget</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800">
+                <tbody className="divide-y divide-border">
                   {[...advertList].sort((a, b) =>
                     STATUS_ORDER.indexOf(a.status ?? 'draft') - STATUS_ORDER.indexOf(b.status ?? 'draft')
                   ).map((ad) => (
-                    <tr key={ad.id} className="hover:bg-slate-900/50">
+                    <tr key={ad.id} className="hover:bg-background/50">
                       <td className="px-4 py-3">
-                        <Link href={`/adverts/${ad.id}`} className="text-emerald-400 hover:underline font-medium">
+                        <Link href={`/adverts/${ad.id}`} className="text-forest-400 hover:underline font-medium">
                           {PLATFORM_LABELS[ad.platform] ?? ad.platform}
                         </Link>
                         {ad.external_url && (
@@ -124,7 +124,7 @@ export default async function AdvertsPage() {
                             href={ad.external_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ml-2 text-xs text-slate-500 hover:text-slate-300"
+                            className="ml-2 text-xs text-muted-foreground hover:text-muted-foreground"
                           >
                             ↗
                           </a>
@@ -133,16 +133,16 @@ export default async function AdvertsPage() {
                       <td className="px-4 py-3">
                         <StatusBadge status={ad.status ?? 'draft'} />
                       </td>
-                      <td className="px-4 py-3 text-right tabular-nums text-slate-400">
+                      <td className="px-4 py-3 text-right tabular-nums text-muted-foreground">
                         {(ad.impressions ?? 0).toLocaleString()}
                       </td>
-                      <td className="px-4 py-3 text-right tabular-nums text-slate-400">
+                      <td className="px-4 py-3 text-right tabular-nums text-muted-foreground">
                         {(ad.clicks ?? 0).toLocaleString()}
                       </td>
-                      <td className="px-4 py-3 text-right tabular-nums text-slate-300 font-medium">
+                      <td className="px-4 py-3 text-right tabular-nums text-muted-foreground font-medium">
                         {(ad.applications ?? 0).toLocaleString()}
                       </td>
-                      <td className="px-4 py-3 text-right tabular-nums text-slate-400">
+                      <td className="px-4 py-3 text-right tabular-nums text-muted-foreground">
                         {ad.budget != null ? `£${Number(ad.budget).toFixed(0)}` : '—'}
                       </td>
                     </tr>
@@ -156,14 +156,14 @@ export default async function AdvertsPage() {
         {/* Templates sidebar */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-medium text-slate-300">Templates</h2>
-            <Link href="/adverts/new?mode=template" className="text-xs text-emerald-400 hover:underline">
+            <h2 className="text-sm font-medium text-muted-foreground">Templates</h2>
+            <Link href="/adverts/new?mode=template" className="text-xs text-forest-400 hover:underline">
               + New template
             </Link>
           </div>
 
           {templateList.length === 0 ? (
-            <div className="rounded-lg border border-dashed border-slate-800 p-6 text-center text-xs text-slate-600">
+            <div className="rounded-lg border border-dashed border-border p-6 text-center text-xs text-muted-foreground">
               No templates yet
             </div>
           ) : (
@@ -171,14 +171,14 @@ export default async function AdvertsPage() {
               {templateList.map((t) => (
                 <div
                   key={t.id}
-                  className="rounded-md border border-slate-800 bg-slate-900/40 px-3 py-2.5 flex items-center justify-between gap-2"
+                  className="rounded-md border border-border bg-background/40 px-3 py-2.5 flex items-center justify-between gap-2"
                 >
                   <div>
-                    <p className="text-xs font-medium text-slate-200">{t.name}</p>
-                    <p className="text-xs text-slate-500">{PLATFORM_LABELS[t.platform] ?? t.platform}</p>
+                    <p className="text-xs font-medium text-muted-foreground">{t.name}</p>
+                    <p className="text-xs text-muted-foreground">{PLATFORM_LABELS[t.platform] ?? t.platform}</p>
                   </div>
                   {!t.is_active && (
-                    <span className="text-xs text-slate-600">Inactive</span>
+                    <span className="text-xs text-muted-foreground">Inactive</span>
                   )}
                 </div>
               ))}

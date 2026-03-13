@@ -68,9 +68,9 @@ export function AssistantFullPage() {
       {/* Main chat area */}
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         {/* Header */}
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800">
-          <span className="text-sm font-semibold text-slate-200">Rex</span>
-          <span className="text-xs text-slate-500">Pangaea AI</span>
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
+          <span className="text-sm font-semibold text-muted-foreground">Rex</span>
+          <span className="text-xs text-muted-foreground">Pangaea AI</span>
         </div>
 
         {messages.length === 0 ? (
@@ -82,9 +82,9 @@ export function AssistantFullPage() {
         )}
 
         {/* Input */}
-        <div className="p-3 border-t border-slate-800">
+        <div className="p-3 border-t border-border">
           <ChatInput onSend={sendMessage} disabled={isLoading} />
-          <p className="text-[10px] text-slate-600 text-center mt-1">Enter to send · Shift+Enter for new line</p>
+          <p className="text-[10px] text-muted-foreground text-center mt-1">Enter to send · Shift+Enter for new line</p>
         </div>
       </div>
     </div>

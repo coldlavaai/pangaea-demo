@@ -22,6 +22,7 @@
   --color-forest-700: #2D6A4F;
   --color-forest-800: #1B4332;
   --color-forest-900: #0B2118;
+  --color-forest-950: #061410;
 
   /* Pangaea brand: copper accent */
   --color-copper-50: #FDF6EE;
@@ -162,26 +163,26 @@
   outline: none;
   min-height: 360px;
   padding: 16px;
-  color: #cbd5e1;
+  color: #D8F3DC;
   font-size: 14px;
   line-height: 1.75;
 }
 .email-editor .ProseMirror h2 {
   font-size: 20px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: #D8F3DC;
   margin: 0 0 10px;
 }
 .email-editor .ProseMirror h3 {
   font-size: 15px;
   font-weight: 600;
-  color: #e2e8f0;
+  color: #B7E4C7;
   margin: 0 0 8px;
 }
 .email-editor .ProseMirror p { margin: 0 0 10px; }
 .email-editor .ProseMirror p:last-child { margin-bottom: 0; }
 .email-editor .ProseMirror strong { color: #e2e8f0; font-weight: 600; }
-.email-editor .ProseMirror a { color: #38bdf8; text-decoration: underline; }
+.email-editor .ProseMirror a { color: #74C69D; text-decoration: underline; }
 .email-editor .ProseMirror ul,
 .email-editor .ProseMirror ol { padding-left: 22px; margin: 0 0 10px; }
 .email-editor .ProseMirror li { margin-bottom: 4px; }

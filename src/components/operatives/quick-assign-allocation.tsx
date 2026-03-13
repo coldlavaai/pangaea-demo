@@ -61,7 +61,7 @@ export function QuickAssignAllocation({ operativeId, sites }: Props) {
       <Button
         size="sm"
         onClick={() => setOpen(true)}
-        className="gap-2 bg-emerald-600 hover:bg-emerald-500 text-white"
+        className="gap-2 bg-forest-600 hover:bg-forest-500 text-white"
       >
         <Plus className="h-4 w-4" />
         Add allocation
@@ -70,39 +70,39 @@ export function QuickAssignAllocation({ operativeId, sites }: Props) {
   }
 
   return (
-    <div className="rounded-lg border border-slate-700 bg-slate-900/60 p-4 space-y-3">
-      <p className="text-sm font-medium text-slate-200">New allocation</p>
+    <div className="rounded-lg border border-border bg-background/60 p-4 space-y-3">
+      <p className="text-sm font-medium text-muted-foreground">New allocation</p>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div className="space-y-1.5">
-          <Label className="text-xs text-slate-400">Site</Label>
+          <Label className="text-xs text-muted-foreground">Site</Label>
           <Select value={siteId} onValueChange={setSiteId}>
-            <SelectTrigger className="bg-slate-800 border-slate-700 text-slate-200 h-9">
+            <SelectTrigger className="bg-card border-border text-muted-foreground h-9">
               <SelectValue placeholder="Select site…" />
             </SelectTrigger>
-            <SelectContent className="bg-slate-800 border-slate-700">
+            <SelectContent className="bg-card border-border">
               {sites.map(s => (
-                <SelectItem key={s.id} value={s.id} className="text-slate-200">{s.name}</SelectItem>
+                <SelectItem key={s.id} value={s.id} className="text-muted-foreground">{s.name}</SelectItem>
               ))}
             </SelectContent>
           </Select>
         </div>
         <div className="space-y-1.5">
-          <Label className="text-xs text-slate-400">Day rate (£)</Label>
+          <Label className="text-xs text-muted-foreground">Day rate (£)</Label>
           <Input
             type="number"
             value={rate}
             onChange={e => setRate(e.target.value)}
             placeholder="175"
-            className="bg-slate-800 border-slate-700 text-slate-200 h-9"
+            className="bg-card border-border text-muted-foreground h-9"
           />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-xs text-slate-400">Start date</Label>
+          <Label className="text-xs text-muted-foreground">Start date</Label>
           <Input
             type="date"
             value={startDate}
             onChange={e => setStartDate(e.target.value)}
-            className="bg-slate-800 border-slate-700 text-slate-200 h-9"
+            className="bg-card border-border text-muted-foreground h-9"
           />
         </div>
       </div>
@@ -111,12 +111,12 @@ export function QuickAssignAllocation({ operativeId, sites }: Props) {
           size="sm"
           onClick={handleSubmit}
           disabled={saving}
-          className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2"
+          className="bg-forest-600 hover:bg-forest-500 text-white gap-2"
         >
           {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Plus className="h-3.5 w-3.5" />}
           {saving ? 'Saving…' : 'Confirm'}
         </Button>
-        <Button size="sm" variant="ghost" onClick={() => setOpen(false)} className="text-slate-400">
+        <Button size="sm" variant="ghost" onClick={() => setOpen(false)} className="text-muted-foreground">
           Cancel
         </Button>
       </div>

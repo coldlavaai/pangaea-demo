@@ -119,10 +119,10 @@ export function LabourPoolResults({
             className={`flex items-center gap-1.5 text-xs rounded-md px-2.5 py-1.5 border transition-colors ${
               includeWorking
                 ? 'border-amber-600 bg-amber-950/40 text-amber-400'
-                : 'border-slate-700 bg-slate-800/40 text-slate-400 hover:text-slate-200'
+                : 'border-border bg-card/40 text-muted-foreground hover:text-muted-foreground'
             }`}
           >
-            <span className={`h-2 w-2 rounded-full ${includeWorking ? 'bg-amber-400' : 'bg-slate-600'}`} />
+            <span className={`h-2 w-2 rounded-full ${includeWorking ? 'bg-amber-400' : 'bg-[#5C5C5C]'}`} />
             {includeWorking ? 'Including currently working' : 'Exclude currently working'}
           </Link>
         </div>

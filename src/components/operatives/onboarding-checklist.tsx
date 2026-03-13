@@ -81,7 +81,7 @@ export function OnboardingChecklist({
 
   return (
     <div className="space-y-1">
-      <div className="text-xs text-slate-500 mb-2">
+      <div className="text-xs text-muted-foreground mb-2">
         {doneCount}/{ITEMS.length} complete
       </div>
       {ITEMS.map((item) => {
@@ -93,20 +93,20 @@ export function OnboardingChecklist({
             type="button"
             onClick={() => toggle(item.field)}
             disabled={!!saving}
-            className="w-full flex items-start gap-2.5 rounded-md px-2 py-1.5 text-left transition-colors hover:bg-slate-800/60 disabled:opacity-60"
+            className="w-full flex items-start gap-2.5 rounded-md px-2 py-1.5 text-left transition-colors hover:bg-card/60 disabled:opacity-60"
           >
             {isSaving ? (
-              <Loader2 className="h-4 w-4 shrink-0 mt-0.5 text-slate-400 animate-spin" />
+              <Loader2 className="h-4 w-4 shrink-0 mt-0.5 text-muted-foreground animate-spin" />
             ) : checked ? (
-              <CheckSquare className="h-4 w-4 shrink-0 mt-0.5 text-emerald-400" />
+              <CheckSquare className="h-4 w-4 shrink-0 mt-0.5 text-forest-400" />
             ) : (
-              <Square className="h-4 w-4 shrink-0 mt-0.5 text-slate-600" />
+              <Square className="h-4 w-4 shrink-0 mt-0.5 text-muted-foreground" />
             )}
             <div>
-              <span className={`text-xs font-medium ${checked ? 'text-slate-200' : 'text-slate-400'}`}>
+              <span className={`text-xs font-medium ${checked ? 'text-muted-foreground' : 'text-muted-foreground'}`}>
                 {item.label}
               </span>
-              <p className="text-xs text-slate-600 leading-tight">{item.description}</p>
+              <p className="text-xs text-muted-foreground leading-tight">{item.description}</p>
             </div>
           </button>
         )

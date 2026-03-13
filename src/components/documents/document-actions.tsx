@@ -121,7 +121,7 @@ export function DocumentActions({ docId, operativeId, currentStatus, fileKey, do
             onClick={reExtract}
             disabled={!!loading}
             variant="outline"
-            className="border-slate-600 text-slate-300 hover:bg-slate-800"
+            className="border-border text-muted-foreground hover:bg-card"
           >
             {loading === 're-extract' ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <ScanSearch className="h-4 w-4 mr-2" />}
             Re-extract data

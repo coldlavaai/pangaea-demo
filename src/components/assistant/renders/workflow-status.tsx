@@ -26,7 +26,7 @@ interface WorkflowStatusData {
 const STATUS_PILL: Record<string, string> = {
   active:    'bg-blue-500/20 text-blue-400',
   completed: 'bg-green-500/20 text-green-400',
-  cancelled: 'bg-slate-500/20 text-slate-400',
+  cancelled: 'bg-muted/20 text-muted-foreground',
   failed:    'bg-red-500/20 text-red-400',
   paused:    'bg-amber-500/20 text-amber-400',
 }
@@ -74,17 +74,17 @@ export function WorkflowStatus({ data }: { data: WorkflowStatusData }) {
   const progressPct = totalItems > 0 ? Math.round((doneCount / totalItems) * 100) : 0
 
   return (
-    <div className="my-2 bg-slate-800/60 rounded-lg border border-slate-700/50 overflow-hidden text-xs">
+    <div className="my-2 bg-card/60 rounded-lg border border-border/50 overflow-hidden text-xs">
       {/* Header */}
-      <div className="flex items-center justify-between px-3 py-2 bg-slate-800/40 border-b border-slate-700/50">
+      <div className="flex items-center justify-between px-3 py-2 bg-card/40 border-b border-border/50">
         <div className="flex items-center gap-2">
-          <span className="font-semibold text-slate-200">{typeLabel}</span>
-          <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${STATUS_PILL[status] ?? 'bg-slate-700 text-slate-400'}`}>
+          <span className="font-semibold text-muted-foreground">{typeLabel}</span>
+          <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${STATUS_PILL[status] ?? 'bg-[#444444] text-muted-foreground'}`}>
             {status}
           </span>
         </div>
         {status === 'active' && (
-          <span className="text-[10px] text-slate-500 flex items-center gap-1">
+          <span className="text-[10px] text-muted-foreground flex items-center gap-1">
             <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
             live
           </span>
@@ -96,13 +96,13 @@ export function WorkflowStatus({ data }: { data: WorkflowStatusData }) {
         <div className="px-3 py-2.5 space-y-1">
           {checklist.map((item) => (
             <div key={item.key} className="flex items-center gap-2">
-              <span className={`w-4 text-center text-sm ${item.done ? 'text-emerald-400' : 'text-slate-600'}`}>
+              <span className={`w-4 text-center text-sm ${item.done ? 'text-forest-400' : 'text-muted-foreground'}`}>
                 {item.done ? '✓' : '○'}
               </span>
-              <span className={item.done ? 'text-slate-400 line-through' : 'text-slate-200'}>
+              <span className={item.done ? 'text-muted-foreground line-through' : 'text-muted-foreground'}>
                 {item.label}
               </span>
-              <span className={`text-[10px] ml-auto ${item.type === 'document' ? 'text-amber-500/60' : 'text-slate-600'}`}>
+              <span className={`text-[10px] ml-auto ${item.type === 'document' ? 'text-amber-500/60' : 'text-muted-foreground'}`}>
                 {item.type === 'document' ? 'upload' : 'data'}
               </span>
             </div>
@@ -112,39 +112,39 @@ export function WorkflowStatus({ data }: { data: WorkflowStatusData }) {
         /* Fallback step view when no checklist data */
         <div className="px-3 py-3 space-y-1.5">
           <div className="flex items-center gap-2">
-            <span className="w-4 text-center text-emerald-400">✓</span>
-            <span className="text-slate-400">Workflow created</span>
+            <span className="w-4 text-center text-forest-400">✓</span>
+            <span className="text-muted-foreground">Workflow created</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className={`w-4 text-center ${targets_contacted > 0 ? 'text-emerald-400' : 'text-slate-600'}`}>
+            <span className={`w-4 text-center ${targets_contacted > 0 ? 'text-forest-400' : 'text-muted-foreground'}`}>
               {targets_contacted > 0 ? '✓' : '○'}
             </span>
-            <span className={targets_contacted > 0 ? 'text-slate-400' : 'text-slate-200'}>
+            <span className={targets_contacted > 0 ? 'text-muted-foreground' : 'text-muted-foreground'}>
               WhatsApp sent
               {targets_contacted > 0 && status === 'active' && <span className="ml-1.5 inline-block w-1 h-1 bg-blue-400 rounded-full animate-pulse" />}
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className={`w-4 text-center ${status === 'completed' ? 'text-emerald-400' : 'text-slate-600'}`}>
+            <span className={`w-4 text-center ${status === 'completed' ? 'text-forest-400' : 'text-muted-foreground'}`}>
               {status === 'completed' ? '✓' : '○'}
             </span>
-            <span className={status === 'completed' ? 'text-slate-400' : 'text-slate-600'}>All items submitted</span>
+            <span className={status === 'completed' ? 'text-muted-foreground' : 'text-muted-foreground'}>All items submitted</span>
           </div>
         </div>
       ) : (
         /* Multi-target stats grid */
-        <div className="grid grid-cols-3 divide-x divide-slate-700/50 text-center py-2">
+        <div className="grid grid-cols-3 divide-x divide-border text-center py-2">
           <div>
             <div className="text-sm font-semibold text-blue-400">{targets_contacted}</div>
-            <div className="text-[10px] text-slate-500">sent</div>
+            <div className="text-[10px] text-muted-foreground">sent</div>
           </div>
           <div>
             <div className="text-sm font-semibold text-green-400">{targets_completed}</div>
-            <div className="text-[10px] text-slate-500">complete</div>
+            <div className="text-[10px] text-muted-foreground">complete</div>
           </div>
           <div>
-            <div className="text-sm font-semibold text-slate-400">{total_targets - resolved}</div>
-            <div className="text-[10px] text-slate-500">pending</div>
+            <div className="text-sm font-semibold text-muted-foreground">{total_targets - resolved}</div>
+            <div className="text-[10px] text-muted-foreground">pending</div>
           </div>
         </div>
       )}
@@ -152,15 +152,15 @@ export function WorkflowStatus({ data }: { data: WorkflowStatusData }) {
       {/* Progress bar */}
       {totalItems > 0 && (
         <div className="px-3 pb-2.5">
-          <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
+          <div className="h-1.5 bg-[#444444] rounded-full overflow-hidden">
             <div
-              className="h-full bg-emerald-500 transition-all duration-500"
+              className="h-full bg-forest-500 transition-all duration-500"
               style={{ width: `${progressPct}%` }}
             />
           </div>
           <div className="flex justify-between mt-1">
-            <span className="text-[10px] text-slate-500">{doneCount} of {totalItems} items</span>
-            <span className="text-[10px] text-slate-400">{progressPct}%</span>
+            <span className="text-[10px] text-muted-foreground">{doneCount} of {totalItems} items</span>
+            <span className="text-[10px] text-muted-foreground">{progressPct}%</span>
           </div>
         </div>
       )}

@@ -17,13 +17,13 @@ export default async function ImportOperativesPage() {
         description="Bulk upload from CSV — up to 5,000 contacts per file"
         action={
           <div className="flex gap-2">
-            <Button asChild variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">
+            <Button asChild variant="outline" className="border-border text-muted-foreground hover:bg-card">
               <Link href="/operatives/import/history">
                 <History className="h-4 w-4 mr-2" />
                 History
               </Link>
             </Button>
-            <Button asChild variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">
+            <Button asChild variant="outline" className="border-border text-muted-foreground hover:bg-card">
               <Link href="/operatives">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back

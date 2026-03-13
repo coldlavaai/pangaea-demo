@@ -38,7 +38,7 @@ export function ChatInput({ onSend, disabled, placeholder = 'Ask Rex anything...
   }
 
   return (
-    <div className={cn('flex items-end gap-2 p-2 bg-slate-900 border border-slate-700 rounded-lg', className)}>
+    <div className={cn('flex items-end gap-2 p-2 bg-background border border-border rounded-lg', className)}>
       <textarea
         ref={textareaRef}
         value={value}
@@ -48,7 +48,7 @@ export function ChatInput({ onSend, disabled, placeholder = 'Ask Rex anything...
         placeholder={placeholder}
         disabled={disabled}
         rows={1}
-        className="flex-1 resize-none bg-transparent text-sm text-slate-200 placeholder-slate-500 outline-none max-h-[120px] leading-5 py-1"
+        className="flex-1 resize-none bg-transparent text-sm text-muted-foreground placeholder-muted-foreground outline-none max-h-[120px] leading-5 py-1"
       />
       <button
         onClick={handleSend}
@@ -56,8 +56,8 @@ export function ChatInput({ onSend, disabled, placeholder = 'Ask Rex anything...
         className={cn(
           'flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors',
           disabled || !value.trim()
-            ? 'text-slate-600 cursor-not-allowed'
-            : 'bg-emerald-600 text-white hover:bg-emerald-500'
+            ? 'text-muted-foreground cursor-not-allowed'
+            : 'bg-forest-600 text-white hover:bg-forest-500'
         )}
       >
         <Send className="h-3.5 w-3.5" />

@@ -48,7 +48,7 @@ interface RateActionsProps {
 
 const RATE_TYPE_BADGE: Record<string, string> = {
   estimated: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-  confirmed: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+  confirmed: 'bg-forest-500/10 text-forest-400 border-forest-500/30',
   revised:   'bg-blue-500/10 text-blue-400 border-blue-500/30',
 }
 
@@ -170,16 +170,16 @@ export function RateActions({
   const hourly = hourlyRate ?? (dayRate != null ? Math.round((dayRate / 8) * 100) / 100 : null)
 
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-900 p-5 space-y-4">
+    <div className="rounded-lg border border-border bg-background p-5 space-y-4">
       {/* Rate display */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-3">
-            <span className="text-2xl font-semibold text-slate-100">
+            <span className="text-2xl font-semibold text-foreground">
               {dayRate != null ? `£${dayRate}/day` : '—'}
             </span>
             {hourly != null && dayRate != null && (
-              <span className="text-sm text-slate-400">(£{hourly.toFixed(2)}/hr)</span>
+              <span className="text-sm text-muted-foreground">(£{hourly.toFixed(2)}/hr)</span>
             )}
             {isEstimated ? (
               <span className="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium bg-amber-500/10 text-amber-400 border-amber-500/30">
@@ -187,20 +187,20 @@ export function RateActions({
                 Estimated
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-400 border-emerald-500/30">
+              <span className="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium bg-forest-500/10 text-forest-400 border-forest-500/30">
                 <CheckCircle2 className="h-3 w-3" />
                 Confirmed
               </span>
             )}
           </div>
           {grade && (
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-muted-foreground">
               {GRADE_LABELS[grade] ?? grade}
               {latestQuartile && ` · ${QUARTILE_LABELS[latestQuartile] ?? latestQuartile}`}
             </p>
           )}
           {isEstimated && rateHistory[0]?.rationale && (
-            <p className="text-xs text-slate-500 max-w-md leading-relaxed">
+            <p className="text-xs text-muted-foreground max-w-md leading-relaxed">
               {rateHistory[0].rationale}
             </p>
           )}
@@ -211,7 +211,7 @@ export function RateActions({
           {isEstimated && (
             <Button
               size="sm"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white"
+              className="bg-forest-600 hover:bg-forest-500 text-white"
               onClick={() => {
                 setConfirmRate(dayRate?.toString() ?? '')
                 setConfirmError('')
@@ -225,7 +225,7 @@ export function RateActions({
           <Button
             size="sm"
             variant="outline"
-            className="border-slate-700 text-slate-300 hover:bg-slate-800"
+            className="border-border text-muted-foreground hover:bg-card"
             onClick={() => {
               setAdjustGrade(grade ?? 'skilled')
               setAdjustQuartile(latestQuartile ?? 'q1')
@@ -245,7 +245,7 @@ export function RateActions({
         <div>
           <button
             onClick={() => setHistoryOpen((v) => !v)}
-            className="flex items-center gap-1 text-xs text-slate-500 hover:text-slate-300 transition-colors"
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-muted-foreground transition-colors"
           >
             {historyOpen ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
             Pay Rate History ({rateHistory.length})
@@ -255,32 +255,32 @@ export function RateActions({
             <div className="mt-3 overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-slate-800">
-                    <th className="pb-2 text-left font-medium text-slate-500">Date</th>
-                    <th className="pb-2 text-left font-medium text-slate-500">Rate</th>
-                    <th className="pb-2 text-left font-medium text-slate-500">Grade</th>
-                    <th className="pb-2 text-left font-medium text-slate-500">Duration</th>
-                    <th className="pb-2 text-left font-medium text-slate-500">Type</th>
-                    <th className="pb-2 text-left font-medium text-slate-500">Notes</th>
+                  <tr className="border-b border-border">
+                    <th className="pb-2 text-left font-medium text-muted-foreground">Date</th>
+                    <th className="pb-2 text-left font-medium text-muted-foreground">Rate</th>
+                    <th className="pb-2 text-left font-medium text-muted-foreground">Grade</th>
+                    <th className="pb-2 text-left font-medium text-muted-foreground">Duration</th>
+                    <th className="pb-2 text-left font-medium text-muted-foreground">Type</th>
+                    <th className="pb-2 text-left font-medium text-muted-foreground">Notes</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/50">
+                <tbody className="divide-y divide-border/50">
                   {rateHistory.map((row) => (
                     <tr key={row.id}>
-                      <td className="py-2 pr-4 text-slate-400 whitespace-nowrap">
+                      <td className="py-2 pr-4 text-muted-foreground whitespace-nowrap">
                         {fmtDate(row.created_at)}
                       </td>
-                      <td className="py-2 pr-4 text-slate-300 font-medium whitespace-nowrap">
+                      <td className="py-2 pr-4 text-muted-foreground font-medium whitespace-nowrap">
                         £{row.day_rate}/day
                         {row.hourly_rate != null && (
-                          <span className="text-slate-500 font-normal"> · £{row.hourly_rate.toFixed(2)}/hr</span>
+                          <span className="text-muted-foreground font-normal"> · £{row.hourly_rate.toFixed(2)}/hr</span>
                         )}
                       </td>
-                      <td className="py-2 pr-4 text-slate-400 whitespace-nowrap">
+                      <td className="py-2 pr-4 text-muted-foreground whitespace-nowrap">
                         {row.grade ? (GRADE_LABELS[row.grade] ?? row.grade) : '—'}
                         {row.quartile && ` · ${row.quartile.toUpperCase()}`}
                       </td>
-                      <td className="py-2 pr-4 text-slate-400 whitespace-nowrap">
+                      <td className="py-2 pr-4 text-muted-foreground whitespace-nowrap">
                         {row.contract_duration_weeks != null ? `${row.contract_duration_weeks}w` : '—'}
                       </td>
                       <td className="py-2 pr-4 whitespace-nowrap">
@@ -288,7 +288,7 @@ export function RateActions({
                           {row.rate_type.charAt(0).toUpperCase() + row.rate_type.slice(1)}
                         </span>
                       </td>
-                      <td className="py-2 text-slate-500 max-w-xs truncate" title={row.rationale ?? ''}>
+                      <td className="py-2 text-muted-foreground max-w-xs truncate" title={row.rationale ?? ''}>
                         {row.rationale ?? '—'}
                       </td>
                     </tr>
@@ -302,26 +302,26 @@ export function RateActions({
 
       {/* Confirm Rate dialog */}
       <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
-        <DialogContent className="bg-slate-900 border-slate-800 text-slate-100 sm:max-w-md">
+        <DialogContent className="bg-background border-border text-foreground sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Confirm day rate — {operativeName}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-2">
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-muted-foreground">
               Confirm the agreed day rate for this operative. You can adjust the amount before confirming.
             </p>
             <div className="space-y-1.5">
-              <Label htmlFor="confirm-rate" className="text-slate-300">Day Rate (£)</Label>
+              <Label htmlFor="confirm-rate" className="text-muted-foreground">Day Rate (£)</Label>
               <Input
                 id="confirm-rate"
                 type="number"
                 value={confirmRate}
                 onChange={(e) => setConfirmRate(e.target.value)}
-                className="bg-slate-800 border-slate-700 text-slate-100"
+                className="bg-card border-border text-foreground"
                 placeholder={dayRate?.toString() ?? '0'}
               />
               {confirmRate && !isNaN(parseFloat(confirmRate)) && (
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   £{(parseFloat(confirmRate) / 8).toFixed(2)}/hr
                 </p>
               )}
@@ -331,14 +331,14 @@ export function RateActions({
           <DialogFooter>
             <Button
               variant="outline"
-              className="border-slate-700 text-slate-300 hover:bg-slate-800"
+              className="border-border text-muted-foreground hover:bg-card"
               onClick={() => setConfirmOpen(false)}
               disabled={confirmLoading}
             >
               Cancel
             </Button>
             <Button
-              className="bg-emerald-600 hover:bg-emerald-500 text-white"
+              className="bg-forest-600 hover:bg-forest-500 text-white"
               onClick={handleConfirm}
               disabled={confirmLoading}
             >
@@ -350,20 +350,20 @@ export function RateActions({
 
       {/* Adjust Rate dialog */}
       <Dialog open={adjustOpen} onOpenChange={setAdjustOpen}>
-        <DialogContent className="bg-slate-900 border-slate-800 text-slate-100 sm:max-w-md">
+        <DialogContent className="bg-background border-border text-foreground sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Adjust day rate — {operativeName}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-2">
             <div className="space-y-1.5">
-              <Label className="text-slate-300">Grade</Label>
+              <Label className="text-muted-foreground">Grade</Label>
               <Select value={adjustGrade} onValueChange={handleAdjustGradeChange}>
-                <SelectTrigger className="bg-slate-800 border-slate-700 text-slate-100">
+                <SelectTrigger className="bg-card border-border text-foreground">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
+                <SelectContent className="bg-card border-border">
                   {GRADES.map(([value, label]) => (
-                    <SelectItem key={value} value={value} className="text-slate-200 focus:bg-slate-700 focus:text-slate-100">
+                    <SelectItem key={value} value={value} className="text-muted-foreground focus:bg-[#444444] focus:text-foreground">
                       {label}
                     </SelectItem>
                   ))}
@@ -372,14 +372,14 @@ export function RateActions({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-slate-300">Quartile</Label>
+              <Label className="text-muted-foreground">Quartile</Label>
               <Select value={adjustQuartile} onValueChange={handleAdjustQuartileChange}>
-                <SelectTrigger className="bg-slate-800 border-slate-700 text-slate-100">
+                <SelectTrigger className="bg-card border-border text-foreground">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
+                <SelectContent className="bg-card border-border">
                   {QUARTILES.map(([value, label]) => (
-                    <SelectItem key={value} value={value} className="text-slate-200 focus:bg-slate-700 focus:text-slate-100">
+                    <SelectItem key={value} value={value} className="text-muted-foreground focus:bg-[#444444] focus:text-foreground">
                       {label}
                     </SelectItem>
                   ))}
@@ -388,30 +388,30 @@ export function RateActions({
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="adjust-rate" className="text-slate-300">Day Rate (£)</Label>
+              <Label htmlFor="adjust-rate" className="text-muted-foreground">Day Rate (£)</Label>
               <Input
                 id="adjust-rate"
                 type="number"
                 value={adjustDayRate}
                 onChange={(e) => setAdjustDayRate(e.target.value)}
-                className="bg-slate-800 border-slate-700 text-slate-100"
+                className="bg-card border-border text-foreground"
               />
               {adjustDayRate && !isNaN(parseFloat(adjustDayRate)) && (
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   £{(parseFloat(adjustDayRate) / 8).toFixed(2)}/hr
                 </p>
               )}
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="adjust-reason" className="text-slate-300">
-                Reason <span className="text-slate-500">(required)</span>
+              <Label htmlFor="adjust-reason" className="text-muted-foreground">
+                Reason <span className="text-muted-foreground">(required)</span>
               </Label>
               <Input
                 id="adjust-reason"
                 value={adjustReason}
                 onChange={(e) => setAdjustReason(e.target.value)}
-                className="bg-slate-800 border-slate-700 text-slate-100"
+                className="bg-card border-border text-foreground"
                 placeholder="e.g. Promoted to foreman, Agreed lower rate"
               />
             </div>
@@ -421,14 +421,14 @@ export function RateActions({
           <DialogFooter>
             <Button
               variant="outline"
-              className="border-slate-700 text-slate-300 hover:bg-slate-800"
+              className="border-border text-muted-foreground hover:bg-card"
               onClick={() => setAdjustOpen(false)}
               disabled={adjustLoading}
             >
               Cancel
             </Button>
             <Button
-              className="bg-emerald-600 hover:bg-emerald-500 text-white"
+              className="bg-forest-600 hover:bg-forest-500 text-white"
               onClick={handleAdjust}
               disabled={adjustLoading}
             >

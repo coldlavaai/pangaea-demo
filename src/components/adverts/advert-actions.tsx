@@ -77,7 +77,7 @@ export function AdvertActions({
         {currentStatus === 'draft' && (
           <Button
             size="sm"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white"
+            className="bg-forest-600 hover:bg-forest-700 text-white"
             onClick={() => handleStatusChange('active')}
             disabled={!!loading}
           >
@@ -112,7 +112,7 @@ export function AdvertActions({
           <>
             <Button
               size="sm"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="bg-forest-600 hover:bg-forest-700 text-white"
               onClick={() => handleStatusChange('active')}
               disabled={!!loading}
             >
@@ -137,45 +137,45 @@ export function AdvertActions({
         <Button
           size="sm"
           variant="ghost"
-          className="text-xs text-slate-400"
+          className="text-xs text-muted-foreground"
           onClick={() => setEditMode(true)}
         >
           Edit URL / budget
         </Button>
       ) : (
-        <div className="space-y-2 border border-slate-800 rounded-md p-3">
+        <div className="space-y-2 border border-border rounded-md p-3">
           <div>
-            <Label className="text-xs text-slate-400">External URL</Label>
+            <Label className="text-xs text-muted-foreground">External URL</Label>
             <Input
               value={urlInput}
               onChange={(e) => setUrlInput(e.target.value)}
               placeholder="https://..."
-              className="mt-1 h-8 text-xs bg-slate-800 border-slate-700 text-slate-100"
+              className="mt-1 h-8 text-xs bg-card border-border text-foreground"
             />
           </div>
           <div>
-            <Label className="text-xs text-slate-400">Platform Ad ID</Label>
+            <Label className="text-xs text-muted-foreground">Platform Ad ID</Label>
             <Input
               value={idInput}
               onChange={(e) => setIdInput(e.target.value)}
-              className="mt-1 h-8 text-xs font-mono bg-slate-800 border-slate-700 text-slate-100"
+              className="mt-1 h-8 text-xs font-mono bg-card border-border text-foreground"
             />
           </div>
           <div>
-            <Label className="text-xs text-slate-400">Budget (£)</Label>
+            <Label className="text-xs text-muted-foreground">Budget (£)</Label>
             <Input
               type="number"
               step="0.01"
               min="0"
               value={budgetInput}
               onChange={(e) => setBudgetInput(e.target.value)}
-              className="mt-1 h-8 text-xs bg-slate-800 border-slate-700 text-slate-100"
+              className="mt-1 h-8 text-xs bg-card border-border text-foreground"
             />
           </div>
           <div className="flex gap-2 pt-1">
             <Button
               size="sm"
-              className="h-7 text-xs bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="h-7 text-xs bg-forest-600 hover:bg-forest-700 text-white"
               onClick={handleSaveDetails}
               disabled={!!loading}
             >

@@ -190,7 +190,7 @@ export function DocumentUploadForm({ operativeId }: DocumentUploadFormProps) {
 
       {/* CV hint */}
       {docType === 'cv' && (
-        <div className="rounded-lg border border-emerald-800/50 bg-emerald-950/30 px-4 py-3 text-xs text-emerald-400">
+        <div className="rounded-lg border border-forest-800/50 bg-forest-950/30 px-4 py-3 text-xs text-forest-400">
           Upload a PDF or image of the CV — AI will automatically extract work history and populate the profile.
         </div>
       )}

@@ -208,14 +208,14 @@ export default async function OperativesPage({
           <div className="flex gap-2">
             <ExportTrapButton />
             {canImport && (
-              <Button asChild variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">
+              <Button asChild variant="outline" className="border-border text-muted-foreground hover:bg-card">
                 <Link href="/operatives/import">
                   <Upload className="h-4 w-4 mr-2" />
                   Import
                 </Link>
               </Button>
             )}
-            <Button asChild className="bg-emerald-600 text-white hover:bg-emerald-700">
+            <Button asChild className="bg-forest-600 text-white hover:bg-forest-700">
               <Link href="/operatives/new">
                 <Plus className="h-4 w-4 mr-2" />
                 Add Operative
@@ -226,31 +226,31 @@ export default async function OperativesPage({
       />
 
       {/* Stats strip */}
-      <div className="flex items-center gap-px rounded-lg border border-slate-800 bg-slate-900/40 overflow-hidden divide-x divide-slate-800">
+      <div className="flex items-center gap-px rounded-lg border border-border bg-background/40 overflow-hidden divide-x divide-border">
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <Users className="h-3.5 w-3.5 text-slate-500 shrink-0" />
-          <span className="text-lg font-bold text-slate-100 tabular-nums">{totalCount ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Total</span>
+          <Users className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+          <span className="text-lg font-bold text-foreground tabular-nums">{totalCount ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Total</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <span className="text-lg font-bold text-emerald-400 tabular-nums">{availableCount ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Contactable</span>
+          <span className="text-lg font-bold text-forest-400 tabular-nums">{availableCount ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Contactable</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
           <span className="text-lg font-bold text-blue-400 tabular-nums">{workingCount ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Working</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Working</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <span className={`text-lg font-bold tabular-nums ${(blockedCount ?? 0) > 0 ? 'text-red-400' : 'text-slate-400'}`}>{blockedCount ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Blocked</span>
+          <span className={`text-lg font-bold tabular-nums ${(blockedCount ?? 0) > 0 ? 'text-red-400' : 'text-muted-foreground'}`}>{blockedCount ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Blocked</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <span className={`text-lg font-bold tabular-nums ${(complianceCount ?? 0) > 0 ? 'text-amber-400' : 'text-slate-400'}`}>{complianceCount ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Compliance</span>
+          <span className={`text-lg font-bold tabular-nums ${(complianceCount ?? 0) > 0 ? 'text-amber-400' : 'text-muted-foreground'}`}>{complianceCount ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Compliance</span>
         </div>
         <div className="flex items-center gap-2.5 px-4 py-2 flex-1">
-          <span className={`text-lg font-bold tabular-nums ${(dataIssuesCount ?? 0) > 0 ? 'text-orange-400' : 'text-slate-400'}`}>{dataIssuesCount ?? 0}</span>
-          <span className="text-[10px] text-slate-500 uppercase tracking-wide">Data Issues</span>
+          <span className={`text-lg font-bold tabular-nums ${(dataIssuesCount ?? 0) > 0 ? 'text-orange-400' : 'text-muted-foreground'}`}>{dataIssuesCount ?? 0}</span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Data Issues</span>
         </div>
       </div>
 
@@ -281,7 +281,7 @@ export default async function OperativesPage({
           title="No operatives found"
           description="Add your first operative or adjust your filters."
           action={
-            <Button asChild className="bg-emerald-600 text-white hover:bg-emerald-700">
+            <Button asChild className="bg-forest-600 text-white hover:bg-forest-700">
               <Link href="/operatives/new">Add Operative</Link>
             </Button>
           }
@@ -290,34 +290,34 @@ export default async function OperativesPage({
         <>
           {/* Pill bar for RAP view */}
           <div className="flex items-center gap-2 flex-wrap">
-            <Link href="/operatives" className="px-2.5 py-1 rounded-full text-xs font-medium border border-slate-700 text-slate-400 hover:bg-slate-800 transition-colors">
+            <Link href="/operatives" className="px-2.5 py-1 rounded-full text-xs font-medium border border-border text-muted-foreground hover:bg-card transition-colors">
               ← All Operatives
             </Link>
-            <span className="w-px h-4 bg-slate-700" />
-            <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-900/60 text-emerald-300 border border-emerald-700 flex items-center gap-1">
+            <span className="w-px h-4 bg-[#444444]" />
+            <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-forest-900/60 text-forest-300 border border-forest-700 flex items-center gap-1">
               <Star className="h-3 w-3" />
               RAP Scores
             </span>
-            <span className="text-xs text-slate-500 ml-auto">{rows.length} operative{rows.length !== 1 ? 's' : ''} — click Score to rate</span>
+            <span className="text-xs text-muted-foreground ml-auto">{rows.length} operative{rows.length !== 1 ? 's' : ''} — click Score to rate</span>
           </div>
           <RapTableView rows={rows as unknown as Parameters<typeof RapTableView>[0]['rows']} currentSort={currentSort} />
 
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between">
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-muted-foreground">
                 Page {currentPage} of {totalPages} ({filteredCount} operative{(filteredCount ?? 0) !== 1 ? 's' : ''})
               </p>
               <div className="flex gap-2">
                 {currentPage > 1 && (
-                  <Button asChild variant="outline" size="sm" className="border-slate-700 text-slate-300">
+                  <Button asChild variant="outline" size="sm" className="border-border text-muted-foreground">
                     <Link href={`/operatives?${new URLSearchParams({ ...Object.fromEntries(Object.entries(params).filter(([, v]) => v) as [string, string][]), page: String(currentPage - 1) }).toString()}`}>
                       <ChevronLeft className="h-4 w-4 mr-1" /> Previous
                     </Link>
                   </Button>
                 )}
                 {currentPage < totalPages && (
-                  <Button asChild variant="outline" size="sm" className="border-slate-700 text-slate-300">
+                  <Button asChild variant="outline" size="sm" className="border-border text-muted-foreground">
                     <Link href={`/operatives?${new URLSearchParams({ ...Object.fromEntries(Object.entries(params).filter(([, v]) => v) as [string, string][]), page: String(currentPage + 1) }).toString()}`}>
                       Next <ChevronRight className="h-4 w-4 ml-1" />
                     </Link>
@@ -339,8 +339,8 @@ export default async function OperativesPage({
                   href="/operatives"
                   className={`px-2.5 py-1 rounded-full text-xs font-medium border transition-colors ${
                     !params.compliance && !params.data_issues
-                      ? 'bg-slate-700 text-slate-200 border-slate-600'
-                      : 'border-slate-700 text-slate-400 hover:bg-slate-800'
+                      ? 'bg-[#444444] text-muted-foreground border-border'
+                      : 'border-border text-muted-foreground hover:bg-card'
                   }`}
                 >All</Link>
                 <Link
@@ -348,7 +348,7 @@ export default async function OperativesPage({
                   className={`px-2.5 py-1 rounded-full text-xs font-medium border transition-colors ${
                     params.compliance === 'issues'
                       ? 'bg-amber-900/60 text-amber-300 border-amber-700'
-                      : 'border-slate-700 text-slate-400 hover:bg-slate-800'
+                      : 'border-border text-muted-foreground hover:bg-card'
                   }`}
                 >
                   Compliance{(complianceCount ?? 0) > 0 && <span className="ml-1 bg-amber-700 text-amber-100 rounded-full px-1.5 text-[10px]">{complianceCount}</span>}
@@ -358,41 +358,41 @@ export default async function OperativesPage({
                   className={`px-2.5 py-1 rounded-full text-xs font-medium border transition-colors ${
                     params.data_issues === '1'
                       ? 'bg-orange-900/60 text-orange-300 border-orange-700'
-                      : 'border-slate-700 text-slate-400 hover:bg-slate-800'
+                      : 'border-border text-muted-foreground hover:bg-card'
                   }`}
                 >
                   Data Issues{(dataIssuesCount ?? 0) > 0 && <span className="ml-1 bg-orange-700 text-orange-100 rounded-full px-1.5 text-[10px]">{dataIssuesCount}</span>}
                 </Link>
-                <span className="w-px h-4 bg-slate-700 mx-1" />
+                <span className="w-px h-4 bg-[#444444] mx-1" />
                 <Link
                   href="/operatives?view=rap"
                   className={`px-2.5 py-1 rounded-full text-xs font-medium border transition-colors flex items-center gap-1 ${
                     params.view === 'rap'
-                      ? 'bg-emerald-900/60 text-emerald-300 border-emerald-700'
-                      : 'border-slate-700 text-slate-400 hover:bg-slate-800'
+                      ? 'bg-forest-900/60 text-forest-300 border-forest-700'
+                      : 'border-border text-muted-foreground hover:bg-card'
                   }`}
                 >
                   <Star className="h-3 w-3" />
                   RAP Scores
                 </Link>
-                <span className="w-px h-4 bg-slate-700 mx-1" />
+                <span className="w-px h-4 bg-[#444444] mx-1" />
                 <TooltipProvider delayDuration={0}>
                 {([
-                  { key: 'green', dot: 'bg-emerald-500',                          label: 'Labourer',     desc: 'H&S award (CITB HS&E test)' },
+                  { key: 'green', dot: 'bg-forest-500',                          label: 'Labourer',     desc: 'H&S award (CITB HS&E test)' },
                   { key: 'blue',  dot: 'bg-blue-500',                             label: 'Skilled',      desc: 'Fully qualified tradesperson — NVQ/SVQ L2' },
                   { key: 'gold',  dot: 'bg-amber-400',                            label: 'Advanced',     desc: 'Advanced craft/supervisory — NVQ/SVQ L3' },
-                  { key: 'black', dot: 'bg-neutral-800 border border-slate-500',  label: 'Manager',      desc: 'Site/contracts manager — NVQ L4+' },
+                  { key: 'black', dot: 'bg-neutral-800 border border-border',  label: 'Manager',      desc: 'Site/contracts manager — NVQ L4+' },
                   { key: 'red',   dot: 'bg-red-500',                              label: 'Trainee',      desc: 'In training or apprenticeship, not yet qualified' },
-                  { key: 'white', dot: 'bg-white border border-slate-400',        label: 'Pro/Academic', desc: 'Architects, engineers, surveyors or degree-level' },
+                  { key: 'white', dot: 'bg-white border border-border',        label: 'Pro/Academic', desc: 'Architects, engineers, surveyors or degree-level' },
                 ] as const).map(({ key, dot, label, desc }) => (
                   <Tooltip key={key}>
                     <TooltipTrigger asChild>
-                      <span className="flex items-center gap-1 text-[10px] text-slate-500 whitespace-nowrap cursor-help hover:text-slate-300 transition-colors">
+                      <span className="flex items-center gap-1 text-[10px] text-muted-foreground whitespace-nowrap cursor-help hover:text-muted-foreground transition-colors">
                         <span className={`inline-block h-2 w-2 rounded-full shrink-0 ${dot}`} />
                         {label}
                       </span>
                     </TooltipTrigger>
-                    <TooltipContent side="bottom" className="bg-slate-900 border border-slate-700 text-slate-200 text-[11px]">
+                    <TooltipContent side="bottom" className="bg-background border border-border text-muted-foreground text-[11px]">
                       {desc}
                     </TooltipContent>
                   </Tooltip>
@@ -405,7 +405,7 @@ export default async function OperativesPage({
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between">
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-muted-foreground">
                 Showing {offset + 1}–{Math.min(offset + PAGE_SIZE, filteredCount ?? 0)} of{' '}
                 {filteredCount ?? 0} operatives
               </p>
@@ -415,7 +415,7 @@ export default async function OperativesPage({
                     asChild
                     variant="outline"
                     size="sm"
-                    className="border-slate-700 text-slate-300 hover:bg-slate-800"
+                    className="border-border text-muted-foreground hover:bg-card"
                   >
                     <Link href={`/operatives?${buildParams(params, { page: String(currentPage - 1) })}`}>
                       <ChevronLeft className="h-4 w-4 mr-1" />
@@ -428,7 +428,7 @@ export default async function OperativesPage({
                     asChild
                     variant="outline"
                     size="sm"
-                    className="border-slate-700 text-slate-300 hover:bg-slate-800"
+                    className="border-border text-muted-foreground hover:bg-card"
                   >
                     <Link href={`/operatives?${buildParams(params, { page: String(currentPage + 1) })}`}>
                       Next

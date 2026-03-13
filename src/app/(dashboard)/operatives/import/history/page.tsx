@@ -92,7 +92,7 @@ export default async function ImportHistoryPage() {
         title="Import History"
         description={`${importLogs.length} import${importLogs.length !== 1 ? 's' : ''} — full audit trail with skipped and warned rows`}
         action={
-          <Button asChild variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">
+          <Button asChild variant="outline" className="border-border text-muted-foreground hover:bg-card">
             <Link href="/operatives">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Operatives

@@ -43,18 +43,18 @@ export function CommsMessages({ messages }: { messages: Message[] }) {
     <div className="flex flex-col gap-3">
       {/* Search bar */}
       <div className="relative shrink-0">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
         <input
           type="text"
           value={query}
           onChange={e => setQuery(e.target.value)}
           placeholder="Search messages…"
-          className="w-full rounded-md border border-slate-700 bg-slate-800/60 pl-9 pr-9 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-600"
+          className="w-full rounded-md border border-border bg-card/60 pl-9 pr-9 py-2 text-sm text-muted-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-forest-600"
         />
         {query && (
           <button
             onClick={() => setQuery('')}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-muted-foreground"
           >
             <X className="h-4 w-4" />
           </button>
@@ -62,7 +62,7 @@ export function CommsMessages({ messages }: { messages: Message[] }) {
       </div>
 
       {matchCount !== null && (
-        <p className="text-xs text-slate-500 shrink-0">
+        <p className="text-xs text-muted-foreground shrink-0">
           {matchCount === 0 ? 'No messages match' : `${matchCount} message${matchCount !== 1 ? 's' : ''} found`}
         </p>
       )}
@@ -70,9 +70,9 @@ export function CommsMessages({ messages }: { messages: Message[] }) {
       {/* Messages */}
       <div className="space-y-3 py-2">
         {filtered.length === 0 && query ? (
-          <div className="text-center py-12 text-slate-600 text-sm">No messages match &ldquo;{query}&rdquo;</div>
+          <div className="text-center py-12 text-muted-foreground text-sm">No messages match &ldquo;{query}&rdquo;</div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-12 text-slate-600 text-sm">No messages in this thread</div>
+          <div className="text-center py-12 text-muted-foreground text-sm">No messages in this thread</div>
         ) : (
           filtered.map((msg) => {
             const isInbound = msg.direction === 'inbound'
@@ -84,15 +84,15 @@ export function CommsMessages({ messages }: { messages: Message[] }) {
                 <div
                   className={`max-w-sm rounded-2xl px-4 py-2.5 space-y-1 ${
                     isInbound
-                      ? 'bg-slate-800 border border-slate-700 rounded-tl-sm'
-                      : 'bg-emerald-900/60 border border-emerald-800 rounded-tr-sm'
+                      ? 'bg-card border border-border rounded-tl-sm'
+                      : 'bg-forest-900/60 border border-forest-800 rounded-tr-sm'
                   }`}
                 >
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     {isInbound ? (
-                      <><ArrowDownLeft className="h-3 w-3 text-emerald-500" /><span>Inbound</span></>
+                      <><ArrowDownLeft className="h-3 w-3 text-forest-500" /><span>Inbound</span></>
                     ) : (
-                      <><ArrowUpRight className="h-3 w-3 text-slate-400" /><span>Outbound</span></>
+                      <><ArrowUpRight className="h-3 w-3 text-muted-foreground" /><span>Outbound</span></>
                     )}
                     <span className="ml-auto">
                       {msg.created_at ? format(new Date(msg.created_at), 'd MMM HH:mm') : ''}
@@ -100,14 +100,14 @@ export function CommsMessages({ messages }: { messages: Message[] }) {
                   </div>
 
                   {msg.body && (
-                    <p className="text-sm text-slate-200 whitespace-pre-wrap leading-relaxed">
+                    <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">
                       {highlightMatch(msg.body, query)}
                     </p>
                   )}
 
                   {msg.media_url && (
                     <a href={msg.media_url} target="_blank" rel="noopener noreferrer"
-                      className="text-xs text-emerald-400 hover:underline block mt-1">
+                      className="text-xs text-forest-400 hover:underline block mt-1">
                       📎 {msg.media_type ?? 'Attachment'}
                     </a>
                   )}
@@ -117,7 +117,7 @@ export function CommsMessages({ messages }: { messages: Message[] }) {
                   )}
 
                   {!isInbound && msg.status && msg.status !== 'sent' && (
-                    <p className="text-xs text-slate-600">{msg.status}</p>
+                    <p className="text-xs text-muted-foreground">{msg.status}</p>
                   )}
                 </div>
               </div>

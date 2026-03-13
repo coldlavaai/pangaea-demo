@@ -34,7 +34,7 @@ export default async function InductionPage({
   const firstName = operative?.first_name ?? 'there'
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-lg mx-auto px-4 py-8">
 
         {/* Header */}
@@ -43,26 +43,26 @@ export default async function InductionPage({
             <span className="text-[#D4AF37] font-bold text-base">A</span>
           </div>
           <div>
-            <p className="font-bold text-slate-100 tracking-wide text-sm">AZTEC LANDSCAPES</p>
-            <p className="text-xs text-slate-500">Company Induction</p>
+            <p className="font-bold text-foreground tracking-wide text-sm">AZTEC LANDSCAPES</p>
+            <p className="text-xs text-muted-foreground">Company Induction</p>
           </div>
         </div>
 
         {allocation.induction_complete ? (
-          <div className="rounded-xl border border-emerald-800/40 bg-emerald-950/30 p-6 text-center space-y-4">
+          <div className="rounded-xl border border-forest-800/40 bg-forest-950/30 p-6 text-center space-y-4">
             <div className="text-4xl">✅</div>
             <h2 className="text-xl font-bold text-white">Already Completed</h2>
-            <p className="text-slate-400 text-sm">
+            <p className="text-muted-foreground text-sm">
               Your induction has already been recorded. No further action needed.
             </p>
           </div>
         ) : (
           <div className="space-y-4">
-            <div className="rounded-xl border border-slate-800 bg-slate-900 p-5">
-              <h2 className="text-base font-semibold text-slate-100 mb-1">
+            <div className="rounded-xl border border-border bg-background p-5">
+              <h2 className="text-base font-semibold text-foreground mb-1">
                 Hi {firstName} — welcome to Pangaea
               </h2>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {site?.name ? `You are starting at ${site.name}. ` : ''}
                 Please complete this short induction before your first day. It takes about 3 minutes.
               </p>
@@ -76,7 +76,7 @@ export default async function InductionPage({
           </div>
         )}
 
-        <p className="text-center text-xs text-slate-700 mt-8">
+        <p className="text-center text-xs text-muted-foreground mt-8">
           Pangaea Limited · Company Induction Record
         </p>
       </div>

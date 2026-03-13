@@ -20,13 +20,13 @@ interface Notification {
 }
 
 const severityBorder: Record<string, string> = {
-  info:     'border-l-slate-500',
+  info:     'border-l-forest-500',
   warning:  'border-l-amber-500',
   critical: 'border-l-red-500',
 }
 
 const severityDot: Record<string, string> = {
-  info:     'bg-slate-400',
+  info:     'bg-muted',
   warning:  'bg-amber-400',
   critical: 'bg-red-400',
 }
@@ -125,63 +125,63 @@ export function AlertsBell() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => { setOpen(o => !o); if (!open) fetchNotifications() }}
-        className="relative inline-flex items-center justify-center h-8 w-8 rounded-md text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors"
+        className="relative inline-flex items-center justify-center h-8 w-8 rounded-md text-muted-foreground hover:text-muted-foreground hover:bg-card transition-colors"
         aria-label="Notifications"
       >
         <Bell className="h-5 w-5" />
         {unreadCount > 0 && (
-          <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[9px] font-bold text-slate-950 leading-none">
+          <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[9px] font-bold text-foreground leading-none">
             {unreadCount > 99 ? '99+' : unreadCount}
           </span>
         )}
       </button>
 
       {open && (
-        <div className="absolute right-0 top-10 z-[9999] w-96 rounded-lg border border-slate-700 bg-slate-900 shadow-2xl">
+        <div className="absolute right-0 top-10 z-[9999] w-96 rounded-lg border border-border bg-background shadow-2xl">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700">
-            <span className="text-sm font-semibold text-slate-200">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+            <span className="text-sm font-semibold text-muted-foreground">
               Notifications {unreadCount > 0 && <span className="ml-1.5 text-xs text-amber-400">({unreadCount} unread)</span>}
             </span>
             <div className="flex items-center gap-3">
               {unreadCount > 0 && (
                 <button
                   onClick={markAllRead}
-                  className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-200 transition-colors"
+                  className="flex items-center gap-1 text-xs text-muted-foreground hover:text-muted-foreground transition-colors"
                 >
                   <CheckCheck className="h-3.5 w-3.5" />
                   Mark all read
                 </button>
               )}
-              <button onClick={() => setOpen(false)} className="text-slate-500 hover:text-slate-300">
+              <button onClick={() => setOpen(false)} className="text-muted-foreground hover:text-muted-foreground">
                 <X className="h-4 w-4" />
               </button>
             </div>
           </div>
 
           {/* List */}
-          <div className="max-h-[28rem] overflow-y-auto divide-y divide-slate-800/60">
+          <div className="max-h-[28rem] overflow-y-auto divide-y divide-border/60">
             {loading ? (
-              <div className="px-4 py-8 text-center text-sm text-slate-500">Loading…</div>
+              <div className="px-4 py-8 text-center text-sm text-muted-foreground">Loading…</div>
             ) : notifications.length === 0 ? (
-              <div className="px-4 py-8 text-center text-sm text-slate-500">No notifications</div>
+              <div className="px-4 py-8 text-center text-sm text-muted-foreground">No notifications</div>
             ) : (
               notifications.map(n => (
                 <button
                   key={n.id}
                   onClick={() => markRead(n)}
-                  className={`w-full text-left px-4 py-3 border-l-2 transition-colors hover:bg-slate-800/50 ${severityBorder[n.severity] ?? 'border-l-slate-500'}`}
+                  className={`w-full text-left px-4 py-3 border-l-2 transition-colors hover:bg-card/50 ${severityBorder[n.severity] ?? 'border-l-forest-500'}`}
                 >
                   <div className="flex items-start gap-2.5">
-                    <span className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${severityDot[n.severity] ?? 'bg-slate-400'} ${n.read ? 'opacity-25' : ''}`} />
+                    <span className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${severityDot[n.severity] ?? 'bg-muted'} ${n.read ? 'opacity-25' : ''}`} />
                     <div className="flex-1 min-w-0">
-                      <p className={`text-sm font-medium leading-snug ${n.read ? 'text-slate-500' : 'text-slate-200'}`}>
+                      <p className={`text-sm font-medium leading-snug ${n.read ? 'text-muted-foreground' : 'text-muted-foreground'}`}>
                         {n.title}
                       </p>
                       {n.body && (
-                        <p className="mt-0.5 text-xs text-slate-500 line-clamp-2">{n.body}</p>
+                        <p className="mt-0.5 text-xs text-muted-foreground line-clamp-2">{n.body}</p>
                       )}
-                      <p className="mt-1 text-[10px] text-slate-600">{timeAgo(n.created_at)}</p>
+                      <p className="mt-1 text-[10px] text-muted-foreground">{timeAgo(n.created_at)}</p>
                     </div>
                   </div>
                 </button>
@@ -189,11 +189,11 @@ export function AlertsBell() {
             )}
           </div>
 
-          <div className="border-t border-slate-700 px-4 py-2 text-center">
+          <div className="border-t border-border px-4 py-2 text-center">
             <Link
               href="/activity"
               onClick={() => setOpen(false)}
-              className="text-xs text-slate-400 hover:text-slate-200 transition-colors"
+              className="text-xs text-muted-foreground hover:text-muted-foreground transition-colors"
             >
               View all activity →
             </Link>

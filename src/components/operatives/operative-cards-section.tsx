@@ -74,15 +74,15 @@ function MiniDatePicker({ value, onChange }: { value: string; onChange: (v: stri
       <PopoverTrigger asChild>
         <button
           type="button"
-          className="flex h-9 w-full items-center justify-between rounded-md border border-slate-700 bg-slate-800 px-3 py-1 text-sm text-slate-100"
+          className="flex h-9 w-full items-center justify-between rounded-md border border-border bg-card px-3 py-1 text-sm text-foreground"
         >
-          <span className={selected ? '' : 'text-slate-500'}>
+          <span className={selected ? '' : 'text-muted-foreground'}>
             {selected ? format(selected, 'dd/MM/yyyy') : 'Expiry date'}
           </span>
-          <CalendarIcon className="h-4 w-4 text-slate-400 shrink-0" />
+          <CalendarIcon className="h-4 w-4 text-muted-foreground shrink-0" />
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 bg-slate-800 border-slate-700" align="start">
+      <PopoverContent className="w-auto p-0 bg-card border-border" align="start">
         <div className="dark">
           <Calendar
             mode="single"
@@ -158,16 +158,16 @@ function CardSlot({
   const hasData = existing?.card_number || existing?.expiry_date
 
   return (
-    <div className="rounded-md border border-slate-800 bg-slate-900/40 p-3 space-y-2">
+    <div className="rounded-md border border-border bg-background/40 p-3 space-y-2">
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold text-slate-200">{scheme.label}</span>
-          <span className="ml-2 text-xs text-slate-500">{scheme.description}</span>
+          <span className="text-xs font-semibold text-muted-foreground">{scheme.label}</span>
+          <span className="ml-2 text-xs text-muted-foreground">{scheme.description}</span>
         </div>
         <Button
           size="sm"
           variant="ghost"
-          className="h-7 px-2 text-slate-400 hover:text-slate-200"
+          className="h-7 px-2 text-muted-foreground hover:text-muted-foreground"
           onClick={() => setEditing((e) => !e)}
         >
           {hasData ? (
@@ -182,39 +182,39 @@ function CardSlot({
         <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
           {existing?.card_number && (
             <>
-              <span className="text-xs text-slate-500">Card No.</span>
-              <span className="text-xs font-mono text-slate-200">{existing.card_number}</span>
+              <span className="text-xs text-muted-foreground">Card No.</span>
+              <span className="text-xs font-mono text-muted-foreground">{existing.card_number}</span>
             </>
           )}
           {existing?.card_type && (
             <>
-              <span className="text-xs text-slate-500">Type</span>
-              <span className="text-xs text-slate-300">{existing.card_type}</span>
+              <span className="text-xs text-muted-foreground">Type</span>
+              <span className="text-xs text-muted-foreground">{existing.card_type}</span>
             </>
           )}
           {existing?.categories && (
             <>
-              <span className="text-xs text-slate-500">Categories</span>
-              <span className="text-xs text-slate-300">{existing.categories}</span>
+              <span className="text-xs text-muted-foreground">Categories</span>
+              <span className="text-xs text-muted-foreground">{existing.categories}</span>
             </>
           )}
           {existing?.expiry_date && (
             <>
-              <span className="text-xs text-slate-500">Expiry</span>
-              <span className="text-xs text-slate-300">{fmtDate(existing.expiry_date)}</span>
+              <span className="text-xs text-muted-foreground">Expiry</span>
+              <span className="text-xs text-muted-foreground">{fmtDate(existing.expiry_date)}</span>
             </>
           )}
           {'hasSchemeName' in scheme && existing?.scheme_name && (
             <>
-              <span className="text-xs text-slate-500">Scheme</span>
-              <span className="text-xs text-slate-300">{existing.scheme_name}</span>
+              <span className="text-xs text-muted-foreground">Scheme</span>
+              <span className="text-xs text-muted-foreground">{existing.scheme_name}</span>
             </>
           )}
         </div>
       )}
 
       {!editing && !hasData && (
-        <p className="text-xs text-slate-600 italic">Not recorded</p>
+        <p className="text-xs text-muted-foreground italic">Not recorded</p>
       )}
 
       {editing && (
@@ -225,32 +225,32 @@ function CardSlot({
 
           {'hasSchemeName' in scheme && (
             <div>
-              <Label className="text-xs text-slate-400">Scheme Name</Label>
+              <Label className="text-xs text-muted-foreground">Scheme Name</Label>
               <Input
                 value={schemeName}
                 onChange={(e) => setSchemeName(e.target.value)}
                 placeholder="e.g. NPORS, PASMA, IPAF"
-                className="mt-1 h-8 text-xs bg-slate-800 border-slate-700 text-slate-100"
+                className="mt-1 h-8 text-xs bg-card border-border text-foreground"
               />
             </div>
           )}
 
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <Label className="text-xs text-slate-400">Card Number</Label>
+              <Label className="text-xs text-muted-foreground">Card Number</Label>
               <Input
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
-                className="mt-1 h-8 text-xs font-mono bg-slate-800 border-slate-700 text-slate-100"
+                className="mt-1 h-8 text-xs font-mono bg-card border-border text-foreground"
               />
             </div>
             {scheme.types.length > 0 && (
               <div>
-                <Label className="text-xs text-slate-400">Card Type</Label>
+                <Label className="text-xs text-muted-foreground">Card Type</Label>
                 <select
                   value={cardType}
                   onChange={(e) => setCardType(e.target.value)}
-                  className="mt-1 h-8 w-full rounded-md border border-slate-700 bg-slate-800 px-2 text-xs text-slate-100"
+                  className="mt-1 h-8 w-full rounded-md border border-border bg-card px-2 text-xs text-foreground"
                 >
                   <option value="">Select type</option>
                   {scheme.types.map((t) => (
@@ -262,24 +262,24 @@ function CardSlot({
           </div>
 
           <div>
-            <Label className="text-xs text-slate-400">Main Categories on Card</Label>
+            <Label className="text-xs text-muted-foreground">Main Categories on Card</Label>
             <Input
               value={categories}
               onChange={(e) => setCategories(e.target.value)}
               placeholder="e.g. 360° Excavator, Forward Tipping Dumper"
-              className="mt-1 h-8 text-xs bg-slate-800 border-slate-700 text-slate-100"
+              className="mt-1 h-8 text-xs bg-card border-border text-foreground"
             />
           </div>
 
           <div>
-            <Label className="text-xs text-slate-400">Expiry Date</Label>
+            <Label className="text-xs text-muted-foreground">Expiry Date</Label>
             <div className="mt-1">
               <MiniDatePicker value={expiryDate} onChange={setExpiryDate} />
             </div>
           </div>
 
           <div className="flex gap-2 pt-1">
-            <Button size="sm" className="h-7 text-xs bg-emerald-600 hover:bg-emerald-700 text-white" onClick={handleSave} disabled={saving}>
+            <Button size="sm" className="h-7 text-xs bg-forest-600 hover:bg-forest-700 text-white" onClick={handleSave} disabled={saving}>
               {saving && <Loader2 className="h-3.5 w-3.5 mr-1 animate-spin" />}
               Save
             </Button>
