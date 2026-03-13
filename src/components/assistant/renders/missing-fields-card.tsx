@@ -61,7 +61,7 @@ export function MissingFieldsCard({ data, onAction }: { data: MissingFieldsData;
     if (!onAction) return
     const normalizedFields = normalizeDataFields(checkedData)
     const docKeys = checkedDocs.map(i => i.key)
-    // Compose a single unambiguous instruction for ALF to trigger ONE profile_completion workflow
+    // Compose a single unambiguous instruction for Rex to trigger ONE profile_completion workflow
     const fieldsPart = normalizedFields.length > 0 ? `data_fields: [${normalizedFields.join(', ')}]` : ''
     const docsPart = docKeys.length > 0 ? `document_types: [${docKeys.join(', ')}]` : ''
     const params = [fieldsPart, docsPart].filter(Boolean).join(', ')

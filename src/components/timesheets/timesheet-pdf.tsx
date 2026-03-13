@@ -172,7 +172,7 @@ export function TimesheetPDF({ ts, entries }: Props) {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.brandName}>ALF</Text>
+            <Text style={styles.brandName}>Rex</Text>
             <Text style={styles.brandSub}>AZTEC LABOUR FORCE</Text>
           </View>
           <View>
@@ -310,7 +310,7 @@ export function TimesheetPDF({ ts, entries }: Props) {
 
         {/* Footer */}
         <View style={styles.footer} fixed>
-          <Text style={styles.footerText}>Generated {generatedAt} · Aztec Construction</Text>
+          <Text style={styles.footerText}>Generated {generatedAt} · Pangaea</Text>
           <Text style={styles.footerText} render={({ pageNumber, totalPages }) => `Page ${pageNumber} of ${totalPages}`} />
         </View>
       </Page>

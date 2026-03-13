@@ -721,7 +721,7 @@ export function OperativeForm({
               <DatePicker
                 value={field.value}
                 onChange={field.onChange}
-                placeholder="Date started with Aztec"
+                placeholder="Date started with the company"
                 fromYear={2000}
                 toYear={new Date().getFullYear() + 1}
                 fieldClass={fieldClass}

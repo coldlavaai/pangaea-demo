@@ -161,7 +161,7 @@ const COLUMN_DEFS: ColDef[] = [
       const cfg: Record<string, { label: string; cls: string }> = {
         manual:   { label: 'Manual',   cls: 'bg-slate-800 text-slate-400 border-slate-700' },
         import:   { label: 'Import',   cls: 'bg-blue-950/60 text-blue-400 border-blue-900/50' },
-        sophie:   { label: 'Sophie',   cls: 'bg-emerald-950/60 text-emerald-400 border-emerald-900/50' },
+        sophie:   { label: 'Amber',   cls: 'bg-emerald-950/60 text-emerald-400 border-emerald-900/50' },
         referral: { label: 'Referral', cls: 'bg-purple-950/60 text-purple-400 border-purple-900/50' },
         other:    { label: 'Other',    cls: 'bg-slate-800 text-slate-500 border-slate-700' },
       }

@@ -531,7 +531,7 @@ export function ImportWizard() {
         </h3>
         <ul className="text-xs text-slate-400 space-y-1 list-disc list-inside">
           <li>Export your spreadsheet as <strong className="text-slate-300">CSV</strong></li>
-          <li>All Aztec headers are auto-detected — no renaming needed</li>
+          <li>All standard headers are auto-detected — no renaming needed</li>
           <li>Up to <strong className="text-slate-300">5,000 rows</strong> per upload</li>
           <li>Duplicates (matched by phone or NI) are skipped automatically</li>
           <li>All operatives created with status <strong className="text-slate-300">Prospect</strong></li>
@@ -540,7 +540,7 @@ export function ImportWizard() {
       <div className="rounded-lg border border-amber-800 bg-amber-950/20 p-3 flex gap-2 items-start">
         <ShieldAlert className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
         <p className="text-xs text-amber-300">
-          You are uploading <strong>personal data</strong>. Ensure Aztec Landscapes has a valid legal basis
+          You are uploading <strong>personal data</strong>. Ensure Pangaea has a valid legal basis
           under UK GDPR. All imports are logged with your name and timestamp.
         </p>
       </div>

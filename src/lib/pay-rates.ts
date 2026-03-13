@@ -1,8 +1,8 @@
 /**
- * Aztec Landscapes — Pay Rate Lookup
+ * Pangaea — Pay Rate Lookup
  *
- * Uses Aztec's actual grade/quartile rate card from:
- * docs/client/Aztec_Grade_Pay_Rates.csv
+ * Uses Pangaea's actual grade/quartile rate card from:
+ * docs/client/Grade_Pay_Rates.csv
  *
  * Rates are HOURLY. Day rate = hourly × 8.
  * Grade is inferred from CSCS colour on intake.
@@ -10,9 +10,9 @@
  * Liam confirms/adjusts after meeting the operative.
  */
 
-// Aztec's hourly pay rates by grade and quartile
+// Pangaea's hourly pay rates by grade and quartile
 // Each quartile has [min, max] in £/hr
-// Source: Aztec-worker-database-New.xlsm "Grades Margin By Quartile" sheet
+// Source: Company-worker-database-New.xlsm "Grades Margin By Quartile" sheet
 const AZTEC_RATES: Record<string, { q1: [number, number]; q2: [number, number]; q3: [number, number]; q4: [number, number] }> = {
   skilled:           { q1: [14.00, 14.75], q2: [14.76, 15.50], q3: [15.51, 16.25], q4: [16.26, 17.00] },
   highly_skilled:    { q1: [17.01, 18.01], q2: [18.02, 19.01], q3: [19.02, 20.00], q4: [20.01, 21.00] },
@@ -26,7 +26,7 @@ const AZTEC_RATES: Record<string, { q1: [number, number]; q2: [number, number]; 
 }
 
 // Confirmed flat rates for operational grades (not quartile-based)
-// pay = what operative receives, charge = what Aztec bills the site
+// pay = what operative receives, charge = what the company bills the site
 // Source: workers spreadsheet col 8 (charge) + Q1 answers from Liam (2026-03-07)
 // NOTE: pay rates for most operational grades vary per individual — only confirmed flat rates stored here
 export const OPERATIONAL_RATES: Record<string, { charge: number; pay: number | null }> = {
@@ -74,8 +74,8 @@ export interface EstimatedRate {
 /**
  * Estimate an operative's day rate based on intake data.
  *
- * @param cscsColour - CSCS card colour from Sophie (null if no card)
- * @param experienceYears - Years of experience from Sophie
+ * @param cscsColour - CSCS card colour from Amber (null if no card)
+ * @param experienceYears - Years of experience from Amber
  * @returns EstimatedRate — rate, grade, quartile, and explanation
  */
 export function estimateDayRate(

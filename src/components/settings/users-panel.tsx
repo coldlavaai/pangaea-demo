@@ -608,7 +608,7 @@ export function UsersPanel({
                 <div className="rounded-md bg-sky-950/40 border border-sky-900 px-3 py-2 text-xs text-sky-300 space-y-1">
                   <p className="font-medium">Site Manager setup:</p>
                   <p>1. Send them the link below to set their password</p>
-                  <p>2. Tell them to download Telegram and message <span className="font-mono">@AztecSiteBot</span></p>
+                  <p>2. Tell them to download Telegram and message <span className="font-mono">@PangaeaSiteBot</span></p>
                   <p>3. They type their email in the bot to activate site manager commands</p>
                 </div>
               )}
@@ -663,7 +663,7 @@ export function UsersPanel({
                 type="email"
                 value={inviteForm.email}
                 onChange={(e) => setInviteForm((f) => ({ ...f, email: e.target.value }))}
-                placeholder="jj@azteclandscapes.co.uk"
+                placeholder="user@company.co.uk"
                 className="bg-slate-800 border-slate-700 text-slate-200"
               />
             </div>

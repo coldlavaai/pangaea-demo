@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import type { ToolResult } from '../types'
 
-const ORG_ID = '00000000-0000-0000-0000-000000000001'
+const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
 
 const TRADE_SLANG: Record<string, string> = {
   brickies: 'bricklayer', brickie: 'bricklayer',

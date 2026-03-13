@@ -18,8 +18,8 @@ export interface ChatMessage {
   } | null
 }
 
-const STORAGE_KEY_MESSAGES = 'alf-widget-messages'
-const STORAGE_KEY_CONV_ID = 'alf-widget-conversation-id'
+const STORAGE_KEY_MESSAGES = 'rex-widget-messages'
+const STORAGE_KEY_CONV_ID = 'rex-widget-conversation-id'
 
 function loadPersistedMessages(): ChatMessage[] {
   if (typeof window === 'undefined') return []

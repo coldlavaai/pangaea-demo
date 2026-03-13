@@ -3,7 +3,7 @@ import { createShortLink } from '@/lib/whatsapp/shorten'
 
 /**
  * Generate a secure 24-hour upload token for an operative and persist it to the DB.
- * Reusable by both Sophie intake and workflow engine.
+ * Reusable by both Amber intake and workflow engine.
  */
 export async function generateUploadToken(
   supabase: SupabaseClient,

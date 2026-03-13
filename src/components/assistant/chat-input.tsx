@@ -11,7 +11,7 @@ interface ChatInputProps {
   className?: string
 }
 
-export function ChatInput({ onSend, disabled, placeholder = 'Ask ALF anything...', className }: ChatInputProps) {
+export function ChatInput({ onSend, disabled, placeholder = 'Ask Rex anything...', className }: ChatInputProps) {
   const [value, setValue] = useState('')
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 

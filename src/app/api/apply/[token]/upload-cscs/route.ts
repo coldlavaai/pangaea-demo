@@ -149,7 +149,7 @@ export async function POST(
   }
 
   const cscsNotes = [
-    'AI-verified via upload form (Sophie intake). Awaiting Liam review.',
+    'AI-verified via upload form (Amber intake). Awaiting Liam review.',
     ...(flags.length > 0 ? [`⚠️ ${flags.join(' | ')}`] : []),
   ].join(' ')
 
@@ -159,7 +159,7 @@ export async function POST(
     document_type: 'cscs_card',
     file_url: cscsUrl,
     file_key: path,
-    file_name: `CSCS Card${parsed.card_colour ? ` (${parsed.card_colour})` : ''} (Sophie intake)`,
+    file_name: `CSCS Card${parsed.card_colour ? ` (${parsed.card_colour})` : ''} (Amber intake)`,
     status: 'pending',
     notes: cscsNotes,
     expiry_date: parsed.expiry_date ?? null,
@@ -174,7 +174,7 @@ export async function POST(
     try {
       await sendWhatsApp(
         resolvedOperative.phone as string,
-        `Thanks ${firstName}! ✅ We've received all your documents.\n\n📄 *Passport / Driving Licence* — verified\n🪪 *${cscsColourLabel} CSCS Card* — verified\n\nThese confirm your identity and qualifications to work with Aztec Landscapes. If you have any questions, just reply here and I'll help. Our Labour Manager will be in touch within 1–3 working days. 👷`
+        `Thanks ${firstName}! ✅ We've received all your documents.\n\n📄 *Passport / Driving Licence* — verified\n🪪 *${cscsColourLabel} CSCS Card* — verified\n\nThese confirm your identity and qualifications to work with Pangaea. If you have any questions, just reply here and I'll help. Our Labour Manager will be in touch within 1–3 working days. 👷`
       )
     } catch (e) {
       console.error('[upload-cscs] confirmation send error', e)

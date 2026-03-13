@@ -37,7 +37,7 @@ export async function translateText(
       max_tokens: 1024,
       messages: [{
         role: 'user',
-        content: `Translate this WhatsApp message to ${langName}. Return ONLY the translation, nothing else. Keep any URLs, phone numbers, names, and the company name "Aztec Construction" unchanged. Keep emoji if present.\n\n${text}`,
+        content: `Translate this WhatsApp message to ${langName}. Return ONLY the translation, nothing else. Keep any URLs, phone numbers, names, and the company name "Pangaea" unchanged. Keep emoji if present.\n\n${text}`,
       }],
     })
 

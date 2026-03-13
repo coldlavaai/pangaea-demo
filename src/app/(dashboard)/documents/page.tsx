@@ -232,7 +232,7 @@ export default async function CompliancePage({
                           <span className={`inline-block h-2.5 w-2.5 rounded-full shrink-0 ${CSCS_DOT_CLASS[doc.operative.cscs_card_type]}`} />
                         )}
                         {doc.file_name
-                          ? doc.file_name.replace(' (Sophie intake)', '')
+                          ? doc.file_name.replace(' (Amber intake)', '')
                           : DOC_TYPE_LABELS[doc.document_type] ?? doc.document_type}
                       </Link>
                     </td>

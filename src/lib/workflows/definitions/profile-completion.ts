@@ -34,7 +34,7 @@ function buildProfileMessage(
     parts.push(documentTypes.length === 1 ? 'a document' : 'some documents')
   }
   const what = parts.join(' and ')
-  return `Hi ${firstName}, we need ${what} from you to keep your record up to date. Please use this link: ${link} — Aztec Construction`
+  return `Hi ${firstName}, we need ${what} from you to keep your record up to date. Please use this link: ${link} — Pangaea`
 }
 
 export const profileCompletionWorkflow: WorkflowDefinition = {
@@ -124,7 +124,7 @@ export const profileCompletionWorkflow: WorkflowDefinition = {
       // Re-engagement after follow-up — send reminder
       await sendTranslatedWhatsApp(
         phone,
-        `Hi ${first_name}, just a reminder — we still need a few things from you to keep your record up to date: ${link} — Aztec Construction`,
+        `Hi ${first_name}, just a reminder — we still need a few things from you to keep your record up to date: ${link} — Pangaea`,
         target.operative.preferred_language,
       )
     } else {
@@ -219,7 +219,7 @@ export const profileCompletionWorkflow: WorkflowDefinition = {
 
     await smartSendWhatsApp({
       phone,
-      freeformBody: `Hi ${first_name}, just a reminder — we still need a few things from you to keep your record up to date: ${link} — Aztec Construction`,
+      freeformBody: `Hi ${first_name}, just a reminder — we still need a few things from you to keep your record up to date: ${link} — Pangaea`,
       operativeId: target.operative_id,
       firstName: first_name,
     })
@@ -241,7 +241,7 @@ export const profileCompletionWorkflow: WorkflowDefinition = {
 
     const liamNumber = process.env.LIAM_WHATSAPP_NUMBER
     if (liamNumber) {
-      const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app').trim()
+      const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app').trim()
       await sendWhatsApp(
         liamNumber,
         `⚠️ *Profile Completion — No Response*\n\n${fullName} hasn't completed their profile after ${target.messages_sent} reminders.\n\n${appUrl}/operatives/${target.operative_id}`

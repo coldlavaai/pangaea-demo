@@ -1,15 +1,13 @@
-# CLAUDE.md — Aztec BOS
+# CLAUDE.md — Pangaea Demo
 
 ## Project
-Aztec Landscapes BOS — custom CRM for a UK groundworks/landscaping contractor.
+Pangaea Demo — workforce management platform (demo/white-label clone).
 Oliver Tatler (Cold Lava). Direct comms. Build fast, no waffle.
 
-**Repo:** `Aztec-Landscapes/aztec-bos`
-**Live:** https://aztec-landscapes-bos.vercel.app
+**Repo:** `pangaea-demo`
+**Live:** https://pangaea-demo.vercel.app
 **Stack:** Next.js 15.5.12 · Supabase (Frankfurt, `ybfhkcvrzbgzrayjskfp`) · Vercel · shadcn/ui · Tailwind
-**Login:** oliver@coldlava.ai / AztecTest2026!
 **Org ID:** `00000000-0000-0000-0000-000000000001`
-**Twilio WhatsApp:** `+447414157366`
 
 ---
 
@@ -62,9 +60,9 @@ Oliver Tatler (Cold Lava). Direct comms. Build fast, no waffle.
 - **FK join syntax** — `operatives!allocations_operative_id_fkey` (explicit FK name required)
 - **Git email for Vercel deploy** — must be `otatler@gmail.com`
 - **Supabase migrations** — via SQL editor only, no `supabase db execute`
-- **Sophie intake** — state context in system prompt, NOT injected as fake messages
+- **Amber intake** — state context in system prompt, NOT injected as fake messages
 - **`intake_data`** lives on `message_threads`, NOT on `operatives`
-- **`cscs_card_type`** on `operatives` is the source of truth for CSCS (set by Sophie during intake)
+- **`cscs_card_type`** on `operatives` is the source of truth for CSCS (set by Amber during intake)
 
 ---
 
@@ -84,7 +82,7 @@ Oliver Tatler (Cold Lava). Direct comms. Build fast, no waffle.
 
 | Purpose | Path |
 |---|---|
-| Sophie intake | `src/lib/whatsapp/sophie-handler.ts` |
+| Amber intake | `src/lib/whatsapp/amber-handler.ts` |
 | WhatsApp router | `src/lib/whatsapp/handler.ts` |
 | Twilio webhook | `src/app/api/webhooks/twilio/route.ts` |
 | Document upload page | `src/app/apply/[token]/page.tsx` |
@@ -100,13 +98,13 @@ Oliver Tatler (Cold Lava). Direct comms. Build fast, no waffle.
 
 ## What to Never Do
 
-- ❌ Re-read a file already in context this session
-- ❌ `cat` / unfiltered reads on files over 200 lines
-- ❌ Read `node_modules/`, `.next/`, `package-lock.json`
-- ❌ Run verbose/debug commands by default
-- ❌ Dump full logs without grep/head/tail
-- ❌ Read `.env` files repeatedly
-- ❌ Rewrite entire files when a targeted edit will do
-- ❌ Leave `console.log` debugging in production code
-- ❌ Hardcode API keys or org IDs (use env vars)
-- ❌ Direct DB inserts for allocations (use `POST /api/allocations`)
+- Do not re-read a file already in context this session
+- Do not cat / unfiltered reads on files over 200 lines
+- Do not read `node_modules/`, `.next/`, `package-lock.json`
+- Do not run verbose/debug commands by default
+- Do not dump full logs without grep/head/tail
+- Do not read `.env` files repeatedly
+- Do not rewrite entire files when a targeted edit will do
+- Do not leave `console.log` debugging in production code
+- Do not hardcode API keys or org IDs (use env vars)
+- Do not do direct DB inserts for allocations (use `POST /api/allocations`)

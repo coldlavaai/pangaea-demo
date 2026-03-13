@@ -1,4 +1,4 @@
-// Core types for the ALF AI Assistant system
+// Core types for the Rex AI Assistant system
 
 export interface AssistantConversation {
   id: string

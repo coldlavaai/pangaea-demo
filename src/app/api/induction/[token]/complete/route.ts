@@ -55,7 +55,7 @@ export async function POST(
   if (operative?.phone) {
     await sendWhatsApp(
       operative.phone,
-      `Hi ${operative.first_name}! Your company induction with Aztec Landscapes has been completed and recorded. You are all set for your first day. See you on site!`
+      `Hi ${operative.first_name}! Your company induction with Pangaea has been completed and recorded. You are all set for your first day. See you on site!`
     ).catch(err => console.error('Induction WhatsApp confirmation failed:', err))
   }
 

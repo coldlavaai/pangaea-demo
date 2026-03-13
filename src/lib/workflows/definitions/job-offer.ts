@@ -43,7 +43,7 @@ async function sendOfferContent(
     `💷 £${dayRate}/day\n\n` +
     `Reply *ACCEPT* to confirm or *DECLINE* to pass.\n` +
     `⏱️ You have ${OFFER_WINDOW_MINS} minutes to respond — after that the offer may go to other operatives.\n\n` +
-    `— Aztec Construction`,
+    `— Pangaea`,
     target.operative.preferred_language,
   )
 
@@ -279,7 +279,7 @@ export const jobOfferWorkflow: WorkflowDefinition = {
     // Use smartSendWhatsApp — handles 24h window automatically
     await smartSendWhatsApp({
       phone,
-      freeformBody: `Hi ${first_name}, just checking — are you available for ${siteName} starting ${startDateFormatted} at £${dayRate}/day? Reply *ACCEPT* or *DECLINE*. — Aztec Construction`,
+      freeformBody: `Hi ${first_name}, just checking — are you available for ${siteName} starting ${startDateFormatted} at £${dayRate}/day? Reply *ACCEPT* or *DECLINE*. — Pangaea`,
       operativeId: target.operative_id,
       firstName: first_name,
     })
@@ -300,7 +300,7 @@ export const jobOfferWorkflow: WorkflowDefinition = {
 
     const liamNumber = process.env.LIAM_WHATSAPP_NUMBER
     if (liamNumber) {
-      const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app').trim()
+      const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app').trim()
       await sendWhatsApp(
         liamNumber,
         `⚠️ *Job Offer — No Response*\n\n${fullName} didn't respond to the offer for ${siteName} after ${target.messages_sent} attempts.\n\n${appUrl}/operatives/${target.operative_id}`

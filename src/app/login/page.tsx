@@ -82,9 +82,9 @@ export default function LoginPage() {
 
         {/* Logo / Brand */}
         <div className="text-center mb-8">
-          <img src="/alf-mark.png" className="w-24 mx-auto mb-4" alt="ALF" />
-          <p className="text-2xl font-bold tracking-[0.3em] text-[#C4A84A]">ALF</p>
-          <p className="text-xs tracking-[0.25em] text-[#C4A84A]/70 uppercase mt-1">Aztec Construction</p>
+          <img src="/pangaea-mark.png" className="w-24 mx-auto mb-4" alt="Pangaea" />
+          <p className="text-2xl font-bold tracking-[0.3em] text-[#C4A84A]">Pangaea</p>
+          <p className="text-xs tracking-[0.25em] text-[#C4A84A]/70 uppercase mt-1">Workforce Management</p>
         </div>
 
         {/* Card */}
@@ -102,7 +102,7 @@ export default function LoginPage() {
                 id="email"
                 type="email"
                 autoComplete="email"
-                placeholder="you@azteclandscapes.co.uk"
+                placeholder="you@company.co.uk"
                 className="bg-slate-800 border-slate-700 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-500"
                 {...register('email')}
               />

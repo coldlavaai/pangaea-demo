@@ -69,8 +69,8 @@ export function AssistantFullPage() {
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         {/* Header */}
         <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800">
-          <span className="text-sm font-semibold text-slate-200">ALF</span>
-          <span className="text-xs text-slate-500">Aztec Construction AI</span>
+          <span className="text-sm font-semibold text-slate-200">Rex</span>
+          <span className="text-xs text-slate-500">Pangaea AI</span>
         </div>
 
         {messages.length === 0 ? (

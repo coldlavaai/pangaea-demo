@@ -28,7 +28,7 @@ async function sendChaseContent(
 ): Promise<void> {
   await sendTranslatedWhatsApp(
     phone,
-    `Hi ${firstName}, we need your ${docLabel} on file. Please upload it here: ${uploadLink} — Aztec Construction`,
+    `Hi ${firstName}, we need your ${docLabel} on file. Please upload it here: ${uploadLink} — Pangaea`,
     language,
   )
 }
@@ -108,7 +108,7 @@ export const documentChaseWorkflow: WorkflowDefinition = {
       // This is a re-engagement after a follow-up — send reminder
       await sendTranslatedWhatsApp(
         phone,
-        `Hi ${first_name}, just a reminder — we still need your ${docLabel}. Upload here: ${uploadLink} — Aztec Construction`,
+        `Hi ${first_name}, just a reminder — we still need your ${docLabel}. Upload here: ${uploadLink} — Pangaea`,
         target.operative.preferred_language,
       )
     } else {
@@ -174,7 +174,7 @@ export const documentChaseWorkflow: WorkflowDefinition = {
 
     await smartSendWhatsApp({
       phone,
-      freeformBody: `Hi ${first_name}, just a reminder — we still need your ${docLabel}. Upload here: ${uploadLink} — Aztec Construction`,
+      freeformBody: `Hi ${first_name}, just a reminder — we still need your ${docLabel}. Upload here: ${uploadLink} — Pangaea`,
       operativeId: target.operative_id,
       firstName: first_name,
     })
@@ -206,7 +206,7 @@ export const documentChaseWorkflow: WorkflowDefinition = {
 
     const liamNumber = process.env.LIAM_WHATSAPP_NUMBER
     if (liamNumber) {
-      const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app').trim()
+      const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app').trim()
       await sendWhatsApp(
         liamNumber,
         `⚠️ *Document Chase — No Response*\n\n${fullName} hasn't uploaded their ${docLabel} after ${target.messages_sent} reminders.\n\n${appUrl}/operatives/${target.operative_id}`

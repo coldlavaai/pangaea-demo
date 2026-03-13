@@ -39,12 +39,12 @@ export const WHATSAPP_TEMPLATES = {
  * 3. Add the SID below
  */
 const TEMPLATE_LANG_VARIANTS: Partial<Record<keyof typeof WHATSAPP_TEMPLATES, Record<string, string>>> = {
-  // RE_ENGAGE: "Hi {{1}}, we have an update from Aztec Construction. Are you available?"
+  // RE_ENGAGE: "Hi {{1}}, we have an update from Pangaea. Are you available?"
   RE_ENGAGE: {
     // pl: 'HX...', // TODO: Create re_engage_pl in Twilio
     // ro: 'HX...', // TODO: Create re_engage_ro in Twilio
   },
-  // RE_ENGAGE_FOLLOW_UP: "hey {{1}}, are you there? — aztec construction"
+  // RE_ENGAGE_FOLLOW_UP: "hey {{1}}, are you there? — the company"
   RE_ENGAGE_FOLLOW_UP: {
     // pl: 'HX...', // TODO: Create re_engage_follow_up_pl in Twilio
     // ro: 'HX...', // TODO: Create re_engage_follow_up_ro in Twilio

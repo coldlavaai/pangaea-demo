@@ -168,7 +168,7 @@ export async function POST(
         : labels.slice(0, -1).join(', ') + ' and ' + labels[labels.length - 1]
       await sendWhatsApp(
         operative.phone as string,
-        `Thanks ${firstName}! ✅ We've updated your record with your ${fieldSummary}. If anything looks wrong just reply here. — Aztec Construction`
+        `Thanks ${firstName}! ✅ We've updated your record with your ${fieldSummary}. If anything looks wrong just reply here. — Pangaea`
       )
     } catch (e) {
       console.error('[submit-data] confirmation send error', e)

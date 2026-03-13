@@ -7,7 +7,7 @@ export default function BriefingPage() {
         <div className="border-b border-slate-800 pb-8">
           <div className="flex items-center gap-3 mb-4">
             <div className="h-8 w-8 rounded bg-emerald-600 flex items-center justify-center text-white font-bold text-sm">A</div>
-            <span className="text-slate-400 text-sm font-medium uppercase tracking-wider">Aztec Construction</span>
+            <span className="text-slate-400 text-sm font-medium uppercase tracking-wider">Pangaea</span>
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">BOS — Director Briefing</h1>
           <p className="text-slate-400">5 March 2026 · Prepared by Cold Lava</p>
@@ -38,7 +38,7 @@ export default function BriefingPage() {
             <Li>Working Time Directive enforcement — tracks 48hr weekly limit and rest periods</Li>
           </ul>
 
-          <SubTitle>Sophie AI (WhatsApp Recruitment)</SubTitle>
+          <SubTitle>Amber AI (WhatsApp Recruitment)</SubTitle>
           <ul className="space-y-1.5 text-sm text-slate-300">
             <Li>24/7 candidate intake via WhatsApp — no human involvement needed</Li>
             <Li>7-step qualification: RTW eligibility → age → CSCS → trade → experience → name → email</Li>
@@ -59,7 +59,7 @@ export default function BriefingPage() {
         <section>
           <SectionTitle number="2" title="The Two Bots" />
 
-          <SubTitle>@AztecSiteBot — for Site Managers</SubTitle>
+          <SubTitle>@PangaeaSiteBot — for Site Managers</SubTitle>
           <p className="text-sm text-slate-400 mb-3">JJ and other site managers use this daily. Menu-driven — tap buttons, no typing required.</p>
           <Table rows={[
             ['Log arrival', 'Select operative from list → confirms on site, timestamps in BOS'],
@@ -69,7 +69,7 @@ export default function BriefingPage() {
             ['Finish operative', 'Mark end of allocation from site'],
           ]} />
 
-          <SubTitle>@AlfNotificationsBot — for Admins (Liam, Donna)</SubTitle>
+          <SubTitle>@RexNotifyBot — for Admins (Liam, Donna)</SubTitle>
           <p className="text-sm text-slate-400 mb-3">Real-time push notifications and on-demand queries.</p>
           <Table rows={[
             ['Unread', 'All unread notifications'],
@@ -92,7 +92,7 @@ export default function BriefingPage() {
             ['Two-factor authentication', 'Supabase TOTP — ready to enable, not configured yet'],
             ['Rate matrices', 'Automated day-rate governance per trade and grade'],
             ['Reallocation queue', 'When offer expires, auto-try next operative in queue'],
-            ['Multi-language Sophie', 'Romanian, Polish, Bulgarian intake flows'],
+            ['Multi-language Amber', 'Romanian, Polish, Bulgarian intake flows'],
             ['Donseed integration', 'Timesheet sync — awaiting API credentials'],
           ]} />
         </section>
@@ -102,10 +102,10 @@ export default function BriefingPage() {
           <SectionTitle number="4" title="Additions Beyond the Original Spec" />
           <p className="text-slate-400 mb-4 text-sm">Built proactively — added value beyond what was scoped.</p>
           <Table rows={[
-            ['@AlfNotificationsBot', 'Admins get push notifications to their phone the moment something happens — no need to be logged in'],
+            ['@RexNotifyBot', 'Admins get push notifications to their phone the moment something happens — no need to be logged in'],
             ['Activity feed (17 event types)', 'Helicopter view of everything in one timeline — WhatsApp, docs, offers, compliance, emails'],
             ['WYSIWYG email template editor', 'Liam and Donna can edit invite email copy directly with live preview. No developer needed'],
-            ['Microsoft Outlook integration', 'Invite emails come from a real Aztec address — better deliverability, professional appearance'],
+            ['Microsoft Outlook integration', 'Invite emails come from a real company address — better deliverability, professional appearance'],
             ['CV upload + AI parsing', 'Upload a CV → Claude AI extracts work history, trade, experience, and estimated day rate'],
             ['Short URL system', 'Upload links use your own domain, not TinyURL — looks professional, no third-party dependency'],
             ['Timesheet PDF export', 'One-click PDF of any timesheet, ready to send to payroll'],
@@ -121,7 +121,7 @@ export default function BriefingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             <div className="rounded-lg border border-emerald-800 bg-emerald-950/30 p-5">
               <h3 className="font-semibold text-emerald-400 mb-2">WhatsApp → Operatives</h3>
-              <p className="text-sm text-slate-300">Every operative in UK construction already has WhatsApp. No app download, no friction. Sophie runs 24/7 on it. Offer messages, document alerts, and reminders all reach operatives on the channel they already check.</p>
+              <p className="text-sm text-slate-300">Every operative in UK construction already has WhatsApp. No app download, no friction. Amber runs 24/7 on it. Offer messages, document alerts, and reminders all reach operatives on the channel they already check.</p>
             </div>
             <div className="rounded-lg border border-sky-800 bg-sky-950/30 p-5">
               <h3 className="font-semibold text-sky-400 mb-2">Telegram → Internal (Admins + Site Managers)</h3>
@@ -161,7 +161,7 @@ export default function BriefingPage() {
             <h4 className="font-semibold text-slate-200 mb-3">The strategic picture</h4>
             <ul className="space-y-2 text-sm text-slate-300">
               <Li>If we&apos;d used WhatsApp for internal comms, every notification type (arrival, NCR, offer accepted, doc uploaded) would require a separate Meta template approval. That&apos;s months of friction and ongoing restrictions on what we can send.</Li>
-              <Li>A site manager opening @AztecSiteBot gets a <strong className="text-white">menu of buttons</strong> — Log Arrival, Log NCR, RAP Report. They tap, they don&apos;t type. WhatsApp cannot do this.</Li>
+              <Li>A site manager opening @PangaeaSiteBot gets a <strong className="text-white">menu of buttons</strong> — Log Arrival, Log NCR, RAP Report. They tap, they don&apos;t type. WhatsApp cannot do this.</Li>
               <Li>Liam gets a <strong className="text-white">real-time push DM</strong> the moment an operative arrives or an NCR is logged. No templates, no approval, no delay.</Li>
               <Li>The two channels work together: site manager logs arrival on Telegram → Liam gets push notification on Telegram → operative&apos;s WhatsApp gets update if needed.</Li>
             </ul>
@@ -170,7 +170,7 @@ export default function BriefingPage() {
 
         {/* Footer */}
         <div className="border-t border-slate-800 pt-6 text-center">
-          <p className="text-slate-500 text-sm">Live system: <a href="https://aztec-landscapes-bos.vercel.app" className="text-emerald-500 hover:text-emerald-400">aztec-landscapes-bos.vercel.app</a></p>
+          <p className="text-slate-500 text-sm">Live system: <a href="https://pangaea-demo.vercel.app" className="text-emerald-500 hover:text-emerald-400">pangaea-demo.vercel.app</a></p>
           <p className="text-slate-600 text-xs mt-1">Prepared by Cold Lava · AI automation &amp; systems for construction</p>
         </div>
 

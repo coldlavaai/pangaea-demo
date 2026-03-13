@@ -3,7 +3,7 @@
  *
  * Handles:
  * - Quoted CSV fields (commas inside values, escaped quotes)
- * - Column header mapping (Aztec spreadsheet headers → DB field names)
+ * - Column header mapping (spreadsheet headers → DB field names)
  * - Phone normalisation to E.164 (+44...)
  * - Date normalisation to ISO 8601 (YYYY-MM-DD), including Excel date serials
  * - CSCS card type normalisation
@@ -36,7 +36,7 @@ export interface ParsedRow {
   trades: TradeMatch[]      // all trades split from the trade field
   cscsCards: CscsCard[]     // all CSCS cards parsed from the CSCS colour field
   agencyName: string | null // raw agency name for agency lookup/create
-  completenessScore: number | null // Aztec's internal data completeness score
+  completenessScore: number | null // Pangaea's internal data completeness score
   warnings: string[]
   errors: string[]
   isDuplicate: boolean
@@ -76,7 +76,7 @@ const HEADER_MAP: Record<string, string | null> = {
   'email address': 'email',
   'last worked': 'last_worked_date',
   'grade': 'grade',
-  'rate': 'charge_rate', // col 8 = charge rate (what Aztec bills the site)
+  'rate': 'charge_rate', // col 8 = charge rate (what the company bills the site)
   'daily rate': 'day_rate',
   'day rate': 'day_rate',
   'date of birth': 'date_of_birth',

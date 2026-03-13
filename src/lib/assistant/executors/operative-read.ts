@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import type { ToolResult } from '../types'
 
-const ORG_ID = '00000000-0000-0000-0000-000000000001'
+const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function executeOperativeRead(input: any): Promise<ToolResult> {
@@ -84,7 +84,7 @@ export async function executeOperativeRead(input: any): Promise<ToolResult> {
         `- ${op.first_name} ${op.last_name} | ID: ${op.id} | Ref: ${op.reference_number ?? 'N/A'} | status: ${op.status} | phone: ${op.phone ?? 'missing'} | email: ${op.email ?? 'missing'} | CSCS: ${op.cscs_card_type ?? 'none'} expires ${op.cscs_expiry ?? 'N/A'} | trade: ${(op.trade_categories as { name: string } | null)?.name ?? 'none'}`
       ).join('\n')
       // Only show the rich table for filtered list queries (trade/status browsing).
-      // For name searches, suppress the table — ALF handles disambiguation in text.
+      // For name searches, suppress the table — Rex handles disambiguation in text.
       const isNameSearch = !!input.query
       return {
         text_result: `Found ${count} operative${count !== 1 ? 's' : ''}:\n${rows}`,
@@ -116,7 +116,7 @@ export async function executeOperativeRead(input: any): Promise<ToolResult> {
         (docRows ?? []).filter(d => d.status === 'pending').map(d => d.document_type)
       )
 
-      // Serialize the full row so ALF can read every field directly
+      // Serialize the full row so Rex can read every field directly
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const d = data as any
       const profile = {
@@ -204,7 +204,7 @@ export async function executeOperativeRead(input: any): Promise<ToolResult> {
       const totalOutstanding = totalMissing + totalPending
       return {
         // Minimal text — the missing_fields card contains all the detail.
-        // Do NOT include raw profile data or ALF will list fields above the card.
+        // Do NOT include raw profile data or Rex will list fields above the card.
         text_result: totalOutstanding > 0
           ? `Profile loaded — ${totalMissing > 0 ? `${totalMissing} missing` : ''}${totalMissing > 0 && totalPending > 0 ? ', ' : ''}${totalPending > 0 ? `${totalPending} needs verifying` : ''}. Card below.`
           : `Profile loaded — all key fields and documents present.`,

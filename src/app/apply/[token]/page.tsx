@@ -7,7 +7,7 @@ import { t, type ApplyLang } from '@/lib/i18n/apply'
 const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
 
 export const metadata = {
-  title: 'Aztec Landscapes — Secure Portal',
+  title: 'Pangaea — Secure Portal',
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,14 +45,14 @@ export default async function ApplyPage({
   // ?type=passport    → workflow document upload (specific doc type)
   // ?fields=ni_number,email → workflow data form (one or more text fields)
   // ?docs=photo_id,right_to_work → combined profile completion (data + multiple docs)
-  // (no params)       → Sophie intake (address + ID + optional CSCS)
+  // (no params)       → Amber intake (address + ID + optional CSCS)
   const isWorkflowDoc = !!documentType
   const isWorkflowData = !!fieldsParam
   const dataFields = fieldsParam ? fieldsParam.split(',').map(f => f.trim()).filter(Boolean) : []
   const docTypes = docsParam ? docsParam.split(',').map(d => d.trim()).filter(Boolean) : []
   const isCombined = docTypes.length > 0  // profile_completion: data form + multiple upload sections
 
-  // Sophie intake: show CSCS slot if card type was extracted during intake
+  // Amber intake: show CSCS slot if card type was extracted during intake
   const hasCSCS = !isWorkflowDoc && !isWorkflowData && !isCombined && !!operative.cscs_card_type
 
   const subtitleMap: Record<string, string> = {
@@ -100,7 +100,7 @@ export default async function ApplyPage({
               href="https://wa.me/447414157366"
               className="inline-block bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors"
             >
-              WhatsApp Aztec Landscapes
+              WhatsApp Pangaea
             </a>
           </div>
         ) : (
@@ -164,7 +164,7 @@ export default async function ApplyPage({
         )}
 
         <p className="text-center text-xs text-slate-700 mt-8">
-          Aztec Landscapes Limited · Secure portal
+          Pangaea Limited · Secure portal
         </p>
       </div>
     </div>

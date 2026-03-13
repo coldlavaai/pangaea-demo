@@ -161,7 +161,7 @@ function TemplateEditor({
       contentHtml,
       roleLabel: 'Site Manager',
       inviteLink: '#',
-      appUrl: 'https://aztec-landscapes-bos.vercel.app',
+      appUrl: 'https://pangaea-demo.vercel.app',
       telegramSection: buildTelegramSection('site_manager', 'James'),
     })
   }, [body, definition])

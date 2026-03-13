@@ -17,7 +17,7 @@ function getConfig() {
   const clientId = process.env.MICROSOFT_CLIENT_ID
   const clientSecret = process.env.MICROSOFT_CLIENT_SECRET
   const tenantId = process.env.MICROSOFT_TENANT_ID ?? 'common'
-  const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app').trim()
+  const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app').trim()
   return {
     clientId,
     clientSecret,

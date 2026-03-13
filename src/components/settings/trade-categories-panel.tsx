@@ -205,7 +205,7 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
     }
   }
 
-  const seedAztecTrades = async () => {
+  const seedDefaultTrades = async () => {
     setSeeding(true)
     const existingNames = new Set(categories.map((c) => c.name.toLowerCase()))
     const toInsert = AZTEC_TRADES.filter((t) => !existingNames.has(t.name.toLowerCase())).map(
@@ -260,11 +260,11 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
               size="sm"
               variant="outline"
               className="border-slate-700 text-slate-300 hover:bg-slate-800 text-xs"
-              onClick={seedAztecTrades}
+              onClick={seedDefaultTrades}
               disabled={seeding}
             >
               {seeding && <Loader2 className="h-3.5 w-3.5 mr-1 animate-spin" />}
-              Seed Aztec Trades
+              Seed Default Trades
             </Button>
           )}
           <Button
@@ -359,11 +359,11 @@ export function TradeCategoriesPanel({ orgId, categories: initialCategories }: T
             size="sm"
             variant="outline"
             className="border-slate-700 text-slate-300 hover:bg-slate-800"
-            onClick={seedAztecTrades}
+            onClick={seedDefaultTrades}
             disabled={seeding}
           >
             {seeding && <Loader2 className="h-3.5 w-3.5 mr-1 animate-spin" />}
-            Seed Aztec Standard Trades
+            Seed Default Standard Trades
           </Button>
         </div>
       ) : (

@@ -164,7 +164,7 @@ export default function InductionForm({ token, firstName }: Props) {
 
           {medical.fit_for_work === false && (
             <div className="rounded-lg bg-amber-950/50 border border-amber-800/50 p-3 text-xs text-amber-300">
-              If you do not feel fit for work, please contact Aztec Landscapes before your start date.
+              If you do not feel fit for work, please contact Pangaea before your start date.
             </div>
           )}
 
@@ -230,7 +230,7 @@ export default function InductionForm({ token, firstName }: Props) {
           <div className="rounded-lg bg-slate-800/60 border border-slate-700 p-3 space-y-2">
             <p className="text-xs font-semibold text-slate-300">Data Protection</p>
             <p className="text-xs text-slate-500 leading-relaxed">
-              Aztec Landscapes may use the information in this form for health &amp; safety and security purposes, to comply with current legislation, to fulfil statutory requirements, and for statistical analysis of hours worked. By signing below you consent to Aztec taking and holding a copy of your skills certificates.
+              Pangaea may use the information in this form for health &amp; safety and security purposes, to comply with current legislation, to fulfil statutory requirements, and for statistical analysis of hours worked. By signing below you consent to Pangaea taking and holding a copy of your skills certificates.
             </p>
           </div>
 

@@ -9,7 +9,7 @@ import { createSSEStream } from '@/lib/assistant/stream'
 import { toolExecutors, WRITE_TOOLS, WRITE_ACTIONS_THAT_SKIP_CONFIRM } from '@/lib/assistant/tool-registry'
 import type { SSEEvent, RichBlock } from '@/lib/assistant/types'
 
-const ORG_ID = '00000000-0000-0000-0000-000000000001'
+const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
 const anthropic = new Anthropic()
 
 export async function POST(request: NextRequest) {
@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
         userEmail: user.email ?? 'Unknown',
         userRole: userRole ?? 'staff',
         enabledFeatures: Array.from(enabledFeatures),
-        orgName: 'Aztec Landscapes',
+        orgName: 'Pangaea Demo',
       })
 
       // Collect assistant response for saving
@@ -218,8 +218,8 @@ export async function POST(request: NextRequest) {
           emit({ type: 'tool_start', tool: toolName, action: actionLabel, description: `${toolName.replace(/_/g, ' ')} — ${actionLabel}` })
 
           // Check if write tool needs confirmation
-          // ALF's confirmed flag is STRIPPED — only the UI confirm endpoint (/api/assistant/confirm)
-          // can execute write tools. This prevents ALF from bypassing the confirmation card.
+          // Rex's confirmed flag is STRIPPED — only the UI confirm endpoint (/api/assistant/confirm)
+          // can execute write tools. This prevents Rex from bypassing the confirmation card.
           const isWriteTool = WRITE_TOOLS.has(toolName)
           const skipConfirmKey = `${toolName}:${actionLabel}`
           const needsConfirm = isWriteTool && !WRITE_ACTIONS_THAT_SKIP_CONFIRM.has(skipConfirmKey)

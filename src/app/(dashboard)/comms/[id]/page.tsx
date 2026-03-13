@@ -88,7 +88,7 @@ export default async function CommsThreadPage({
                     intakeState === 'docs_link_sent' ? 'bg-sky-900/40 text-sky-400 border-sky-800' :
                     'bg-amber-900/40 text-amber-400 border-amber-800'
                   }`}>
-                    Sophie: {INTAKE_LABELS[intakeState] ?? intakeState}
+                    Amber: {INTAKE_LABELS[intakeState] ?? intakeState}
                   </span>
                 )}
                 {op && (

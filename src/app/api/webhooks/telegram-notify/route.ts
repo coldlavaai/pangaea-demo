@@ -3,7 +3,7 @@ import { createServiceClient } from '@/lib/supabase/server'
 import { sendNotifyBot, answerCallback } from '@/lib/telegram/send-notify'
 
 const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
-const APP_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app').trim()
+const APP_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app').trim()
 
 export async function POST(req: NextRequest) {
   try {
@@ -58,7 +58,7 @@ async function handleCommand(chatId: number, cmd: string) {
     .maybeSingle()
 
   if (!user) {
-    await sendNotifyBot(chatId, "⚠️ Your Telegram account isn't linked to ALF\\. Ask an admin to link it in Settings\\.")
+    await sendNotifyBot(chatId, "⚠️ Your Telegram account isn't linked to Rex\\. Ask an admin to link it in Settings\\.")
     return
   }
 
@@ -67,7 +67,7 @@ async function handleCommand(chatId: number, cmd: string) {
   // ── /start or greeting ────────────────────────────────────────────────────
   if (cmd === '/start') {
     await sendNotifyBot(chatId,
-      `👋 Hi *${name}\\!* I'm the *ALF Notifications Bot*\\.\n\nI'll DM you when things happen on the platform\\. Use the buttons below to query live data\\.`
+      `👋 Hi *${name}\\!* I'm the *Rex Notifications Bot*\\.\n\nI'll DM you when things happen on the platform\\. Use the buttons below to query live data\\.`
     )
     return
   }
@@ -219,7 +219,7 @@ async function handleCommand(chatId: number, cmd: string) {
     ])
 
     await sendNotifyBot(chatId,
-      `📊 *ALF Platform Status*\n\n` +
+      `📊 *Rex Platform Status*\n\n` +
       `👷 Working operatives: *${activeOps ?? 0}*\n` +
       `⚠️ Open NCRs: *${openNcrs ?? 0}*\n` +
       `🏗️ Pending requests: *${pendingRequests ?? 0}*\n` +

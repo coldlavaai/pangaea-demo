@@ -2,7 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { sendNotifyBot } from '@/lib/telegram/send-notify'
 
 const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
-const APP_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app').trim()
+const APP_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app').trim()
 
 interface CreateNotificationParams {
   type:
@@ -21,7 +21,7 @@ interface CreateNotificationParams {
   labour_request_id?: string | null
   ncr_id?: string | null
   link_url?: string | null
-  /** If true, also send Telegram DM via @AlfNotificationsBot to subscribed users */
+  /** If true, also send Telegram DM via @RexNotifyBot to subscribed users */
   push: boolean
 }
 
@@ -45,7 +45,7 @@ export async function createNotification(
       read: false,
     })
 
-    // Send Telegram DM via @AlfNotificationsBot to subscribed admin/staff
+    // Send Telegram DM via @RexNotifyBot to subscribed admin/staff
     if (params.push) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data: subscribers } = await (supabase.from('users') as any)
@@ -62,7 +62,7 @@ export async function createNotification(
 
         const text = `${emoji} *${params.title}*${params.body ? `\n${params.body}` : ''}`
         const urlButtons = params.link_url
-          ? [{ text: '🔗 View in ALF', url: `${APP_URL}${params.link_url}` }]
+          ? [{ text: '🔗 View in Rex', url: `${APP_URL}${params.link_url}` }]
           : undefined
 
         await Promise.allSettled(

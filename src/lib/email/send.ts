@@ -10,7 +10,7 @@ import { getTemplate, renderTemplate } from './templates'
 import { getRoleNote, buildTelegramSection, buildInviteShell } from './template-defs'
 
 const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
-const APP_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app').trim()
+const APP_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app').trim()
 
 // ─── Token management ─────────────────────────────────────────────────────────
 

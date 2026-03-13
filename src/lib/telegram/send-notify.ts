@@ -1,6 +1,6 @@
 /**
- * Send a message via @AlfNotificationsBot (admin notification bot).
- * Separate from @AztecSiteBot which handles site manager commands.
+ * Send a message via @RexNotifyBot (admin notification bot).
+ * Separate from @PangaeaSiteBot which handles site manager commands.
  *
  * Uses a persistent reply keyboard (docked at bottom of chat input)
  * rather than inline keyboards on every message, so the chat stays clean.

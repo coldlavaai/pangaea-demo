@@ -198,7 +198,7 @@ export async function inviteUser(data: {
 
   // Build clean invite link through our domain (hides supabase.co URL)
   const rawLink = linkData.properties.action_link
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app'
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app'
   let cleanLink = rawLink
   try {
     const parsed = new URL(rawLink)
@@ -224,7 +224,7 @@ export async function inviteUser(data: {
       '1': data.first_name,
       '2': ROLE_LABELS[data.role] ?? data.role,
       '3': data.role === 'site_manager'
-        ? `Message @AztecSiteBot on Telegram with your email (${data.email}) to get started. Set your password: ${cleanLink}`
+        ? `Message @PangaeaSiteBot on Telegram with your email (${data.email}) to get started. Set your password: ${cleanLink}`
         : cleanLink,
     }).catch((e) => console.error('[inviteUser] WhatsApp send failed:', e))
   }

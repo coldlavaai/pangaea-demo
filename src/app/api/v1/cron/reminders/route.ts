@@ -7,7 +7,7 @@
  *  3. Goodwill doc reminders — operatives with docs expiring within 90 days, gated to once/30 days
  *     (deduplication via notifications table — no extra column needed)
  *
- * WhatsApp for goodwill + staff alerts: TODO — awaiting aztec_doc_expiring + aztec_staff_alert SIDs from Plex (S36)
+ * WhatsApp for goodwill + staff alerts: TODO — awaiting doc_expiring + staff_alert SIDs from Plex (S36)
  */
 
 import { NextRequest, NextResponse } from 'next/server'

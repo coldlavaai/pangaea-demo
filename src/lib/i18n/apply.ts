@@ -7,10 +7,10 @@ export type ApplyLang = 'en' | 'pl' | 'ro'
 
 const translations = {
   // Page headers
-  'aztec_construction': {
-    en: 'Aztec Construction',
-    pl: 'Aztec Construction',
-    ro: 'Aztec Construction',
+  'company_name': {
+    en: 'Pangaea',
+    pl: 'Pangaea',
+    ro: 'Pangaea',
   },
   'link_expired': {
     en: 'This upload link has expired. Message us on WhatsApp to get a new one.',

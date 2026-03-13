@@ -10,7 +10,7 @@
  *  6. Verified document expiring in 61–90 days → info notification only
  *  Tiers 4/5/6 deduplicate via the notifications table (only fire once per tier per operative).
  *
- * WhatsApp for tiers 4/5: requires aztec_doc_expiring template SID from Plex (pending S36 Plex actions).
+ * WhatsApp for tiers 4/5: requires doc_expiring template SID from Plex (pending S36 Plex actions).
  * STAFF_ALERT_NUMBER env var: Liam's number for critical escalation (pending S36 Plex actions).
  */
 

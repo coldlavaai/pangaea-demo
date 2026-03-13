@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import type { ToolResult } from '../types'
 
-const ORG_ID = '00000000-0000-0000-0000-000000000001'
+const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function executeQualityWrite(input: any): Promise<ToolResult> {

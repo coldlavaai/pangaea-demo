@@ -5,7 +5,7 @@ import InductionForm from './induction-form'
 const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
 
 export const metadata = {
-  title: 'Company Induction — Aztec Landscapes',
+  title: 'Company Induction — Pangaea',
 }
 
 export default async function InductionPage({
@@ -60,7 +60,7 @@ export default async function InductionPage({
           <div className="space-y-4">
             <div className="rounded-xl border border-slate-800 bg-slate-900 p-5">
               <h2 className="text-base font-semibold text-slate-100 mb-1">
-                Hi {firstName} — welcome to Aztec Landscapes
+                Hi {firstName} — welcome to Pangaea
               </h2>
               <p className="text-slate-400 text-sm leading-relaxed">
                 {site?.name ? `You are starting at ${site.name}. ` : ''}
@@ -77,7 +77,7 @@ export default async function InductionPage({
         )}
 
         <p className="text-center text-xs text-slate-700 mt-8">
-          Aztec Landscapes Limited · Company Induction Record
+          Pangaea Limited · Company Induction Record
         </p>
       </div>
     </div>

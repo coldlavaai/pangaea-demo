@@ -221,7 +221,7 @@ export default function DataForm({ token, firstName, dataFields, lang = 'en' }: 
       </button>
 
       <p className="text-center text-xs text-slate-700">
-        Securely stored · Aztec Landscapes team only
+        Securely stored · Pangaea team only
       </p>
     </form>
   )

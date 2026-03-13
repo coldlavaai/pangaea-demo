@@ -41,9 +41,9 @@ async function parseFieldFromMessage(field: string, message: string): Promise<st
  */
 function buildDataMessage(firstName: string, fieldSummary: string, link: string, isMultiField: boolean): string {
   if (isMultiField) {
-    return `Hi ${firstName}, we need a few details to complete your record. Please fill in this quick form: ${link} — Aztec Construction`
+    return `Hi ${firstName}, we need a few details to complete your record. Please fill in this quick form: ${link} — Pangaea`
   }
-  return `Hi ${firstName}, we're updating your records. Please provide your ${fieldSummary} here: ${link} — Aztec Construction`
+  return `Hi ${firstName}, we're updating your records. Please provide your ${fieldSummary} here: ${link} — Pangaea`
 }
 
 export const dataCollectionWorkflow: WorkflowDefinition = {
@@ -138,7 +138,7 @@ export const dataCollectionWorkflow: WorkflowDefinition = {
       // Re-engagement after follow-up — send reminder
       await sendTranslatedWhatsApp(
         phone,
-        `Hi ${first_name}, just a reminder — could you fill in this quick form? ${formLink} — Aztec Construction`,
+        `Hi ${first_name}, just a reminder — could you fill in this quick form? ${formLink} — Pangaea`,
         target.operative.preferred_language,
       )
     } else {
@@ -213,7 +213,7 @@ export const dataCollectionWorkflow: WorkflowDefinition = {
 
     await smartSendWhatsApp({
       phone,
-      freeformBody: `Hi ${first_name}, just a reminder — could you reply with your ${fieldLabel}? — Aztec Construction`,
+      freeformBody: `Hi ${first_name}, just a reminder — could you reply with your ${fieldLabel}? — Pangaea`,
       operativeId: target.operative_id,
       firstName: first_name,
     })
@@ -237,7 +237,7 @@ export const dataCollectionWorkflow: WorkflowDefinition = {
 
     const liamNumber = process.env.LIAM_WHATSAPP_NUMBER
     if (liamNumber) {
-      const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app').trim()
+      const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app').trim()
       await sendWhatsApp(
         liamNumber,
         `⚠️ *Data Collection — No Response*\n\n${fullName} hasn't provided their ${fieldLabel} after ${target.messages_sent} reminders.\n\n${appUrl}/operatives/${target.operative_id}`

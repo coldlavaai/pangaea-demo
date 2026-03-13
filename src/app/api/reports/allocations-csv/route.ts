@@ -47,7 +47,7 @@ export async function GET() {
   return new NextResponse(csv, {
     headers: {
       'Content-Type': 'text/csv',
-      'Content-Disposition': `attachment; filename="aztec-allocations-${date}.csv"`,
+      'Content-Disposition': `attachment; filename="pangaea-allocations-${date}.csv"`,
     },
   })
 }

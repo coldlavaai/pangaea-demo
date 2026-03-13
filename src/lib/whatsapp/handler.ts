@@ -1,6 +1,6 @@
 import { SupabaseClient } from '@supabase/supabase-js'
 import { handleOfferReply } from './offer-handler'
-import { handleSophieIntake } from './sophie-handler'
+import { handleAmberIntake } from './amber-handler'
 import { handleSiteManager } from './site-manager-handler'
 import { translateText, translateToEnglish } from '@/lib/translate'
 
@@ -28,7 +28,7 @@ export async function handleInbound(
 
   console.log('[handler] inbound from:', from, 'body:', body.slice(0, 50))
 
-  // 1. Find or create thread (select intake_state + intake_data for Sophie routing)
+  // 1. Find or create thread (select intake_state + intake_data for Amber routing)
   const { data: thread, error: threadError } = await supabase
     .from('message_threads')
     .upsert(
@@ -178,7 +178,7 @@ export async function handleInbound(
     }
   }
 
-  // 6. Route: staff user → offer reply → Sophie → default
+  // 6. Route: staff user → offer reply → Amber → default
   let reply = ''
 
   // Staff/site manager route — takes priority over everything else
@@ -220,7 +220,7 @@ export async function handleInbound(
 
   console.log('[handler] operativeId:', operativeId, 'intake_state:', thread.intake_state)
 
-  // 7. Sophie intake — unknown sender (no operative linked) OR operative in an active intake session
+  // 7. Amber intake — unknown sender (no operative linked) OR operative in an active intake session
   if (!reply) {
     const terminalStates = ['qualified', 'rejected', 'docs_link_sent']
     const inIntake = !operativeId || thread.intake_state != null
@@ -229,7 +229,7 @@ export async function handleInbound(
         // Photo sent during text intake — prompt for text
         reply = "Thanks for the photo! 📷 Please also send a text message so I can help you register."
       } else if (body) {
-        reply = await handleSophieIntake({
+        reply = await handleAmberIntake({
           supabase,
           threadId: thread.id,
           intakeState: thread.intake_state ?? null,
@@ -242,7 +242,7 @@ export async function handleInbound(
       }
     } else if (inIntake && thread.intake_state === 'docs_link_sent') {
       // Already sent link — remind them
-      reply = await handleSophieIntake({
+      reply = await handleAmberIntake({
         supabase,
         threadId: thread.id,
         intakeState: thread.intake_state,

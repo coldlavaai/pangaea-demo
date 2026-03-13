@@ -115,7 +115,7 @@ async function handleVerification(
 ): Promise<BotReply> {
   if (intakeState !== 'sm_verify') {
     await setState(supabase, threadId, 'sm_verify', {})
-    return { text: `Welcome to Aztec ALF! 👋\n\nTo verify your identity, reply with the email address registered on your account.` }
+    return { text: `Welcome to Pangaea Rex! 👋\n\nTo verify your identity, reply with the email address registered on your account.` }
   }
 
   const email = messageText.trim().toLowerCase()

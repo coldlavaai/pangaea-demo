@@ -14,7 +14,7 @@ export function QuickActions({ onSelect }: { onSelect: (text: string) => void })
     <div className="p-4 space-y-4">
       <div className="text-center">
         <div className="text-4xl mb-2">✦</div>
-        <h2 className="text-sm font-semibold text-slate-200">ALF — Aztec Construction AI</h2>
+        <h2 className="text-sm font-semibold text-slate-200">Rex — Pangaea AI</h2>
         <p className="text-xs text-slate-500 mt-1">Ask me anything about your workforce</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">

@@ -50,7 +50,7 @@ export async function triggerWorkflow(params: {
       organization_id: ORG_ID,
       workflow_type: type,
       status: 'active',
-      triggered_by: userId ? 'alf' : 'manual',
+      triggered_by: userId ? 'rex' : 'manual',
       triggered_by_user: userId,
       conversation_id: conversationId,
       config,

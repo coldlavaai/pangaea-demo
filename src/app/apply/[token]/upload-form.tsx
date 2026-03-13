@@ -255,7 +255,7 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
 
-      {/* Section 1: Address — Sophie intake only */}
+      {/* Section 1: Address — Amber intake only */}
       {!isWorkflow && (
         <div className="space-y-3">
           <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
@@ -316,7 +316,7 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
         />
       </div>
 
-      {/* Section 3: CSCS Card — Sophie intake only, when card was declared during intake */}
+      {/* Section 3: CSCS Card — Amber intake only, when card was declared during intake */}
       {hasCSCS && !isWorkflow && (
         <div className="space-y-3">
           <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
@@ -375,7 +375,7 @@ export default function UploadForm({ token, firstName, hasCSCS, workflowDocType 
       </button>
 
       <p className="text-center text-xs text-slate-700">
-        Securely stored · Aztec Landscapes team only
+        Securely stored · Pangaea team only
       </p>
     </form>
   )

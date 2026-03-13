@@ -30,7 +30,7 @@ interface SmartSendResult {
  *
  * NOTE: For workflow-driven sends, prefer using the engine's initiateEngagement()
  * which handles the onEngaged hook pattern. smartSendWhatsApp is for non-workflow
- * sends (ALF messaging, ad-hoc comms panel sends, etc.) where the deferred_message
+ * sends (Rex messaging, ad-hoc comms panel sends, etc.) where the deferred_message
  * mechanism is more appropriate.
  *
  * Also updates operative.last_contacted_at if operativeId provided.

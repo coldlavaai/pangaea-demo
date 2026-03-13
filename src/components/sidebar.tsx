@@ -74,7 +74,7 @@ const navGroups = [
   {
     label: 'SYSTEM',
     items: [
-      { href: '/assistant', label: 'ALF', icon: Sparkles },
+      { href: '/assistant', label: 'Rex', icon: Sparkles },
       { href: '/settings', label: 'Settings', icon: Settings },
       { href: '/audit-log', label: 'Audit Log', icon: Shield },
     ],
@@ -112,10 +112,10 @@ export function Sidebar({ userEmail, userRole }: SidebarProps) {
     <aside className="flex flex-col w-40 shrink-0 h-screen bg-gradient-to-b from-slate-900 to-slate-950 border-r border-slate-800/60 overflow-y-auto">
       {/* Logo */}
       <div className="flex items-center gap-2 px-3 py-2.5 border-b border-slate-800/60">
-        <img src="/alf-mark.png" className="h-6 w-6 object-contain shrink-0" alt="Aztec" />
+        <img src="/pangaea-mark.png" className="h-6 w-6 object-contain shrink-0" alt="Pangaea" />
         <div className="flex flex-col min-w-0 flex-1">
-          <span className="font-bold text-slate-100 text-[11px] leading-tight">Aztec</span>
-          <span className="text-[9px] text-slate-500 leading-tight">Labour Force</span>
+          <span className="font-bold text-slate-100 text-[11px] leading-tight">Pangaea</span>
+          <span className="text-[9px] text-slate-500 leading-tight">Workforce</span>
         </div>
         <AlertsBell />
       </div>
@@ -162,14 +162,14 @@ export function Sidebar({ userEmail, userRole }: SidebarProps) {
         })}
       </nav>
 
-      {/* Quick ALF — opens widget panel */}
+      {/* Quick Rex — opens widget panel */}
       <div className="px-2 pb-2">
         <button
-          onClick={() => window.dispatchEvent(new CustomEvent('toggle-alf'))}
+          onClick={() => window.dispatchEvent(new CustomEvent('toggle-rex'))}
           className="flex items-center gap-2 w-full rounded-lg px-3 py-2 text-xs font-semibold transition-colors bg-emerald-900/30 border border-emerald-800/50 text-emerald-400 hover:bg-emerald-900/50 hover:text-emerald-300"
         >
           <Sparkles className="h-3.5 w-3.5 shrink-0" />
-          Quick ALF
+          Quick Rex
         </button>
       </div>
 

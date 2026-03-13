@@ -10,14 +10,16 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 -- Allow service role full access
-CREATE POLICY IF NOT EXISTS "Service role full access to operative-documents"
+DROP POLICY IF EXISTS "Service role full access to operative-documents" ON storage.objects;
+CREATE POLICY "Service role full access to operative-documents"
   ON storage.objects FOR ALL
   TO service_role
   USING (bucket_id = 'operative-documents')
   WITH CHECK (bucket_id = 'operative-documents');
 
 -- Allow authenticated users in same org to view documents
-CREATE POLICY IF NOT EXISTS "Authenticated users can view operative-documents"
+DROP POLICY IF EXISTS "Authenticated users can view operative-documents" ON storage.objects;
+CREATE POLICY "Authenticated users can view operative-documents"
   ON storage.objects FOR SELECT
   TO authenticated
   USING (bucket_id = 'operative-documents');

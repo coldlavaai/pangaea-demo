@@ -267,7 +267,7 @@ export async function POST(
   // 2. Check expiry
   const expiresAt: string | null = operative.document_upload_token_expires_at ?? null
   if (!expiresAt || new Date(expiresAt) < new Date()) {
-    return NextResponse.json({ error: 'This upload link has expired. Please contact Aztec Landscapes.' }, { status: 410 })
+    return NextResponse.json({ error: 'This upload link has expired. Please contact Pangaea.' }, { status: 410 })
   }
 
   // 3. Parse multipart form data
@@ -305,7 +305,7 @@ export async function POST(
   const operativeUpdates: Record<string, unknown> = {
     document_upload_token: null,
     document_upload_token_expires_at: null,
-    // Sophie intake: update status + address. Workflow chase: skip both.
+    // Amber intake: update status + address. Workflow chase: skip both.
     ...(!workflowMode ? {
       status: 'qualifying',
       address_line1: addressLine1,
@@ -377,7 +377,7 @@ export async function POST(
   const docType = idResult.idExtracted?.doc_type ?? 'other'
   const docLabel = docType === 'passport' ? 'Passport' : docType === 'driving_licence' ? 'Driving Licence' : 'ID Document'
   const idNotes = [
-    'AI-verified via upload form (Sophie intake). Awaiting manager review.',
+    'AI-verified via upload form (Amber intake). Awaiting manager review.',
     ...(idResult.flags.length > 0 ? [`⚠️ ${idResult.flags.join(' | ')}`] : []),
   ].join(' ')
 
@@ -415,7 +415,7 @@ export async function POST(
       file_key: idUpload.key,
       file_name: workflowMode
         ? `${docLabel} (workflow chase)`
-        : `${docLabel} (Sophie intake)`,
+        : `${docLabel} (Amber intake)`,
       status: 'pending',
       notes: idNotes,
       expiry_date: idResult.idExtracted?.expiry_date ?? null,
@@ -444,12 +444,12 @@ export async function POST(
 
   // 8. WhatsApp notifications
   // Workflow mode: acknowledge the upload, let them know we'll review it.
-  // Sophie intake: send full confirmation to operative + notify Liam.
+  // Amber intake: send full confirmation to operative + notify Liam.
   if (workflowMode && operative.phone) {
     try {
       await sendWhatsApp(
         operative.phone,
-        `Thanks ${firstName}! We've received your ${docLabel}. We'll review it and let you know once it's confirmed. — Aztec Construction`
+        `Thanks ${firstName}! We've received your ${docLabel}. We'll review it and let you know once it's confirmed. — Pangaea`
       )
     } catch (e) {
       console.error('[upload] workflow acknowledgement error', e)
@@ -461,7 +461,7 @@ export async function POST(
       try {
         await sendWhatsApp(
           operative.phone,
-          `Thanks ${firstName}! ✅ We've received your documents.\n\n📄 *${docLabel}* — verified\n\nThis confirms your identity so we can get you started with Aztec Landscapes. If you have any questions, just reply here and I'll help. Our Labour Manager will be in touch within 1–3 working days. 👷`
+          `Thanks ${firstName}! ✅ We've received your documents.\n\n📄 *${docLabel}* — verified\n\nThis confirms your identity so we can get you started with Pangaea. If you have any questions, just reply here and I'll help. Our Labour Manager will be in touch within 1–3 working days. 👷`
         )
       } catch (e) {
         console.error('[upload] confirmation send error', e)
@@ -473,7 +473,7 @@ export async function POST(
       try {
         await sendWhatsApp(
           liamNumber,
-          `📋 *Documents received — ${fullName}*\n\n*Phone:* ${operative.phone ?? 'unknown'}\n*Docs:* ${docsUploaded}${flagSummary}\n\n👉 Review & verify:\nhttps://aztec-landscapes-bos.vercel.app/operatives/${operativeId}?tab=documents`
+          `📋 *Documents received — ${fullName}*\n\n*Phone:* ${operative.phone ?? 'unknown'}\n*Docs:* ${docsUploaded}${flagSummary}\n\n👉 Review & verify:\nhttps://pangaea-demo.vercel.app/operatives/${operativeId}?tab=documents`
         )
       } catch (e) {
         console.error('[upload] liam notify error', e)

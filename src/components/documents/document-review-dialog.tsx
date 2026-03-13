@@ -31,7 +31,7 @@ interface DocData {
 
 /**
  * Global document review dialog. Triggered via ?review={docId} in the URL.
- * Opens as a modal overlay wherever you are — ALF, operatives page, notifications, etc.
+ * Opens as a modal overlay wherever you are — Rex, operatives page, notifications, etc.
  */
 export function DocumentReviewDialog() {
   const router = useRouter()

@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import type { ToolResult } from '../types'
 
-const ORG_ID = '00000000-0000-0000-0000-000000000001'
+const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function executeOperativeWrite(input: any): Promise<ToolResult> {
@@ -71,7 +71,7 @@ export async function executeOperativeWrite(input: any): Promise<ToolResult> {
           day_rate: input.data.day_rate ?? input.data.standard_day_rate ?? 0,
           effective_date: new Date().toISOString().split('T')[0],
           rate_type: 'revised' as const,
-          notes: input.reason ?? 'Updated via ALF assistant',
+          notes: input.reason ?? 'Updated via Rex assistant',
         })
       if (error) return { text_result: `Error updating rates: ${error.message}` }
       return { text_result: 'Pay rates updated successfully.' }

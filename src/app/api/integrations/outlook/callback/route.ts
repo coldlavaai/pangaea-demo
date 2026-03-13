@@ -5,7 +5,7 @@ import { getUserRole } from '@/lib/auth/get-user-role'
 import { exchangeCode, getGraphProfile } from '@/lib/email/outlook-auth'
 
 const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID!
-const APP_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://aztec-landscapes-bos.vercel.app').trim()
+const APP_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://pangaea-demo.vercel.app').trim()
 
 function redirect(path: string) {
   return NextResponse.redirect(`${APP_URL}${path}`)

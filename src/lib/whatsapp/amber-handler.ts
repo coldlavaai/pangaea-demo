@@ -6,7 +6,7 @@ import { createNotification } from '@/lib/notifications/create'
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 
-const SOPHIE_SYSTEM_PROMPT = `You are Sophie, the friendly AI recruitment assistant for Aztec Landscapes — a UK groundworks and landscaping contractor based in the North West.
+const AMBER_SYSTEM_PROMPT = `You are Amber, the friendly AI recruitment assistant for the company.
 
 You speak to potential new operatives via WhatsApp. Short, warm, conversational messages — like a real recruiter texting. No long paragraphs. Plain English.
 
@@ -39,7 +39,7 @@ INTAKE FLOW
 ════════════════════════════════════
 
 state: "start"
-→ Warm greeting. Introduce as Sophie from Aztec Landscapes. Ask if they're looking for work.
+→ Warm greeting. Introduce as Amber. Ask if they're looking for work.
 → next_state: "awaiting_rtw"
 
 state: "awaiting_rtw"
@@ -68,7 +68,7 @@ state: "awaiting_trade"
 
 state: "awaiting_experience"
 → Ask how many years of experience they have as a [trade from intake_data].
-→ Sophie says: "Nice one! How many years of experience do you have as a [trade]?"
+→ Amber says: "Nice one! How many years of experience do you have as a [trade]?"
 → Extract an integer from natural language: "about 5 years" → 5, "just started" → 0, "15+" → 15, "a couple" → 2, "over 10" → 10
 → extracted: { experience_years: <integer> }, next_state: "awaiting_name"
 
@@ -99,7 +99,7 @@ GENERAL RULES
 - Keep replies under 100 words.
 - Be warm and encouraging — these are real people looking for work.`
 
-export interface SophieIntakeData {
+export interface AmberIntakeData {
   rtw_confirmed?: boolean
   age_confirmed?: boolean
   cscs_card?: boolean
@@ -111,10 +111,10 @@ export interface SophieIntakeData {
   email?: string
 }
 
-interface SophieResult {
+interface AmberResult {
   reply: string
   next_state: string
-  extracted: SophieIntakeData
+  extracted: AmberIntakeData
 }
 
 // Circuit breaker — protects against Claude API outages.
@@ -126,16 +126,16 @@ const CIRCUIT_COOLDOWN_MS = 60_000 // 1 minute before retrying after 3 consecuti
 
 async function callClaudeWithBreaker(
   state: string,
-  intakeData: SophieIntakeData,
+  intakeData: AmberIntakeData,
   messages: { role: 'user' | 'assistant'; content: string }[],
   language = 'en'
-): Promise<SophieResult> {
+): Promise<AmberResult> {
   if (claudeCircuitOpen) {
     if (Date.now() - claudeCircuitOpenAt > CIRCUIT_COOLDOWN_MS) {
       claudeCircuitOpen = false // Half-open: allow one attempt through
-      console.log('[sophie] Circuit breaker half-open — retrying Claude')
+      console.log('[amber] Circuit breaker half-open — retrying Claude')
     } else {
-      console.warn('[sophie] Circuit breaker open — returning fallback without calling Claude')
+      console.warn('[amber] Circuit breaker open — returning fallback without calling Claude')
       return {
         reply: "Hi! We're experiencing a brief delay. the Labour Manager will follow up with you shortly. 👷",
         next_state: state,
@@ -150,11 +150,11 @@ async function callClaudeWithBreaker(
     return result
   } catch (err) {
     claudeFailCount++
-    console.error('[sophie] Claude API error, fail count:', claudeFailCount, err)
+    console.error('[amber] Claude API error, fail count:', claudeFailCount, err)
     if (claudeFailCount >= 3) {
       claudeCircuitOpen = true
       claudeCircuitOpenAt = Date.now()
-      console.error('[sophie] Circuit breaker opened after 3 consecutive failures')
+      console.error('[amber] Circuit breaker opened after 3 consecutive failures')
     }
     return {
       reply: "Sorry, I'm having a moment! the Labour Manager will message you shortly. 👷",
@@ -166,10 +166,10 @@ async function callClaudeWithBreaker(
 
 async function callClaude(
   state: string,
-  intakeData: SophieIntakeData,
+  intakeData: AmberIntakeData,
   recentMessages: { role: 'user' | 'assistant'; content: string }[],
   language = 'en'
-): Promise<SophieResult> {
+): Promise<AmberResult> {
   // State context goes in the system prompt — not as messages.
   // Injecting it as [user, assistant] priming messages caused consecutive same-role
   // violations when combined with conversation history, breaking Claude's output.
@@ -183,7 +183,7 @@ async function callClaude(
     ? `\nLANGUAGE DETECTION: Detect the language of the incoming message. Include "language": "en"|"ro"|"pl"|"bg" in extracted (default "en" if unclear or other language).`
     : ''
 
-  const system = `${SOPHIE_SYSTEM_PROMPT}${languageInstruction}${langDetectionInstruction}
+  const system = `${AMBER_SYSTEM_PROMPT}${languageInstruction}${langDetectionInstruction}
 
 ---
 CURRENT INTAKE STATE: ${state}
@@ -214,7 +214,7 @@ You MUST respond with raw JSON only. No markdown, no code fences, no explanation
     text = response.content[0].type === 'text' ? response.content[0].text : ''
   } catch (err: unknown) {
     const isTimeout = err instanceof Error && (err.message.includes('timeout') || err.message.includes('timed out') || (err as NodeJS.ErrnoException).code === 'ETIMEDOUT')
-    console.error('[sophie] Claude API error:', isTimeout ? 'timeout' : err)
+    console.error('[amber] Claude API error:', isTimeout ? 'timeout' : err)
     return {
       reply: isTimeout
         ? "Bear with me a second — just thinking that one through 👷 Send your message again if I don't reply in a moment!"
@@ -229,19 +229,19 @@ You MUST respond with raw JSON only. No markdown, no code fences, no explanation
 
   // Attempt 1: clean stripped text
   try {
-    return JSON.parse(stripped) as SophieResult
+    return JSON.parse(stripped) as AmberResult
   } catch { /* continue */ }
 
   // Attempt 2: extract first {...} block from response (handles preamble/postamble text)
   const match = stripped.match(/\{[\s\S]*\}/)
   if (match) {
     try {
-      return JSON.parse(match[0]) as SophieResult
+      return JSON.parse(match[0]) as AmberResult
     } catch { /* continue */ }
   }
 
   // Hard fallback — preserve state, generic holding message
-  console.error('[sophie] JSON parse failed, raw response:', text.slice(0, 200))
+  console.error('[amber] JSON parse failed, raw response:', text.slice(0, 200))
   return {
     reply: "Sorry, just a sec — something went a bit slow on my end. Can you send that again? 👷",
     next_state: state,
@@ -255,18 +255,18 @@ const LANGUAGE_NAMES: Record<string, string> = {
   bg: 'Bulgarian',
 }
 
-interface HandleSophieParams {
+interface HandleAmberParams {
   supabase: SupabaseClient
   threadId: string
   intakeState: string | null
-  intakeData: SophieIntakeData
+  intakeData: AmberIntakeData
   messageBody: string
   fromPhone: string
   orgId: string
   language?: string | null
 }
 
-export async function handleSophieIntake({
+export async function handleAmberIntake({
   supabase,
   threadId,
   intakeState,
@@ -275,14 +275,14 @@ export async function handleSophieIntake({
   fromPhone,
   orgId,
   language,
-}: HandleSophieParams): Promise<string> {
+}: HandleAmberParams): Promise<string> {
   const currentLang = language ?? 'en'
   const knownStates = ['start', 'awaiting_rtw', 'awaiting_age', 'awaiting_cscs', 'awaiting_trade', 'awaiting_experience', 'awaiting_name', 'awaiting_email', 'docs_link_sent', 'qualified', 'rejected']
   const rawState = intakeState ?? 'start'
   const state = knownStates.includes(rawState) ? rawState : 'start'
 
   if (state !== rawState) {
-    console.warn('[sophie] unknown state reset to start:', rawState)
+    console.warn('[amber] unknown state reset to start:', rawState)
     // Reset stale state in DB
     await supabase.from('message_threads').update({ intake_state: null, intake_data: {} }).eq('id', threadId)
   }
@@ -312,7 +312,7 @@ export async function handleSophieIntake({
       content: m.body as string,
     }))
 
-  // The inbound message is saved to DB before Sophie is called, so it may already
+  // The inbound message is saved to DB before Amber is called, so it may already
   // appear as the last item in history. Don't append it again or Claude gets two
   // consecutive user messages which breaks the conversation structure.
   const lastHistoryMsg = history[history.length - 1]
@@ -321,11 +321,11 @@ export async function handleSophieIntake({
     ? history
     : [...history, { role: 'user' as const, content: messageBody }]
 
-  console.log('[sophie] calling Claude, state:', state, 'lang:', currentLang)
+  console.log('[amber] calling Claude, state:', state, 'lang:', currentLang)
   const result = await callClaudeWithBreaker(state, intakeData, conversationHistory, currentLang)
-  console.log('[sophie] Claude replied, next_state:', result.next_state, 'reply:', result.reply.slice(0, 80))
+  console.log('[amber] Claude replied, next_state:', result.next_state, 'reply:', result.reply.slice(0, 80))
 
-  const updatedData: SophieIntakeData = { ...intakeData, ...result.extracted }
+  const updatedData: AmberIntakeData = { ...intakeData, ...result.extracted }
 
   // Persist detected language (only on first message — extracted.language set by Claude)
   const detectedLang = (result.extracted as Record<string, unknown>).language as string | undefined
@@ -364,7 +364,7 @@ async function createOperativeAndSendLink({
   supabase: SupabaseClient
   orgId: string
   fromPhone: string
-  intakeData: SophieIntakeData
+  intakeData: AmberIntakeData
 }): Promise<string | null> {
   // Match trade to trade_categories if possible
   let tradeCategoryId: string | null = null
@@ -404,13 +404,13 @@ async function createOperativeAndSendLink({
       cscs_card_type: cscsCardType,
       document_upload_token: token,
       document_upload_token_expires_at: expiresAt,
-      notes: `Registered via WhatsApp intake (Sophie). Trade: ${intakeData.trade ?? 'unknown'}. CSCS: ${intakeData.cscs_card ? intakeData.cscs_colour : 'none'}. Experience: ${intakeData.experience_years != null ? `${intakeData.experience_years} yrs` : 'unknown'}.`,
+      notes: `Registered via WhatsApp intake (Amber). Trade: ${intakeData.trade ?? 'unknown'}. CSCS: ${intakeData.cscs_card ? intakeData.cscs_colour : 'none'}. Experience: ${intakeData.experience_years != null ? `${intakeData.experience_years} yrs` : 'unknown'}.`,
     })
     .select('id')
     .single()
 
   if (error) {
-    console.error('[sophie] operative create error', error)
+    console.error('[amber] operative create error', error)
     return null
   }
 
@@ -451,7 +451,7 @@ async function createOperativeAndSendLink({
 
   const fullUrl = `${(process.env.NEXT_PUBLIC_APP_URL ?? '').trim()}/apply/${token}`
   const uploadUrl = await createShortLink(fullUrl)
-  console.log('[sophie] operative created:', operative.id, 'grade:', estimated.grade, 'day rate: £', estimated.dayRate, 'upload url:', uploadUrl)
+  console.log('[amber] operative created:', operative.id, 'grade:', estimated.grade, 'day rate: £', estimated.dayRate, 'upload url:', uploadUrl)
 
   // Notify BOS — new operative completed intake, docs link sent
   const firstName = intakeData.first_name ?? 'Unknown'
