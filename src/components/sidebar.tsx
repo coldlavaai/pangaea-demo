@@ -112,11 +112,8 @@ export function Sidebar({ userEmail, userRole }: SidebarProps) {
     <aside className="flex flex-col w-40 shrink-0 h-screen bg-forest-800 border-r border-forest-700/30 overflow-y-auto">
       {/* Logo */}
       <div className="flex items-center gap-2 px-3 py-2.5 border-b border-forest-700/30">
-        <img src="/pangaea-mark.png" className="h-6 w-6 object-contain shrink-0" alt="Pangaea" />
-        <div className="flex flex-col min-w-0 flex-1">
-          <span className="font-display text-forest-100 text-[11px] leading-tight">Pangaea<span className="text-copper-500">.</span></span>
-          <span className="text-[9px] text-forest-400 leading-tight">Workforce</span>
-        </div>
+        <img src="/pangaea-logo.png" className="h-6 object-contain shrink-0" alt="Pangea" />
+        <div className="flex-1" />
         <AlertsBell />
       </div>
 

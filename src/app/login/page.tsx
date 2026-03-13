@@ -82,8 +82,8 @@ export default function LoginPage() {
 
         {/* Logo / Brand */}
         <div className="text-center mb-8">
-          <img src="/pangaea-mark.png" className="w-24 mx-auto mb-4" alt="Pangaea" />
-          <p className="text-2xl font-display tracking-[0.3em] text-forest-100">Pangaea</p>
+          <img src="/pangaea-square.png" className="w-20 h-20 mx-auto mb-4 rounded-xl" alt="Pangea" />
+          <img src="/pangaea-logo.png" className="h-8 mx-auto mb-2" alt="Pangea" />
           <p className="text-xs font-sans tracking-[0.25em] text-forest-300/70 uppercase mt-1">Workforce Management</p>
         </div>
 
