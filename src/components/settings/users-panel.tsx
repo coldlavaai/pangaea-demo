@@ -3,6 +3,7 @@
 import { useState, useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { PhoneInput } from '@/components/ui/phone-input'
 import { Label } from '@/components/ui/label'
 import {
   Select,
@@ -424,18 +425,12 @@ export function UsersPanel({
                       <div className="mt-1 flex items-center gap-1">
                         {isEditingPhone ? (
                           <>
-                            <Input
+                            <PhoneInput
                               value={phoneInputs[user.id] ?? ''}
-                              onChange={(e) =>
-                                setPhoneInputs((p) => ({ ...p, [user.id]: e.target.value }))
+                              onChange={(val) =>
+                                setPhoneInputs((p) => ({ ...p, [user.id]: val }))
                               }
-                              placeholder="+447700900000"
-                              className="h-6 w-36 text-xs bg-card border-border text-muted-foreground px-2 py-0"
-                              onKeyDown={(e) => {
-                                if (e.key === 'Enter') handleSavePhone(user.id)
-                                if (e.key === 'Escape') setEditingPhone(null)
-                              }}
-                              autoFocus
+                              className="[&_select]:h-6 [&_select]:text-xs [&_select]:px-1 [&_input]:h-6 [&_input]:text-xs [&_input]:px-1 [&_input]:py-0 w-52 bg-card border-border text-muted-foreground"
                             />
                             <button
                               onClick={() => handleSavePhone(user.id)}
@@ -694,11 +689,9 @@ export function UsersPanel({
                   <span className="ml-1 text-sky-400">— required for WhatsApp bot</span>
                 )}
               </Label>
-              <Input
-                type="tel"
+              <PhoneInput
                 value={inviteForm.phone_number}
-                onChange={(e) => setInviteForm((f) => ({ ...f, phone_number: e.target.value }))}
-                placeholder="+447700900000"
+                onChange={(val) => setInviteForm((f) => ({ ...f, phone_number: val }))}
                 className="bg-card border-border text-muted-foreground"
               />
             </div>

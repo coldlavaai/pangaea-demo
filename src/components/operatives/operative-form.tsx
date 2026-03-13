@@ -16,6 +16,7 @@ type OperativeGrade = Database['public']['Enums']['operative_grade']
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Input } from '@/components/ui/input'
+import { PhoneInput } from '@/components/ui/phone-input'
 import { Label } from '@/components/ui/label'
 import {
   Popover,
@@ -488,7 +489,18 @@ export function OperativeForm({
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
           <Label htmlFor="phone" className={labelClass}>Phone *</Label>
-          <Input id="phone" type="tel" {...register('phone')} className={fieldClass} />
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field }) => (
+              <PhoneInput
+                id="phone"
+                value={field.value || ''}
+                onChange={field.onChange}
+                className={fieldClass}
+              />
+            )}
+          />
           {errorMsg('phone')}
         </div>
         <div className="space-y-1.5">
@@ -1073,11 +1085,17 @@ export function OperativeForm({
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="next_of_kin_phone" className={labelClass}>Phone</Label>
-          <Input
-            id="next_of_kin_phone"
-            type="tel"
-            {...register('next_of_kin_phone')}
-            className={fieldClass}
+          <Controller
+            name="next_of_kin_phone"
+            control={control}
+            render={({ field }) => (
+              <PhoneInput
+                id="next_of_kin_phone"
+                value={field.value || ''}
+                onChange={field.onChange}
+                className={fieldClass}
+              />
+            )}
           />
         </div>
       </div>
