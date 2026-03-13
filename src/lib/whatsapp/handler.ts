@@ -256,8 +256,16 @@ export async function handleInbound(
   }
 
   // 8. Default — existing operative, no active offer, not in intake
+  // If they have data gaps, Amber acknowledges and the admin can trigger onboarding from the dashboard.
+  // No more generic "we received your message" — Amber is always intelligent.
   if (!reply && operativeId && !staffUser) {
-    reply = "Hi! We received your message and will get back to you shortly. 👷"
+    const { data: op } = await supabase
+      .from('operatives')
+      .select('first_name, status')
+      .eq('id', operativeId)
+      .single()
+    const name = op?.first_name ?? 'there'
+    reply = `Hi ${name}, thanks for your message! Our team has been notified and someone will be in touch with you shortly.`
   }
 
   // 9. Translate outbound reply if operative's language isn't English
