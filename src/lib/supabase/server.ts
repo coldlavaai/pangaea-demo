@@ -1,0 +1,38 @@
+import { createServerClient } from '@supabase/ssr'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
+import { cookies } from 'next/headers'
+import type { Database } from '@/types/database'
+
+// createClient() — for Server Components and Route Handlers (uses user session/cookies)
+export async function createClient() {
+  const cookieStore = await cookies()
+  return createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll: () => cookieStore.getAll(),
+        setAll: (cookiesToSet) =>
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options)
+          ),
+      },
+    }
+  )
+}
+
+// createServiceClient() — M-08 FIX: for webhooks + cron (bypasses RLS, uses service role key)
+// IMPORTANT: All queries using this client MUST include explicit organization_id filter.
+// Never return data without .eq('organization_id', orgId) — no RLS protection here.
+export function createServiceClient() {
+  return createSupabaseClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    }
+  )
+}

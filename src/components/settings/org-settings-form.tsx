@@ -1,0 +1,134 @@
+'use client'
+
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
+
+interface OrgSettingsFormProps {
+  orgId: string
+  name: string
+  slug: string
+  settings: Record<string, unknown>
+}
+
+export function OrgSettingsForm({ orgId, name: initName, slug: initSlug, settings }: OrgSettingsFormProps) {
+  const supabase = createClient()
+
+  const [orgName, setOrgName] = useState(initName)
+  const [liamWhatsapp, setLiamWhatsapp] = useState((settings.liam_whatsapp as string) ?? '')
+  const [offerWindow, setOfferWindow] = useState(String(settings.offer_window_minutes ?? 30))
+  const [broadcastCount, setBroadcastCount] = useState(String(settings.offer_broadcast_count ?? 3))
+  const [reallocRadius, setReallocRadius] = useState(String(settings.reallocation_radius_miles ?? 25))
+  const [saving, setSaving] = useState(false)
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSaving(true)
+
+    const newSettings = {
+      ...settings,
+      liam_whatsapp: liamWhatsapp || null,
+      offer_window_minutes: parseInt(offerWindow, 10) || 30,
+      offer_broadcast_count: parseInt(broadcastCount, 10) || 3,
+      reallocation_radius_miles: parseInt(reallocRadius, 10) || 25,
+    }
+
+    const { error } = await supabase
+      .from('organizations')
+      .update({ name: orgName, settings: newSettings as unknown as import('@/types/database').Json })
+      .eq('id', orgId)
+
+    setSaving(false)
+
+    if (error) {
+      toast.error(error.message)
+    } else {
+      toast.success('Settings saved')
+    }
+  }
+
+  const fieldClass = 'bg-slate-800 border-slate-700 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-500'
+  const labelClass = 'text-slate-300 text-sm'
+
+  return (
+    <form onSubmit={handleSave} className="max-w-xl space-y-6">
+      <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-5 space-y-4">
+        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Organisation</h3>
+
+        <div className="space-y-1.5">
+          <Label className={labelClass}>Organisation Name</Label>
+          <Input value={orgName} onChange={(e) => setOrgName(e.target.value)} className={fieldClass} />
+          <p className="text-xs text-slate-600">Slug: <span className="font-mono">{initSlug}</span></p>
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-5 space-y-4">
+        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">WhatsApp</h3>
+        <p className="text-xs text-slate-500">The labour manager WhatsApp number used for offer broadcasts and operative messages.</p>
+
+        <div className="space-y-1.5">
+          <Label className={labelClass}>Labour Manager WhatsApp</Label>
+          <Input
+            value={liamWhatsapp}
+            onChange={(e) => setLiamWhatsapp(e.target.value)}
+            placeholder="+447742201349"
+            className={`${fieldClass} font-mono`}
+          />
+          <p className="text-xs text-slate-600">Replace before go-live — currently placeholder (Oliver&apos;s number)</p>
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-5 space-y-4">
+        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Offer Settings</h3>
+
+        <div className="grid grid-cols-3 gap-4">
+          <div className="space-y-1.5">
+            <Label className={labelClass}>Offer window (mins)</Label>
+            <Input
+              type="number"
+              min="5"
+              max="1440"
+              value={offerWindow}
+              onChange={(e) => setOfferWindow(e.target.value)}
+              className={fieldClass}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label className={labelClass}>Broadcast count</Label>
+            <Input
+              type="number"
+              min="1"
+              max="10"
+              value={broadcastCount}
+              onChange={(e) => setBroadcastCount(e.target.value)}
+              className={fieldClass}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label className={labelClass}>Realloc. radius (mi)</Label>
+            <Input
+              type="number"
+              min="1"
+              max="100"
+              value={reallocRadius}
+              onChange={(e) => setReallocRadius(e.target.value)}
+              className={fieldClass}
+            />
+          </div>
+        </div>
+        <p className="text-xs text-slate-600">
+          Broadcast count = how many operatives receive an offer simultaneously. First to accept wins.
+        </p>
+      </div>
+
+      <Button type="submit" disabled={saving} className="bg-emerald-600 hover:bg-emerald-700 text-white">
+        {saving && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+        Save Settings
+      </Button>
+    </form>
+  )
+}

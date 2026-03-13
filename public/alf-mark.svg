@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Aztec diamond mosaic — transparent background, gold -->
+  <g transform="rotate(45 100 100)">
+    <!-- Outer diamond frame -->
+    <rect x="18" y="18" width="164" height="164"
+          stroke="#C4A84A" stroke-width="16" fill="none"
+          stroke-linejoin="miter"/>
+
+    <!-- Left outer C-bracket (opens right toward centre) -->
+    <path d="M88,34 H34 V166 H88"
+          stroke="#C4A84A" stroke-width="12"
+          stroke-linecap="butt" stroke-linejoin="miter" fill="none"/>
+
+    <!-- Right outer C-bracket (mirror) -->
+    <path d="M112,34 H166 V166 H112"
+          stroke="#C4A84A" stroke-width="12"
+          stroke-linecap="butt" stroke-linejoin="miter" fill="none"/>
+
+    <!-- Left inner C-bracket (nested step) -->
+    <path d="M88,56 H56 V144 H88"
+          stroke="#C4A84A" stroke-width="9"
+          stroke-linecap="butt" stroke-linejoin="miter" fill="none"/>
+
+    <!-- Right inner C-bracket (nested step, mirror) -->
+    <path d="M112,56 H144 V144 H112"
+          stroke="#C4A84A" stroke-width="9"
+          stroke-linecap="butt" stroke-linejoin="miter" fill="none"/>
+
+    <!-- Centre diamond element -->
+    <rect x="88" y="88" width="24" height="24" fill="#C4A84A"/>
+  </g>
+</svg>

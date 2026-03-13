@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 380" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Aztec diamond mosaic mark — centred at (240, 110), scaled 0.9x -->
+  <g transform="translate(190,10) scale(0.9)">
+    <g transform="rotate(45 100 100)">
+      <rect x="18" y="18" width="164" height="164"
+            stroke="#C4A84A" stroke-width="16" fill="none" stroke-linejoin="miter"/>
+      <path d="M88,34 H34 V166 H88"
+            stroke="#C4A84A" stroke-width="12"
+            stroke-linecap="butt" stroke-linejoin="miter" fill="none"/>
+      <path d="M112,34 H166 V166 H112"
+            stroke="#C4A84A" stroke-width="12"
+            stroke-linecap="butt" stroke-linejoin="miter" fill="none"/>
+      <path d="M88,56 H56 V144 H88"
+            stroke="#C4A84A" stroke-width="9"
+            stroke-linecap="butt" stroke-linejoin="miter" fill="none"/>
+      <path d="M112,56 H144 V144 H112"
+            stroke="#C4A84A" stroke-width="9"
+            stroke-linecap="butt" stroke-linejoin="miter" fill="none"/>
+      <rect x="88" y="88" width="24" height="24" fill="#C4A84A"/>
+    </g>
+  </g>
+
+  <!-- ALF — large spaced text -->
+  <text x="240" y="232"
+        font-family="'Cinzel', 'Trajan Pro', Georgia, serif"
+        font-weight="900"
+        font-size="88"
+        letter-spacing="20"
+        fill="#C4A84A"
+        text-anchor="middle"
+        dominant-baseline="auto">ALF</text>
+
+  <!-- Divider line -->
+  <line x1="120" y1="252" x2="360" y2="252"
+        stroke="#C4A84A" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- AZTEC LABOUR FORCE — small spaced text -->
+  <text x="240" y="295"
+        font-family="'Cinzel', 'Trajan Pro', Georgia, serif"
+        font-weight="400"
+        font-size="22"
+        letter-spacing="8"
+        fill="#C4A84A"
+        text-anchor="middle"
+        dominant-baseline="auto">AZTEC LABOUR FORCE</text>
+</svg>
