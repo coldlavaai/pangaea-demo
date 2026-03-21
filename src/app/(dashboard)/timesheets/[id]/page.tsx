@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
@@ -15,7 +15,7 @@ export default async function TimesheetDetailPage({
 }) {
   const { id } = await params
   const canExport = await getCanExport()
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
 
   const [{ data: ts }, { data: entries }] = await Promise.all([

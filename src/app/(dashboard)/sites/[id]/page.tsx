@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { MapPin, Phone, Mail, Pencil, Building2, Users, Calendar, PoundSterling, ArrowLeft } from 'lucide-react'
@@ -18,7 +18,7 @@ export default async function SiteDetailPage({ params, searchParams }: PageProps
   const { tab = 'overview' } = await searchParams
   const activeTab = tab as Tab
 
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
 
   const [

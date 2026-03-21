@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Pencil, Search, Calendar, Users, PoundSterling } from 'lucide-react'
@@ -13,7 +13,7 @@ export default async function RequestDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
 
   const [{ data: req }, { data: allocations }] = await Promise.all([

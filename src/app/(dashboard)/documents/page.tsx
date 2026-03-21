@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { AlertTriangle, CheckCircle, Clock, XCircle, FileText } from 'lucide-react'
 import { CSCS_DOT_CLASS } from '@/lib/cscs-colours'
@@ -62,7 +62,7 @@ export default async function CompliancePage({
   searchParams: Promise<SearchParams>
 }) {
   const params = await searchParams
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
 
   const today = new Date()

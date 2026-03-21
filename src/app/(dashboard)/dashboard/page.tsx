@@ -40,7 +40,7 @@ export default async function DashboardPage() {
   const today = londonToday()
 
   const { data: { user } } = await supabase.auth.getUser()
-  const { data: profile } = await supabase
+  const { data: profile } = await serviceSupabase
     .from('users')
     .select('first_name')
     .eq('auth_user_id', user?.id ?? '')
@@ -69,56 +69,56 @@ export default async function DashboardPage() {
     { count: pendingOffers },
     { count: docsAwaitingReview },
   ] = await Promise.all([
-    supabase
+    serviceSupabase
       .from('operatives')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId),
 
-    supabase
+    serviceSupabase
       .from('operatives')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
       .or('phone.not.is.null,email.not.is.null'),
 
-    supabase
+    serviceSupabase
       .from('sites')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
       .eq('is_active', true),
 
-    supabase
+    serviceSupabase
       .from('labour_requests')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
       .in('status', ['pending', 'searching', 'partial']),
 
-    supabase
+    serviceSupabase
       .from('labour_requests')
       .select('headcount_required, headcount_filled')
       .eq('organization_id', orgId)
       .in('status', ['pending', 'searching', 'partial']),
 
-    supabase
+    serviceSupabase
       .from('allocations')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
       .eq('status', 'active'),
 
-    supabase
+    serviceSupabase
       .from('allocations')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
       .eq('start_date', today)
       .in('status', ['pending', 'confirmed', 'active']),
 
-    supabase
+    serviceSupabase
       .from('documents')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
       .not('expiry_date', 'is', null)
       .lt('expiry_date', today),
 
-    supabase
+    serviceSupabase
       .from('documents')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
@@ -126,7 +126,7 @@ export default async function DashboardPage() {
       .gte('expiry_date', today)
       .lte('expiry_date', in7Days),
 
-    supabase
+    serviceSupabase
       .from('documents')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
@@ -134,20 +134,20 @@ export default async function DashboardPage() {
       .gt('expiry_date', in7Days)
       .lte('expiry_date', in30Days),
 
-    supabase
+    serviceSupabase
       .from('operatives')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
       .eq('rtw_verified', false)
       .not('status', 'eq', 'prospect'),
 
-    supabase
+    serviceSupabase
       .from('operatives')
       .select('*', { count: 'exact', head: true })
       .eq('organization_id', orgId)
       .eq('status', 'blocked'),
 
-    supabase
+    serviceSupabase
       .from('allocations')
       .select(`
         id,

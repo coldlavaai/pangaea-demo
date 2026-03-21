@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { format } from 'date-fns'
@@ -166,7 +166,7 @@ export default async function OperativeProfilePage({
 }) {
   const { id } = await params
   const { tab = 'overview' } = await searchParams
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
   const userRole = await getUserRole()
   const canEditOperatives = ['super_admin', 'admin', 'director', 'labour_manager'].includes(userRole ?? '')

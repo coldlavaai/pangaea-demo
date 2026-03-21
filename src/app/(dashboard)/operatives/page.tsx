@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { Plus, Users, ChevronLeft, ChevronRight, Upload, Star } from 'lucide-react'
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip'
@@ -44,7 +44,7 @@ export default async function OperativesPage({
   searchParams: Promise<SearchParams>
 }) {
   const params = await searchParams
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
   const currentPage = Math.max(1, parseInt(params.page ?? '1', 10))
   const offset = (currentPage - 1) * PAGE_SIZE

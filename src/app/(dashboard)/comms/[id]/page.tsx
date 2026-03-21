@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { PageHeader } from '@/components/page-header'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -11,7 +11,7 @@ export default async function CommsThreadPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
 
   const [{ data: thread }, { data: messages }] = await Promise.all([

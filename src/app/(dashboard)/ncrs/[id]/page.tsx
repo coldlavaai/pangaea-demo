@@ -1,4 +1,3 @@
-import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/server'
 import { getUserRole } from '@/lib/auth/get-user-role'
 import { notFound } from 'next/navigation'
@@ -48,8 +47,8 @@ export default async function NcrDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const supabase = await createClient()
-  const svcSupabase = createServiceClient()
+  const supabase = createServiceClient()
+  const svcSupabase = supabase
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
   const role = await getUserRole()
   const canEdit = role === 'admin' || role === 'super_admin' || role === 'staff'

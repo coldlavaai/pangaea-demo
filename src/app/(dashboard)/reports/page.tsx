@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { PageHeader } from '@/components/page-header'
 import {
@@ -52,7 +52,7 @@ const STATUS_COLOURS: Record<string, string> = {
 }
 
 export default async function ReportsPage() {
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const canExport = await getCanExport()
 
   const today = new Date().toISOString().slice(0, 10)

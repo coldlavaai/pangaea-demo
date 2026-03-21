@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { getUserRole } from '@/lib/auth/get-user-role'
 import Link from 'next/link'
 import { Plus, Megaphone, Eye, MousePointer, Users } from 'lucide-react'
@@ -21,7 +21,7 @@ export default async function AdvertsPage() {
   const role = await getUserRole()
   if (role === 'site_manager' || role === 'auditor') redirect('/unauthorized')
 
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
 
   const [{ data: adverts }, { data: templates }] = await Promise.all([

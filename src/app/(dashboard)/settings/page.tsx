@@ -1,10 +1,8 @@
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { getUserRole } from '@/lib/auth/get-user-role'
 import { PageHeader } from '@/components/page-header'
 import { SettingsTabs } from '@/components/settings/settings-tabs'
-
-import { createServiceClient } from '@/lib/supabase/server'
 
 export default async function SettingsPage({
   searchParams,
@@ -22,12 +20,12 @@ export default async function SettingsPage({
   const { data: { user: authUser } } = await supabase.auth.getUser()
 
   const [{ data: org }, { data: trades }, { data: users }, { data: sites }, { data: userSites }, { data: emailIntegration }, { data: savedTemplates }] = await Promise.all([
-    supabase.from('organizations').select('id, name, slug, settings').eq('id', orgId).single(),
-    supabase.from('trade_categories').select('*').eq('organization_id', orgId).order('sort_order').order('name'),
+    serviceSupabase.from('organizations').select('id, name, slug, settings').eq('id', orgId).single(),
+    serviceSupabase.from('trade_categories').select('*').eq('organization_id', orgId).order('sort_order').order('name'),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase.from('users') as any).select('id, first_name, last_name, email, role, is_active, created_at, phone_number, auth_user_id, receive_notifications, telegram_chat_id').eq('organization_id', orgId).order('first_name'),
-    supabase.from('sites').select('id, name').eq('organization_id', orgId).neq('is_active', false).order('name'),
-    supabase.from('user_sites').select('user_id, site_id').eq('organization_id', orgId),
+    (serviceSupabase.from('users') as any).select('id, first_name, last_name, email, role, is_active, created_at, phone_number, auth_user_id, receive_notifications, telegram_chat_id').eq('organization_id', orgId).order('first_name'),
+    serviceSupabase.from('sites').select('id, name').eq('organization_id', orgId).neq('is_active', false).order('name'),
+    serviceSupabase.from('user_sites').select('user_id, site_id').eq('organization_id', orgId),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (serviceSupabase as any).from('email_integrations')
       .select('email_address, display_name, token_expires_at, updated_at')

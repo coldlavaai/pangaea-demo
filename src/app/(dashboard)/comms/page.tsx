@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { getUserRole } from '@/lib/auth/get-user-role'
 import { PageHeader } from '@/components/page-header'
 import { CommsThreadList } from '@/components/comms/comms-thread-list'
@@ -7,7 +7,7 @@ import { CommsThreadList } from '@/components/comms/comms-thread-list'
 export default async function CommsPage() {
   const role = await getUserRole()
   if (role === 'site_manager' || role === 'auditor') redirect('/unauthorized')
-  const supabase = await createClient()
+  const supabase = createServiceClient()
   const orgId = process.env.NEXT_PUBLIC_ORG_ID!
 
   const { data: raw } = await supabase
